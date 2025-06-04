@@ -1,12 +1,3 @@
-/* ページ全体のスタイル */
-/* body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f8f8f8;
-    margin: 0;
-    padding: 0;
-    font-size: 16px;
-} */
-
 body {
   background-color: #0d0d0d;
   color: #f0f0f0;
@@ -15,42 +6,57 @@ body {
   padding: 0;
 }
 
+.profile-layout {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 24px;
+  /* background-color: #0d0d0d; */
+}
 
-/* タイトルのスタイル */
+.profile-info pre {
+  background-color: #151515;
+  color: #dcdcdc;
+  padding: 16px 12px 16px 0px;
+  /* border-radius: 10px; */
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.profile-pic img {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0);
+}
+
+@media (max-width: 700px) {
+  .profile-layout {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-pic {
+    margin-top: 24px;
+  }
+}
+
 h1 {
     text-align: center;
     color: #66d9ef;
     margin-bottom: 40px;
+    margin-top: 40px;
 }
-
-/* .profile {
-    text-align: center; 
-    margin-bottom: 20px;
-    margin-top: 30px;
-}
-
-.profile img {
-    width: 200px; 
-    height: 200px;
-    border-radius: 50%;
-    object-fit: cover; 
-    margin-bottom: 15px;
-}
-
-.profile h2 {
-    font-size: 30px;
-    color: #333;
-    margin-bottom: 15px;
-}
-
-.profile p {
-    font-size: 20px;
-    color: #555;
-    margin: 0 auto;
-    margin-bottom: 15px;
-    max-width: 500px; 
-} */
   
+/* ギャラリー全体の設定 */
   .gallery {
     display: flex;
     flex-wrap: wrap;
@@ -58,7 +64,8 @@ h1 {
     justify-content: center;
     padding: 0 16px;
   }
-  
+
+  /* ギャラリーの写真の設定 */
   .image-container {
     width: calc(25% - 5px);
     display: flex;
@@ -68,20 +75,21 @@ h1 {
     background-color: #1e1e1e;
     border-radius: 8px;
   }
-  
-  @media (max-width: 600px) {
-    .image-container {
-      width: calc(33.33% - 4px);
-    }
-  }
-  
-.image-container img {
+
+  .image-container img {
     max-height: 100%;         
     max-width: 100%;       
     object-fit: contain;       
 }
+  
+/* スマホ用の設定 */
+@media (max-width: 600px) {
+  .image-container {
+    width: calc(33.33% - 4px);
+  }
+}
 
-/* SNSリンクを並べるための箱 */
+/* SNSリンク用の箱 */
 .sns-links {
     display: flex;
     justify-content: center;
@@ -95,13 +103,15 @@ h1 {
     width: 35px; 
     height: 35px;
     transition: opacity 0.3s; 
+    background-color: #cfcfcf;
+    border-radius: 50%;
 }
 
 .sns-links img:hover {
     opacity: 0.7; 
 }
 
-/* モーダル（拡大表示）のスタイル */
+/* モーダル */
 .modal {
     display: none;
     position: fixed;
@@ -155,7 +165,7 @@ h1 {
     font-size: 9px;
 }
 
-/* ==== 上部ナビゲーション全体 ==== */
+/* 上部ナビゲーション全体 */
 .top-nav {
   display: flex;
   align-items: center;
@@ -165,7 +175,10 @@ h1 {
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
-/* ==== Youmi Nagase ==== */
+/* Youmi Nagase (上部ナビゲーションの横) */
+
+/* そろそろロゴ作れよ💢 */
+
 .site-title {
   display: flex;
   align-items: center;
@@ -184,7 +197,7 @@ h1 {
   margin: 0;
 }
 
-/* ==== Gallery ボタン（ドロップダウン） ==== */
+/* Gallery選択用のドロップダウンボタン */
 .dropdown {
   position: relative;
   display: flex;
@@ -210,7 +223,7 @@ h1 {
   transform: translateY(1px);
 }
 
-/* ==== ドロップダウンメニュー ==== */
+/* ドロップダウンメニュー */
 .dropdown-menu {
   display: none;
   position: absolute;
@@ -248,6 +261,8 @@ h1 {
   background-color: #282828;
   color: #66d9ef;
 }
+
+/* 新しいページを作るときの表示 */
 
   /* .coming-soon h2 {
     display: flex;
