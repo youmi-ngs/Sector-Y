@@ -42,13 +42,13 @@ body {
   padding-bottom: 50px;
 }
 
-.profile-left p {
+.sns-wrapper p {
   font-weight: bold;
-  padding-bottom: 15px;
+  padding-bottom: px;
 }
 
 /* SNSリンク用の箱 */
-.sns-links {
+.sns-wrapper {
     display: column;
     justify-content: center;
     gap: 50px; 
@@ -57,25 +57,25 @@ body {
 }
 
 /* SNSアイコンのサイズと動きの設定 */
-.sns-links img {
+.sns-wrapper img {
     width: 35px; 
     height: 35px;
     transition: opacity 0.3s; 
 }
 
-.sns {
-  padding-bottom: 30px;
+.sns-links {
+  padding-bottom: 20px;
   display: flex;
   align-items: center;
 }
 
-.sns a {
+.sns-links a {
   font-size: 15px;
   padding-left: 20px;
   color: #ffffff;
 }
 
-.sns-links img:hover {
+.sns-wrapper img:hover {
     opacity: 0.7; 
     background-color: #68686800;
 
