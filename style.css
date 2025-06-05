@@ -49,11 +49,12 @@ body {
 
 /* SNSリンク用の箱 */
 .sns-wrapper {
-    display: column;
-    justify-content: center;
-    gap: 50px; 
-    margin-top: 40px; 
-    margin-bottom: 80px; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 50px;
+  margin-top: 40px;
+  margin-bottom: 80px;
 }
 
 /* SNSアイコンのサイズと動きの設定 */
