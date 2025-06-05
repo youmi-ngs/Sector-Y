@@ -152,8 +152,6 @@ h1 {
     width: 35px; 
     height: 35px;
     transition: opacity 0.3s; 
-    background-color: #cfcfcf;
-    border-radius: 50%;
 }
 
 .sns-links img:hover {
