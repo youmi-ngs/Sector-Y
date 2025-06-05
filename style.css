@@ -7,13 +7,78 @@ body {
 }
 
 .profile-layout {
+  align-items: flex-start;
   display: flex;
   justify-content: center;
-  align-items: center;
   gap: 50px;
   max-width: 900px;
   margin: 40px auto;
   padding: 0;
+}
+
+.profile-pic img {
+  width: 300px;
+  height: 300px;
+  border-radius: 30%;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0);
+  margin-top: 2px;
+}
+
+@media (max-width: 700px) {
+  .profile-layout {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-pic {
+    margin-top: 24px;
+  }
+}
+
+.profile-left h2 {
+  text-align: center;
+  color: #69AEC8;
+  padding-bottom: 50px;
+}
+
+.profile-left p {
+  font-weight: bold;
+  padding-bottom: 15px;
+}
+
+/* SNSリンク用の箱 */
+.sns-links {
+    display: column;
+    justify-content: center;
+    gap: 50px; 
+    margin-top: 40px; 
+    margin-bottom: 80px; 
+}
+
+/* SNSアイコンのサイズと動きの設定 */
+.sns-links img {
+    width: 35px; 
+    height: 35px;
+    transition: opacity 0.3s; 
+}
+
+.sns {
+  padding-bottom: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.sns a {
+  font-size: 15px;
+  padding-left: 20px;
+  color: #ffffff;
+}
+
+.sns-links img:hover {
+    opacity: 0.7; 
+    background-color: #68686800;
+
 }
 
 .profile-info {
@@ -27,7 +92,7 @@ body {
   color: #dcdcdc;
   font-family: "SFMono-Regular", Menlo, monospace;
   padding: 16px 10px 16px 50px;
-  border-radius: 10px;
+  border-radius: 5px;
   line-height: 1.6;
   font-size: 14px;
   margin: 0;
@@ -78,31 +143,12 @@ body {
   font-style: italic;
 }
 
-
-.profile-pic img {
-  width: 250px;
-  height: 250px;
-  border-radius: 50%;
-  object-fit: cover;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0);
-}
-
-@media (max-width: 700px) {
-  .profile-layout {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .profile-pic {
-    margin-top: 24px;
-  }
-}
-
 h1 {
     text-align: center;
     color: #66d9ef;
     margin-bottom: 40px;
     margin-top: 40px;
+    font-size: 35px;
 }
   
 /* ギャラリー全体の設定 */
@@ -128,7 +174,7 @@ h1 {
   .image-container img {
     max-height: 100%;         
     max-width: 100%;       
-    object-fit: contain;       
+    object-fit: contain; 
 }
   
 /* スマホ用の設定 */
@@ -136,26 +182,6 @@ h1 {
   .image-container {
     width: calc(33.33% - 4px);
   }
-}
-
-/* SNSリンク用の箱 */
-.sns-links {
-    display: flex;
-    justify-content: center;
-    gap: 50px; 
-    margin-top: 40px; 
-    margin-bottom: 80px; 
-}
-
-/* SNSアイコンのサイズと動きの設定 */
-.sns-links img {
-    width: 35px; 
-    height: 35px;
-    transition: opacity 0.3s; 
-}
-
-.sns-links img:hover {
-    opacity: 0.7; 
 }
 
 /* モーダル */
