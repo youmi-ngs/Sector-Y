@@ -39,12 +39,10 @@ body {
 .profile-left h2 {
   text-align: center;
   color: #69AEC8;
-  padding-bottom: 50px;
 }
 
 .sns-wrapper p {
   font-weight: bold;
-  padding-bottom: px;
 }
 
 /* SNSリンク用の箱 */
@@ -52,9 +50,9 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 50px;
-  margin-top: 40px;
-  margin-bottom: 80px;
+  gap: 10px;
+  margin-top: 20px;
+  margin-bottom: 40px;
 }
 
 /* SNSアイコンのサイズと動きの設定 */
@@ -65,7 +63,7 @@ body {
 }
 
 .sns-links {
-  padding-bottom: 20px;
+  padding-bottom: 5px;
   display: flex;
   align-items: center;
 }
