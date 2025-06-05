@@ -14,7 +14,6 @@ body {
   max-width: 900px;
   margin: 40px auto;
   padding: 0;
-  /* background-color: #0d0d0d; */
 }
 
 .profile-info {
@@ -22,19 +21,6 @@ body {
   margin: 0;
   padding: 0;
 }
-
-/* .profile-info pre {
-  /*background-color: #151515;
-  color: #dcdcdc;
-  padding: 16px px 16px 0px;
-  /*　border-radius: 10px;　　
-  font-size: 14px;
-  line-height: 1.6;
-  margin: 0;
-  white-space: pre-wrap;
-  word-break: break-word;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-} */
 
 .profile-info pre {
   background-color: #1e1e1e;
@@ -326,7 +312,6 @@ h1 {
 }
 
 /* 新しいページを作るときの表示 */
-
   /* .coming-soon h2 {
     display: flex;
     justify-content: center;
