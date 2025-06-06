@@ -100,7 +100,7 @@ body {
   overflow-x: hidden;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 600px) {
   .profile-info pre {
     white-space: pre-wrap;
     word-break: break-word;
