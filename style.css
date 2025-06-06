@@ -284,7 +284,7 @@ h1 {
 } */
 
 .site-logo img {
-  height: 40px;         /* ← サイズは必要に応じて調整 */
+  height: 32px;         /* ← サイズは必要に応じて調整 */
   width: auto;
   display: block;
 }
