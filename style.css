@@ -273,7 +273,7 @@ h1 {
   gap: 24px;
 }
 
-.site-title a {
+/* .site-title a {
   font-size: 28px;
   font-weight: bold;
   color: #6bdfff;
@@ -281,6 +281,12 @@ h1 {
   display: block;
   line-height: 1;
   margin: 0;
+} */
+
+.site-logo img {
+  height: 40px;         /* ← サイズは必要に応じて調整 */
+  width: auto;
+  display: block;
 }
 
 /* Gallery選択用のドロップダウンボタン */
