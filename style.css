@@ -160,6 +160,11 @@ pre, code {
   font-style: italic;
 }
 
+.row-num {
+  color: #747478;
+  font-size: 13px;
+}
+
 h1 {
     text-align: center;
     color: #96d3d7;
