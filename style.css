@@ -25,17 +25,6 @@ body {
   margin-top: 2px;
 }
 
-@media (max-width: 700px) {
-  .profile-layout {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .profile-pic {
-    margin-top: 5px;
-  }
-}
-
 .profile-left h2 {
   text-align: center;
   color: #96d3d7;
@@ -102,19 +91,6 @@ body {
 
 pre, code {
   font-family: SFMono-Regular, Menlo, Consolas, monospace;
-}
-
-@media (max-width: 700px) {
-  .profile-info pre {
-    white-space: pre-wrap;
-    word-break: break-word;
-    padding-left: 2.5em;
-    /* display: block; */
-  }
-
-  .profile-info pre::first-line {
-    text-indent: -1.5em;
-  }
 }
 
  /* 構文 (struct, let, var) */
@@ -198,13 +174,6 @@ h1 {
     max-width: 100%;       
     object-fit: contain; 
 }
-  
-/* スマホ用の設定 */
-@media (max-width: 700px) {
-  .image-container {
-    width: calc(33.33% - 4px);
-  }
-}
 
 /* モーダル */
 .modal {
@@ -271,7 +240,6 @@ h1 {
 }
 
 /* Youmi Nagase (上部ナビゲーションの横) */
-
 .site-title {
   display: flex;
   align-items: center;
@@ -349,6 +317,39 @@ h1 {
 .dropdown-menu a:active {
   background-color: #282828;
   color: #96d3d7;
+}
+
+/* スマホ用の設定 */
+@media (max-width: 700px) {
+  .image-container {
+    width: calc(33.33% - 4px);
+  }
+
+  .profile-layout {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-pic {
+    margin-top: 5px;
+  }
+
+  .profile-info pre {
+    white-space: pre-wrap;
+    word-break: break-word;
+    padding-left: 2.5em;
+    /* display: block; */
+  }
+
+  .profile-info pre::first-line {
+    text-indent: -1.5em;
+  }
+
+  .site-logo img {
+  height: 26px;    
+  width: auto;
+  display: block;
+  }
 }
 
 /* 新しいページを作るときの表示 */
