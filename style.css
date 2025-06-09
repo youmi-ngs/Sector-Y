@@ -408,6 +408,10 @@ pre, code {
     background-color: #eeeeee;
     color: #5db14e;
   }
+  
+  .image-container {
+    background-color: #f9f8f8;
+  }
 }
 
 /* スマホ用の設定 */
@@ -441,6 +445,7 @@ pre, code {
   width: auto;
   display: block;
   }
+  
 }
 
 /* 新しいページを作るときの表示 */
