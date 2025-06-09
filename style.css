@@ -6,6 +6,14 @@ body {
   padding: 0;
 }
 
+h1 {
+    text-align: center;
+    color: #96d3d7;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    font-size: 35px;
+}
+
 .profile-layout {
   align-items: flex-start;
   display: flex;
@@ -107,7 +115,6 @@ pre, code {
 /* ユーザーが作った型名・構造体名 (Youmi, Log) */
 .user-type {
   color: #8ADCFB;
-  font-weight: bold;
 }
 
 /* 定数の名前 (name, birth, etc...) */
@@ -139,14 +146,6 @@ pre, code {
 .row-num {
   color: #747478;
   font-size: 13px;
-}
-
-h1 {
-    text-align: center;
-    color: #96d3d7;
-    margin-bottom: 40px;
-    margin-top: 40px;
-    font-size: 35px;
 }
   
 /* ギャラリー全体の設定 */
@@ -317,6 +316,98 @@ h1 {
 .dropdown-menu a:active {
   background-color: #282828;
   color: #96d3d7;
+}
+
+/* ライトモード時の設定 */
+@media (prefers-color-scheme: light) {
+  body {
+    background-color: #FFFFFF;
+    color: #000000;
+  }
+
+  .keyword {
+    color: #a0459f
+  }
+
+  .string {
+    color: #c03e2a;
+  }
+
+  .comment {
+    color: #737f8b;
+  }
+
+  .number {
+    color: #272ad0;
+  }
+
+  .type {
+    color: #4524a9;
+  }
+
+  .user-type {
+    color: #296188;
+  }
+
+  .property {
+    color: #367bac
+  }
+
+  .profile-info pre {
+    background-color: #f5f5f5;
+    color: #000;
+  }
+
+  .row-num {
+    color: #a6a6a6;
+  }
+
+  .profile-left h2 {
+    text-align: center;
+    color: #5db14e;
+  }
+
+  h1 {
+    text-align: center;
+    color: #5db14e;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    font-size: 35px;
+  }
+
+  .sns-links a {
+    font-size: 15px;
+    padding-left: 20px;
+    color: #000000;
+  }
+
+  .sns-wrapper img:hover {
+    opacity: 0.7; 
+    background-color: #aeaeae00;
+  }
+
+  .top-nav {
+    background-color: #ffffffe7;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .site-title a,
+  .dropdown-toggle {
+    color: #1e1e1e;
+  }
+
+  .dropdown-menu {
+    background: #f8f8f8;
+  }
+
+  .dropdown-menu a {
+    color: #222;
+  }
+
+  .dropdown-menu a:hover {
+    background-color: #eeeeee;
+    color: #5db14e;
+  }
 }
 
 /* スマホ用の設定 */
