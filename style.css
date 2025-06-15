@@ -310,6 +310,7 @@ pre, code {
   color: #ffffff;
   font-size: 15px;
   transition: all 0.2s ease;
+  font-weight: bold;
 }
 
 .dropdown-menu a.active {
