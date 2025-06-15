@@ -1,76 +1,56 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Gallery - Main</title>
-        <link rel="icon" href="../images/logo-camera_light.png" media="(prefers-color-scheme: light)">
-        <link rel="icon" href="../images/logo-camera_dark.png" media="(prefers-color-scheme: dark)">
-        <link rel="stylesheet" href="../style.css"/>
+        <title>Gallery - Daisy</title>
+        <link rel="icon" href="../../images/logo-camera_light.png" media="(prefers-color-scheme: light)">
+        <link rel="icon" href="../../images/logo-camera_dark.png" media="(prefers-color-scheme: dark)">
+        <link rel="stylesheet" href="../../style.css"/>
     </head>
-
+    
     <body>
         <header class="top-nav">
+            
             <div class="site-title">
-                
               <h1 class="site-logo">
-                <a href="../index.html">
+                  <a href="../../index.html">
                     <picture>
-                        <source srcset="../images/logo-light.png" media="(prefers-color-scheme: light)">
-                        <source srcset="../images/logo-dark.png" media="(prefers-color-scheme: dark)">
-                        <img src="../images/logo-dark.png" alt="logo" height="32" />
+                        <source srcset="../../images/logo-light.png" media="(prefers-color-scheme: light)">
+                        <source srcset="../../images/logo-dark.png" media="(prefers-color-scheme: dark)">
+                        <img src="../../images/logo-dark.png" alt="logo" height="32" />
                     </picture>
-                </a>
+                  </a>
               </h1>
 
               <div class="dropdown">
                 <span class="dropdown-toggle">Gallery <span class="dropdown-icon">▼</span></span>
                 <div class="dropdown-menu">
-                  <a href="index.html"class="active">Main</a>
+                  <a href="../main/index.html">Main</a>
                   <a href="../disney/index.html">Disney</a>
-                  <a href="../daisy/index.html">Daisy</a>
+                  <a href="index.html"class="active">Daisy</a>
                 </div>
               </div>
             </div>
         </header>
 
-        <h1>My Main Gallery</h1>
+        <h1>Gallery / Daisy</h1>
+        <div class="gallary-wrapper">
             <div class="gallery">
-                <div class="image-container" data-title="エイ" data-place="Kyoto Aquarium" data-camera="Canon EOS R50, 18mm, f5.6, 1/80s, ISO 180">
-                    <img src="images/photo1.jpg">
+                <div class="image-container" data-title="Daisy" data-place="Tokyo Disneyland" data-camera="Canon EOS R50, 210mm, f7.1, 1/500s, ISO 3200">
+                    <img src="images/daisy20240213.JPG">
                 </div>
-                <div class="image-container" data-title="可愛いと葉桜" data-place="Shinjuku Gyo-en" data-camera="Canon EOS R50, 50mm, f1.8, 1/2000s, ISO 100">
-                    <img src="images/photo5.jpg">
+                <div class="image-container" data-title="Daisy" data-place="Tokyo DisneySea" data-camera="Canon EOS R50, 28mm, f7.2, 1/400s, ISO 200">
+                    <img src="images/daisy20240415.JPG">
                 </div>
-                <div class="image-container" data-title="桜" data-place="Meguro River" data-camera="Canon EOS R50, 50mm, f1.8, 1/100s, ISO 400">
-                    <img src="images/sakura20250331.JPG">
+                <div class="image-container" data-title="Daisy" data-place="Tokyo Disneyland" data-camera="Canon EOS R50">
+                    <img src="images/daisy20240811.JPG">
                 </div>
-                <div class="image-container" data-title="桜" data-place="Kamakura" data-camera="Canon EOS R50, 50mm, f3.5, 1/500s, ISO 100">
-                    <img src="images/photo6.jpg">
+                <div class="image-container" data-title="Daisy" data-place="Tokyo DisneySea" data-camera="Canon EOS R50, 50mm, f1.8, 1/640s, ISO 100">
+                    <img src="images/daisy20250203.JPG">
                 </div>
-                <div class="image-container" data-title="水たまり" data-place="Kichijōji" data-camera="Canon EOS R50, 50mm, f1.8, 1/500s, ISO 800">
-                    <img src="images/photo7.jpg">
-                </div>
-                <div class="image-container" data-title="夕焼け" data-place="Odaiba" data-camera="Canon EOS R50, 50mm, f1.8, 1/1000s, ISO 100">
-                    <img src="images/photo8.jpg">
-                </div>
-                <div class="image-container" data-title="夕焼け" data-place="Odaiba" data-camera="Canon EOS R50, 50mm, f1.8, 1/500s, ISO 100">
-                    <img src="images/photo9.jpg">
-                </div>
-                <div class="image-container" data-title="夜の始まり" data-place="Somewhere in Minato" data-camera="Canon EOS R50, 50mm, f1.8, 1/80s, ISO 800">
-                    <img src="images/photo10.jpg">
-                </div>
-                <div class="image-container" data-title="月" data-desc="またどこか一緒に行けますように" data-camera="Canon EOS R50, 50mm, f1.8, 1/640s, ISO 100">
-                    <img src="images/moon20250505.jpg">
-                </div>
-                <div class="image-container" data-title="私も" data-place="Haneda Airport" data-desc="流し撮り向いてない" data-camera="Canon EOS R50, 210mm, f7.1, 1/10s, ISO 1600">
-                    <img src="images/photo11.jpg">
-                </div>
-                <div class="image-container" data-title="水たまり" data-place="Yasaka Shrine" data-desc="リフレクション難しすぎる。一応これが1番大きい水たまりでした。" data-camera="Canon EOS R50, 50mm, f1.8, 1/200s, ISO 320">
-                    <img src="images/20250517-1.JPG">
-                </div>
-                <div class="image-container" data-title="雨上がり" data-place="Yasaka Shrine" data-camera="Canon EOS R50, 50mm, f1.8, 1/160s, ISO 1000">
-                    <img src="images/20250517-2.JPG">">
+                <div class="image-container" data-title="Daisy" data-place="Tokyo Disneyland" data-camera="Canon EOS R50, 155mm, f7.1, 1/800s, ISO 800">
+                    <img src="images/daisy20250314.JPG">
                 </div>
             </div>
         </div>
@@ -184,8 +164,6 @@
                 menu.classList.remove("open");
                 });
             });
-
         </script>
-
     </body>
 </html>
