@@ -96,6 +96,51 @@ body{
   color: #96d3d7;
 }
 
+.report {
+  margin-top: 48px;
+  margin-bottom: 48px;
+  margin-left: 50px;
+  margin-right: 50px;
+  padding: 24px;
+  background: #1e1e1e;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.report h2 {
+  color: #96d3d7;
+  margin-top: 60px;
+  margin-bottom: 50px;
+  padding-left: 55px;
+}
+
+.report p {
+  padding-top: 30px;
+  padding-left: 80px;
+  padding-right: 80px;
+  /* margin-bottom: 10px; */
+  line-height: 1.7;
+  font-size: 15px;
+  color: #ffffff;
+}
+
+.report-images {
+  display: flex;
+  gap: 12px;
+  margin: 12px 0;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.report-images img {
+  max-width: 100%;
+  width: 30%; 
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  height: auto;
+  object-fit: contain; 
+}
+
 @media (prefers-color-scheme: light) {
 
   body {
@@ -126,3 +171,31 @@ body{
     color: #5db14e;
   }
 }
+
+/* 新しいページを作るときの表示 */
+  .coming-soon h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    font-size: 24px;
+    color: #555;
+    margin-top: 200px;
+    margin-bottom: 30px;
+  }
+
+  .coming-soon p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    margin-bottom: 200px;
+    color: #555;
+  }
+
+  .coming-soon a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    color: #555;
+  }

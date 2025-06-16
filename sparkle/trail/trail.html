@@ -42,6 +42,49 @@
           </div>
         </header>
 
+        <section class="report" data-tags="少女⭐︎歌劇レヴュースタァライト シークフェルト音楽学院中等部 Rerise 舞台">
+            <h2>2025/06/13 - シークフェルト音楽学院中等部 The Stage Rerise</h2>
+            <div class="report-images">
+                <img src="images/20250613/tickets.JPG" alt="Reriseステージ" />
+                <img src="images/20250613/blades.jpeg" alt="Reriseステージ" />
+                <img src="images/20250613/Acrylstands.jpeg" alt="Reriseステージ" />
+            </div>
+
+            <p>
+              <p>
+                今日はReriseを観に行った。<br>
+                ロマーナもシークフェルトも超絶格好良かった。<br>
+                特に、詩呂ちゃんとステラちゃんの礼式のレヴューで、2人の関係性が主人と従者から友人に変わったところでボロ泣きした。<br>
+                あと、みんなの口上が成長した言葉になってて感動した。<br>
+                詩呂ちゃん＆ステラちゃん vs 直江＆尊のレヴューも圧巻だった。泣きすぎて目が痛い。<br>
+              </p>
+              <p>
+                ロマーナだと、貴我吾妻が好きすぎる。ロマーナのすごいところは、レヴュー服はほとんど変わらない、武器はみんな同じ、ダンスは全員全く同じ動きをするのに、立ち方や殺陣からどこか個性を感じるところだと思う。統制が取れすぎている動きをしているのにも関わらず、キャラの性格に強すぎるほどの癖があって、それがロマーナ全体の魅力だ。流石に格好が良すぎるだろって。<br>
+                でも、シークフェルトの立ち方、歌い方、殺陣、踊り方全てにキャラが出まくってるのももちろん大好き。<br>
+              </p>
+              <p>
+                今回、舞台は初めて観たけど、すごくよかったクソ寒いし、急に音鳴るし、びっくりしたけどwww<br>
+                観に行って本当によかった。みんく好きになりすぎて、買う予定なかったアクスタ買っちまったぜwww<br>
+              </p>
+              <p>
+                詩呂ちゃんとみんくのアクスタを持って、明日のGTEC頑張ろうと思う。<br>
+                あと、さいかわ先生と結婚したい<br>
+              </p>
+            </p>
+        </section>
+
+            <script>
+        document.querySelectorAll(".tag-list button").forEach(button => {
+        button.addEventListener("click", () => {
+            const tag = button.dataset.tag;
+            document.querySelectorAll(".report").forEach(entry => {
+            const tags = entry.dataset.tags.split(" ");
+            entry.style.display = tags.includes(tag) ? "block" : "none";
+            });
+        });
+        });
+    </script>
+
     </body>
     
 </html>
