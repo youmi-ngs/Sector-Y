@@ -6,15 +6,36 @@ body{
   padding: 0;
 }
 
-/* 上部ナビゲーション全体 */
 .top-nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 18px 24px;
+  background-color: #1e1e1e;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  height: 60px; /* ← 明示して揃える！ */
+}
+
+.site-logo img {
+  height: 34px;
+  width: auto;
+  display: block;
+}
+
+.dropdown-toggle {
+  font-size: 20px;
+  line-height: 1;
+}
+
+/* 上部ナビゲーション全体 */
+/* .top-nav {
   display: flex;
   align-items: center;
   gap: 24px;
   padding: 0 24px;
   background-color: #1e1e1e;
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-}
+} */
 
 /* Youmi Nagase (上部ナビゲーションの横) */
 .site-title {
@@ -25,11 +46,11 @@ body{
   gap: 24px;
 }
 
-.site-logo img {
+/* .site-logo img {
   height: 34px;    
   width: auto;
   display: block;
-}
+} */
 
 .dropdown {
   position: relative;
@@ -39,7 +60,7 @@ body{
   cursor: pointer;
 }
 
-.dropdown-toggle {
+/* .dropdown-toggle {
   display: flex;
   align-items: center;
   font-weight: bold;
@@ -47,7 +68,7 @@ body{
   font-size: 20px;
   line-height: 1;
   gap: 4px;
-}
+} */
 
 .dropdown-icon {
   font-size: 12px;
@@ -211,3 +232,89 @@ body{
     font-size: 12px;
     color: #555;
   }
+
+@media (max-width: 700px) {
+
+    .site-title {
+  display: flex;
+  align-items: center;
+  font-size: 28px;
+  font-weight: bold;
+  gap: 12px;
+}
+
+    .top-nav {
+    padding: 0 12px;
+    gap: 8px;
+    height: 52px; /* スマホサイズに明示！ */
+  }
+
+  .site-logo img {
+    height: 17px;
+  }
+
+  .dropdown {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  cursor: pointer;
+}
+
+  .dropdown-toggle {
+    margin-left: 8px;
+    font-size: 12px;
+  }
+
+.dropdown-menu a {
+  font-size: 12px;
+  padding: 5px 8px;
+}
+
+    /* .top-nav {
+        display: flex;
+        align-items: center;
+        padding: 0 12px;
+        gap: 8px;
+        overflow: hidden;
+    }
+
+    .dropdown-toggle {
+        text-align: center;
+        font-size: 12px;
+    }
+
+    .site-logo img {
+        width: auto;
+        height: 17px;
+        display: block;
+    } */
+
+    .report {
+        margin-left: 8px;
+        margin-right: 8px;
+        padding: 8px;
+        margin-bottom: 28px;
+    }
+
+    .report h2 {
+        margin-top: 30px;
+        /* margin-bottom: px; */
+        padding-left: 30px;
+        padding-right: 30px;
+        font-size: 16px;
+    }
+
+    .report p {
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    line-height: 1.5;
+    font-size: 13px;
+    }
+
+    .report-images {
+        gap: 3px;
+        /* margin: 1px 0; */
+    }
+
+}
