@@ -27,16 +27,6 @@ body{
   line-height: 1;
 }
 
-/* 上部ナビゲーション全体 */
-/* .top-nav {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  padding: 0 24px;
-  background-color: #1e1e1e;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-} */
-
 /* Youmi Nagase (上部ナビゲーションの横) */
 .site-title {
   display: flex;
@@ -46,12 +36,6 @@ body{
   gap: 24px;
 }
 
-/* .site-logo img {
-  height: 34px;    
-  width: auto;
-  display: block;
-} */
-
 .dropdown {
   position: relative;
   display: flex;
@@ -59,16 +43,6 @@ body{
   gap: 24px;
   cursor: pointer;
 }
-
-/* .dropdown-toggle {
-  display: flex;
-  align-items: center;
-  font-weight: bold;
-  color: #f0f0f0;
-  font-size: 20px;
-  line-height: 1;
-  gap: 4px;
-} */
 
 .dropdown-icon {
   font-size: 12px;
@@ -312,25 +286,6 @@ body{
   font-size: 12px;
   padding: 5px 8px;
 }
-
-    /* .top-nav {
-        display: flex;
-        align-items: center;
-        padding: 0 12px;
-        gap: 8px;
-        overflow: hidden;
-    }
-
-    .dropdown-toggle {
-        text-align: center;
-        font-size: 12px;
-    }
-
-    .site-logo img {
-        width: auto;
-        height: 17px;
-        display: block;
-    } */
 
     .report {
         margin-left: 8px;

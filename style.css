@@ -296,16 +296,6 @@ pre, code {
   line-height: 1;
 }
 
-/* 上部ナビゲーション全体 */
-/* .top-nav {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  padding: 0 24px;
-  background-color: #1e1e1e;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-} */
-
 /* Youmi Nagase (上部ナビゲーションの横) */
 .site-title {
   display: flex;
@@ -315,12 +305,6 @@ pre, code {
   gap: 24px;
 }
 
-/* .site-logo img {
-  height: 34px;    
-  width: auto;
-  display: block;
-} */
-
 /* Gallery選択用のドロップダウンボタン */
 .dropdown {
   position: relative;
@@ -329,16 +313,6 @@ pre, code {
   gap: 24px;
   cursor: pointer;
 }
-
-/* .dropdown-toggle {
-  display: flex;
-  align-items: center;
-  font-weight: bold;
-  color: #f0f0f0;
-  font-size: 20px;
-  line-height: 1;
-  gap: 4px;
-} */
 
 .dropdown-icon {
   font-size: 12px;
