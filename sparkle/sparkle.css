@@ -91,7 +91,10 @@ body{
   min-width: 120px;
 }
 
-.dropdown:hover .dropdown-menu,
+.dropdown-menu {
+  display: none;
+}
+
 .dropdown-menu.open {
   display: block;
 }
