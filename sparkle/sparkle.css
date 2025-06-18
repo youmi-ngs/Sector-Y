@@ -118,6 +118,7 @@ body{
 }
 
 .report {
+  font-family: 'Kiwi Maru', serif;
   margin-top: 48px;
   margin-bottom: 48px;
   margin-left: 50px;
@@ -160,6 +161,14 @@ body{
   box-shadow: 0 2px 8px rgba(0,0,0,0.2);
   height: auto;
   object-fit: contain; 
+}
+
+.lang-ja .lang-en {
+  display: none;
+}
+
+.lang-en .lang-ja {
+  display: none;
 }
 
 @media (prefers-color-scheme: light) {
