@@ -107,27 +107,7 @@
         </main>
 
         <script>
-
-
-
-          document.addEventListener("DOMContentLoaded", function () {
-    const toggle = document.querySelector(".dropdown-toggle");
-    const menu = document.querySelector(".dropdown-menu");
-
-    toggle.addEventListener("click", function (e) {
-      console.log("🔥 toggle clicked");  // ← ここ追加！
-      e.stopPropagation();
-      menu.classList.toggle("open");
-    });
-
-    document.addEventListener("click", function () {
-      menu.classList.remove("open");
-    });
-  });
-
-
-
-
+          
           const lang = navigator.language || navigator.userLanguage;
           if (lang.startsWith('ja')) {
             document.body.classList.add('lang-ja');
