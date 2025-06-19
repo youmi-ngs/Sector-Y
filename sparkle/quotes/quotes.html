@@ -73,6 +73,21 @@
                 menu.classList.remove("open");
               });
             });
+
+            // 🖱️ マウスが載ったときに自動でメニューを開く
+            document.querySelectorAll(".dropdown").forEach(dropdown => {
+              const toggle = dropdown.querySelector(".dropdown-toggle");
+              const menu = dropdown.querySelector(".dropdown-menu");
+
+              toggle.addEventListener("mouseenter", () => {
+                menu.classList.add("open");
+              });
+
+              dropdown.addEventListener("mouseleave", () => {
+                menu.classList.remove("open");
+              });
+            });
+
           });
         </script>
 
