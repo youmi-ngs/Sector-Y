@@ -364,6 +364,40 @@ pre, code {
   color: #96d3d7;
 }
 
+.tag-section h3 {
+  color: #96d3d7;
+  margin: 24px 0 8px;
+  font-size: 16px;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 30px 50px;
+}
+
+.tag-list button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  background-color: #333;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.tag-list button:hover {
+  color: #96d3d7;
+}
+
+.tag-list button.active {
+  background-color: #96d3d7;
+  color: #000;
+  font-weight: bold;
+}
+
 /* ライトモード時の設定 */
 @media (prefers-color-scheme: light) {
   body {
@@ -462,6 +496,27 @@ pre, code {
   .image-container {
     background-color: #f9f8f8;
   }
+
+  .tag-section h3 {
+    color: #4caf50;
+    margin: 8px 0 8px;
+    font-size: 16px;
+  }
+
+  .tag-list button {
+    background-color: #f8f8f8;
+    color: #222;
+  }
+
+  .tag-list button:hover {
+    color: #4caf50;
+  }
+
+  .tag-list button.active {
+  background-color: #4caf50;
+  color: #fff;
+  font-weight: bold;
+}
 }
 
 /* スマホ用の設定 */

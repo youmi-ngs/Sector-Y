@@ -42,24 +42,57 @@
             </div>
         </header>
 
-        <h1>Gallery / Characters</h1>
-        <div class="gallery">
-            <div class="image-container" data-title="Daisy" data-place="Tokyo Disneyland" data-camera="Canon EOS R50, 210mm, f7.1, 1/500s, ISO 3200">
-                <img src="images/stitch20250211.JPG">
+        <div class="tag-list">
+            <div class="tag-section">
+                <h3>Characters</h3>
+                <div class="tag-list">
+                    <button data-tag="All" class="active">All</button>
+                    <button data-tag="Minnie">Minnie Mouse</button>
+                    <button data-tag="Donald">Donald Duck</button>
+                    <button data-tag="Stitch">Stitch</button>
+                    <button data-tag="Angel">Angel</button>
+                    <button data-tag="HonestJohn">J・Worthington Foulfellow / Honest John</button>
+                </div>
             </div>
-            <div class="image-container" data-title="Club Mouse Beat!!" data-place="Tokyo Disneyland" data-camera="Canon EOS R50">
-                <img src="images/angel20250211.JPG">
+            <div class="tag-section">
+                <h3>Titles</h3>
+                <div class="tag-list">
+                    <button data-tag="All">All</button>
+                    <button data-tag="MickeyAndFriends">Mickey&Friends</button>
+                    <button data-tag="LiloAndStitch">Lilo&Stitch</button>
+                    <button data-tag="Pinocchio">Pinocchio</button>
+                </div>
             </div>
-            <div class="image-container" data-title="Daisy" data-place="Tokyo DisneySea" data-camera="Canon EOS R50, 28mm, f7.2, 1/400s, ISO 200">
-                <img src="images/donald20250203.JPG">
-            </div>
-            <div class="image-container" data-title="Daisy" data-place="Tokyo Disneyland" data-camera="Canon EOS R50">
-                <img src="images/minnie20250203.JPG">
-            </div>
-            <div class="image-container" data-title="Daisy" data-place="Tokyo Disneyland" data-camera="Canon EOS R50">
-                <img src="images/honestJohn202502023.JPG"> 
+            <div class="tag-section">
+                <h3>Places</h3>
+                <div class="tag-list">
+                    <button data-tag="All">All</button>
+                    <button data-tag="Land">Tokyo Disneyland</button>
+                    <button data-tag="Sea">Tokyo DisneySea</button>
+                </div>
             </div>
         </div>
+
+        <main>
+            <h1>Gallery / Characters</h1>
+            <div class="gallery">
+                <div class="image-container" data-tags="LiloAndStitch Stitch Land" data-title="Stitch" data-place="Tokyo Disneyland" data-camera="Canon EOS R50">
+                    <img src="images/stitch20250211.JPG">
+                </div>
+                <div class="image-container" data-tags="LiloAndStitch Angel Land" data-title="Angel" data-place="Tokyo Disneyland" data-camera="Canon EOS R50">
+                    <img src="images/angel20250211.JPG">
+                </div>
+                <div class="image-container" data-tags="MickeyAndFriends Donald Sea" data-title="Donald Duck" data-place="Tokyo DisneySea" data-camera="Canon EOS R50">
+                    <img src="images/donald20250203.JPG">
+                </div>
+                <div class="image-container" data-tags="MickeyAndFriends Minnie Land" data-title="Minnie Mouse" data-place="Tokyo Disneyland" data-camera="Canon EOS R50">
+                    <img src="images/minnie20250203.JPG">
+                </div>
+                <div class="image-container" data-tags="Pinocchio HonestJohn Land" data-title="J・Worthington Foulfellow / Honest John" data-place="Tokyo Disneyland" data-camera="Canon EOS R50">
+                    <img src="images/honestJohn202502023.JPG"> 
+                </div>
+            </div>
+        </main>
 
         <div id="modal" class="modal" onclick="this.style.display='none'">
             <div class = "modal-content">
@@ -115,6 +148,26 @@
                     currentImageIndex = index;
                     showModal(container);
                 };
+            });
+
+            document.addEventListener("DOMContentLoaded", function () {
+                document.querySelectorAll(".tag-list button").forEach(button => {
+                    button.addEventListener("click", () => {
+                    const tag = button.dataset.tag;
+
+                    // すべてのボタンから active を外す
+                    document.querySelectorAll(".tag-list button").forEach(b => b.classList.remove("active"));
+
+                    // 今クリックされたボタンに active をつける
+                    button.classList.add("active");
+
+                    // 絞り込み処理
+                    document.querySelectorAll(".image-container").forEach(container => {
+                        const tags = container.dataset.tags.split(" ");
+                        container.style.display = (tag === "All" || tags.includes(tag)) ? "flex" : "none";
+                    });
+                    });
+                });
             });
             
             // PC: キーボード矢印キー対応
