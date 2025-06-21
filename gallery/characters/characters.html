@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Gallery - Characters</title>
+        <link rel="icon" href="../../images/logo-camera_dark.png">
+        <link rel="stylesheet" href="../../style.css"/>
+    </head>
+    
+    <body>
+        <header class="top-nav">
+            
+            <div class="site-title">
+              <div class="site-logo">
+                  <a href="../../index.html">
+                    <picture>
+                        <source srcset="../../images/logo-light.png" media="(prefers-color-scheme: light)">
+                        <source srcset="../../images/logo-dark.png" media="(prefers-color-scheme: dark)">
+                        <img src="../../images/logo-dark.png" alt="logo" height="32" />
+                    </picture>
+                  </a>
+                </div>
+
+              <div class="dropdown">
+                <span class="dropdown-toggle">Gallery <span class="dropdown-icon">▼</span></span>
+                <div class="dropdown-menu">
+                  <a href="../main/main.html">Main</a>
+                  <a href="../disney/disney.html">Disney</a>
+                  <a href="../daisy/daisy.html">Daisy</a>
+                  <a href="characters.html" class="active">Characters</a>
+                </div>
+              </div>
+
+              <div class="dropdown">
+                <span class="dropdown-toggle">Sparkle <span class="dropdown-icon">▼</span></span>
+                <div class="dropdown-menu">
+                  <a href="../../sparkle/trail/trail.html">Trail</a>
+                  <a href="../../sparkle/quotes/quotes.html">Quotes</a>
+                </div>
+              </div>
+            </div>
+        </header>
+
+        <h1>Gallery / Characters</h1>
+        <div class="gallery">
+            <div class="image-container" data-title="Daisy" data-place="Tokyo Disneyland" data-camera="Canon EOS R50, 210mm, f7.1, 1/500s, ISO 3200">
+                <img src="images/stitch20250211.JPG">
+            </div>
+            <div class="image-container" data-title="Club Mouse Beat!!" data-place="Tokyo Disneyland" data-camera="Canon EOS R50">
+                <img src="images/angel20250211.JPG">
+            </div>
+            <div class="image-container" data-title="Daisy" data-place="Tokyo DisneySea" data-camera="Canon EOS R50, 28mm, f7.2, 1/400s, ISO 200">
+                <img src="images/donald20250203.JPG">
+            </div>
+            <div class="image-container" data-title="Daisy" data-place="Tokyo Disneyland" data-camera="Canon EOS R50">
+                <img src="images/minnie20250203.JPG">
+            </div>
+            <div class="image-container" data-title="Daisy" data-place="Tokyo Disneyland" data-camera="Canon EOS R50">
+                <img src="images/honestJohn202502023.JPG"> 
+            </div>
+        </div>
+
+        <div id="modal" class="modal" onclick="this.style.display='none'">
+            <div class = "modal-content">
+                <img id="modal-image">
+                <div class="modal-info">
+                    <h2 id="modal-title"></h2>
+                    <p id="modal-place"></p>
+                    <p id="modal-camera"></p>
+                    <p id="modal-desc"></p>
+                </div>
+            </div>
+        </div>
+
+
+        <script>
+            let currentImageIndex = 0;
+            const containers = Array.from(document.querySelectorAll('.image-container'));
+            
+            const modal = document.getElementById('modal');
+            const modalImage = document.getElementById('modal-image');
+            const modalTitle = document.getElementById('modal-title');
+            const modalPlace = document.getElementById('modal-place');
+            const modalDesc = document.getElementById('modal-desc');
+            const modalCamera = document.getElementById('modal-camera');
+            const modalContent = document.querySelector('.modal-info');
+            
+            function showModal(container) {
+                modalImage.src = container.querySelector('img').src;
+            
+                const hasTitle = container.dataset.title && container.dataset.title.trim() !== '';
+                const hasPlace= container.dataset.place&& container.dataset.place.trim() !== '';
+                const hasCamera = container.dataset.camera && container.dataset.camera.trim() !== '';
+                const hasDesc = container.dataset.desc && container.dataset.desc.trim() !== '';
+            
+                if (hasTitle || hasPlace || hasCamera || hasDesc) {
+                    modalTitle.textContent = hasTitle ? container.dataset.title : '';
+                    modalPlace.textContent = hasPlace ? container.dataset.place : '';
+                    modalCamera.textContent = hasCamera ? container.dataset.camera : '';
+                    modalDesc.textContent = hasDesc ? container.dataset.desc : '';
+            
+                    modalContent.style.display = 'block';
+                    modalImage.style.maxHeight = '90vh';
+                } else {
+                    modalContent.style.display = 'none';
+                    modalImage.style.maxHeight = '100vh';
+                }
+            
+                modal.style.display = 'flex';
+            }
+            
+            containers.forEach((container, index) => {
+                container.onclick = () => {
+                    currentImageIndex = index;
+                    showModal(container);
+                };
+            });
+            
+            // PC: キーボード矢印キー対応
+            document.addEventListener('keydown', (e) => {
+                if (modal.style.display === 'flex') {
+                    if (e.key === 'ArrowRight') {
+                        currentImageIndex = (currentImageIndex + 1) % containers.length;
+                        showModal(containers[currentImageIndex]);
+                    } else if (e.key === 'ArrowLeft') {
+                        currentImageIndex = (currentImageIndex - 1 + containers.length) % containers.length;
+                        showModal(containers[currentImageIndex]);
+                    } else if (e.key === 'Escape') {
+                        modal.style.display = 'none';
+                    }
+                }
+            });
+            
+            // スマホ：左右スワイプ対応
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            modal.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+            
+            modal.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            });
+            
+            function handleSwipe() {
+                if (touchEndX < touchStartX - 50) {
+                    currentImageIndex = (currentImageIndex + 1) % containers.length;
+                    showModal(containers[currentImageIndex]);
+                }
+                if (touchEndX > touchStartX + 50) {
+                    currentImageIndex = (currentImageIndex - 1 + containers.length) % containers.length;
+                    showModal(containers[currentImageIndex]);
+                }
+            }
+
+            document.addEventListener("DOMContentLoaded", function () {
+                document.querySelectorAll(".dropdown-toggle").forEach(toggle => {
+                const menu = toggle.nextElementSibling;
+
+                toggle.addEventListener("click", function (e) {
+                    e.stopPropagation();
+
+                    // 他のメニューを全部閉じる
+                    document.querySelectorAll(".dropdown-menu").forEach(m => {
+                        if (m !== menu) m.classList.remove("open");
+                    });
+
+                        // 自分のメニューだけ toggle（開閉）
+                    menu.classList.toggle("open");
+                    });
+                });
+
+                // 画面の他の場所をクリックしたら全部閉じる
+                document.addEventListener("click", function () {
+                    document.querySelectorAll(".dropdown-menu").forEach(menu => {
+                        menu.classList.remove("open");
+                    });
+                });
+
+              // 🖱️ マウスが載ったときに自動でメニューを開く
+              document.querySelectorAll(".dropdown").forEach(dropdown => {
+                const toggle = dropdown.querySelector(".dropdown-toggle");
+                const menu = dropdown.querySelector(".dropdown-menu");
+
+                toggle.addEventListener("mouseenter", () => {
+                    menu.classList.add("open");
+                });
+
+                dropdown.addEventListener("mouseleave", () => {
+                    menu.classList.remove("open");
+                });
+              });
+            });
+        </script>
+    </body>
+</html>
