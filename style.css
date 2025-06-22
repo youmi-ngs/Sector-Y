@@ -98,7 +98,7 @@ h1 {
 
 /* アクティブ状態のリンク */
 .site-title a.active {
-  color: #969696;
+  color: #808080;
 }
 
 /* ホバー時のスタイル */
@@ -475,34 +475,28 @@ pre, code {
   }
 
   .top-nav {
-    background-color: #ffffffe7;
+    background-color: #f8f8f8;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   }
 
-  .top-nav a {
-    color: #1e1e1e;
-  }
-
-  .top-nav a:hover {
-    background-color: #eeeeee;
-    color: #5db14e;
-  }
-
-  .site-title a,
-  .dropdown-toggle {
-    color: #1e1e1e;
-  }
-
-  .dropdown-menu {
-    background: #f8f8f8;
-  }
-
-  .dropdown-menu a {
+  .site-title a {
     color: #222;
   }
 
-  .dropdown-menu a:hover {
-    background-color: #eeeeee;
+  .site-title a:hover,
+  .site-title a.active:hover {
+    color: #5db14e;
+  }
+
+  .nav-label {
+    color: #222;
+  }
+
+  .hamburger {
+    color: #222;
+  }
+
+  .hamburger.open {
     color: #5db14e;
   }
   
