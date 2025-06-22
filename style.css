@@ -72,12 +72,11 @@ h1 {
 
 /* Gallery / Sparkle 表示行 */
 .nav-group {
-  display: flex;
-  align-items: center;
-  gap: 0px;
   padding: 0px;
   flex-wrap: wrap;
-  font-size: 16px;
+  font-size: 18px;
+  display: inline-flex;
+  align-items: baseline;
 }
 
 .nav-label {
@@ -94,6 +93,13 @@ h1 {
   text-decoration: none;
   font-weight: bold;
   padding-right: 16px;
+}
+
+.nav-group .nav-label,
+.nav-group a {
+  display: inline-block;
+  vertical-align: baseline;
+  line-height: 1.4;
 }
 
 /* アクティブ状態のリンク */
@@ -180,19 +186,6 @@ h1 {
   margin: 0;
   padding: 0;
 }
-
-/* .profile-info pre {
-  background-color: #292A2F;
-  color: #dcdcdc;
-  font-family: "SFMono-Regular", Menlo, monospace;
-  padding: 16px 10px 16px 50px;
-  border-radius: 5px;
-  font-size: 14px;
-  margin: 0;
-  white-space: pre;
-  word-break: break-word;
-  overflow-x: hidden;
-} */
 
 pre, code {
   font-family: SFMono-Regular, Menlo, Consolas, monospace;
@@ -530,39 +523,18 @@ pre, code {
     font-size: 30px;
   }
 
-  .site-title {
-  display: flex;
-  align-items: center;
-  font-size: 28px;
-  font-weight: bold;
-  gap: 12px;  
-}
+  .nav-label {
+    padding-right: 10px;
+    font-size: 15px;
+  }
 
-  .top-nav {
-    padding: 0 12px;
-    gap: 8px;
-    height: 52px; /* スマホサイズに明示！ */
+  .site-title a {
+    font-size: 13px;
+    padding-right: 10px;
   }
 
   .site-logo img {
     height: 17px;
-  }
-
-  .dropdown {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  cursor: pointer;
-}
-
-  .dropdown-toggle {
-    margin-left: 8px;
-    font-size: 12px;
-  }
-
-  .dropdown-menu a {
-    font-size: 12px;
-    padding: 5px 8px;
   }
 
   .image-container {
