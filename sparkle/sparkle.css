@@ -13,7 +13,24 @@ body{
   padding: 18px 24px;
   background-color: #1e1e1e;
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-  height: 60px; /* ← 明示して揃える！ */
+  height: 60px; 
+}
+
+.top-nav a {
+  font-size: 20px;
+  line-height: 1;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.top-nav a.active {
+  color: #969696;
+  font-weight: bold;
+}
+
+.top-nav a:hover {
+  background-color: #282828;
+  color: #96d3d7;
 }
 
 .site-logo img {
@@ -180,6 +197,20 @@ body{
   .top-nav {
     background-color: #ffffffe7;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .top-nav a {
+    color: #1e1e1e;
+  }
+
+  .top-nav a:hover {
+    background-color: #eeeeee;
+    color: #5db14e;
+  }
+
+  .site-title a,
+  .dropdown-toggle {
+    color: #1e1e1e;
   }
 
   .site-title a,

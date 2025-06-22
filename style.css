@@ -285,6 +285,23 @@ pre, code {
   height: 60px; /* ← 明示して揃える！ */
 }
 
+.top-nav a {
+  font-size: 20px;
+  line-height: 1;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.top-nav a.active {
+  color: #969696;
+  font-weight: bold;
+}
+
+.top-nav a:hover {
+  background-color: #282828;
+  color: #96d3d7;
+}
+
 .site-logo img {
   height: 34px;
   width: auto;
@@ -358,15 +375,15 @@ pre, code {
   font-weight: bold;
 }
 
-.dropdown-menu a:hover,
-.dropdown-menu a:active {
+.dropdown-menu a:hover
+/* ,.dropdown-menu a:active */ {
   background-color: #282828;
   color: #96d3d7;
 }
 
 .tag-section h3 {
   color: #96d3d7;
-  margin: 24px 0 8px;
+  margin: 24px 0 6px;
   font-size: 16px;
 }
 
@@ -374,7 +391,7 @@ pre, code {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin: 30px 50px;
+  margin: 10px 50px;
 }
 
 .tag-list button {
@@ -395,7 +412,7 @@ pre, code {
 .tag-list button.active {
   background-color: #96d3d7;
   color: #000;
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 
 /* ライトモード時の設定 */
@@ -475,6 +492,15 @@ pre, code {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   }
 
+  .top-nav a {
+    color: #1e1e1e;
+  }
+
+  .top-nav a:hover {
+    background-color: #eeeeee;
+    color: #5db14e;
+  }
+
   .site-title a,
   .dropdown-toggle {
     color: #1e1e1e;
@@ -499,8 +525,6 @@ pre, code {
 
   .tag-section h3 {
     color: #4caf50;
-    margin: 8px 0 8px;
-    font-size: 16px;
   }
 
   .tag-list button {
@@ -513,9 +537,8 @@ pre, code {
   }
 
   .tag-list button.active {
-  background-color: #4caf50;
-  color: #fff;
-  font-weight: bold;
+    background-color: #4caf50;
+    color: #fff;
 }
 }
 
