@@ -23,7 +23,7 @@ body{
 .top-nav {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.4s ease;
+  transition: max-height 0.1s ease, padding 0.1s ease;
   background-color: #1e1e1e;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   display: flex;
@@ -35,16 +35,15 @@ body{
 
 .top-nav.open {
   max-height: 1000px;
-  padding: 24px;
+  padding: 24px 24px;
 }
 
-/* ハンバーガー見た目切り替え（例） */
+/* ハンバーガー見た目切り替え */
 .hamburger.open {
   transform: rotate(90deg);
   color: #96d3d7;
-  transition: transform 0.3s ease, color 0.3s ease;
+  transition: transform 0.1s ease, color 0.1s ease;
 }
-
 
 /* ロゴ画像 */
 .site-logo img {
@@ -60,13 +59,15 @@ body{
   gap: 16px;
   flex-wrap: wrap;
   font-weight: bold;
+  overflow: hidden;
 }
 
 /* Gallery / Sparkle 表示行 */
 .nav-group {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 0px;
+  padding: 0px;
   flex-wrap: wrap;
   font-size: 16px;
 }
@@ -74,31 +75,30 @@ body{
 .nav-label {
   font-weight: bold;
   color: #ffffff;
+  padding-right: 16px;
 }
 
 /* ナビ内リンク */
-.nav-group a,
-.top-nav > a {
+.site-title a {
   font-size: 16px;
   line-height: 1;
   color: #ffffff;
   text-decoration: none;
   font-weight: bold;
-  padding: 4px 8px;
+  padding-right: 16px;
 }
 
-.nav-group a.active,
-.top-nav > a.active {
+/* アクティブ状態のリンク */
+.site-title a.active {
   color: #969696;
 }
 
-.nav-group a:hover,
-.top-nav > a:hover {
-  background-color: #282828;
+/* ホバー時のスタイル */
+.site-title a:hover,
+.site-title a.active:hover {
   color: #96d3d7;
-  border-radius: 4px;
-  padding: 4px 8px;
 }
+
 
 .report {
   font-family: 'Kiwi Maru', serif;
