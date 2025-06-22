@@ -10,6 +10,7 @@
 
     <body>
         <header class="top-nav">
+            <button class="hamburger" aria-label="メニュー">&#9776;</button>
             <div class="site-title">
                 
               <div class="site-logo">
@@ -22,25 +23,21 @@
                 </a>
               </div>
 
-              <div class="dropdown">
-                <span class="dropdown-toggle">Gallery <span class="dropdown-icon">▼</span></span>
-                <div class="dropdown-menu">
-                  <a href="main.html" class="active">Main</a>
-                  <a href="../disney/disney.html">Disney</a>
-                  <a href="../daisy/daisy.html">Daisy</a>
-                  <a href="../characters/characters.html">Characters</a>
+              <div class="nav-group">
+                    <span class="nav-label">Gallery:</span>
+                    <a href="main.html" class="active">Main</a>
+                    <a href="../disney/disney.html">Disney</a>
+                    <a href="../daisy/daisy.html">Daisy</a>
+                    <a href="../characters/characters.html">Characters</a>
                 </div>
-              </div>
-
-              <div class="dropdown">
-                <span class="dropdown-toggle">Sparkle <span class="dropdown-icon">▼</span></span>
-                <div class="dropdown-menu">
-                  <a href="../../sparkle/trail/trail.html">Trail</a>
-                  <a href="../../sparkle/quotes/quotes.html">Quotes</a>
+                
+                <div class="nav-group">
+                    <span class="nav-label">Sparkle:</span>
+                    <a href="../../sparkle/trail/trail.html">Trail</a>
+                    <a href="../../sparkle/quotes/quotes.html">Quotes</a>
                 </div>
-              </div>
 
-              <a href="../../profile.html">AboutYoumi</a>
+                <a href="../../profile.html">AboutYoumi</a>
 
             </div>
         </header>
@@ -182,41 +179,13 @@
             }
 
                 document.addEventListener("DOMContentLoaded", function () {
-                    document.querySelectorAll(".dropdown-toggle").forEach(toggle => {
-                    const menu = toggle.nextElementSibling;
+                    //　ハンバーガー
+                    const hamburger = document.querySelector(".hamburger");
+                    const topNav = document.querySelector(".top-nav");
 
-                    toggle.addEventListener("click", function (e) {
-                        e.stopPropagation();
-
-                        // 他のメニューを全部閉じる
-                        document.querySelectorAll(".dropdown-menu").forEach(m => {
-                        if (m !== menu) m.classList.remove("open");
-                        });
-
-                        // 自分のメニューだけ toggle（開閉）
-                        menu.classList.toggle("open");
-                    });
-                    });
-
-                    // 画面の他の場所をクリックしたら全部閉じる
-                    document.addEventListener("click", function () {
-                    document.querySelectorAll(".dropdown-menu").forEach(menu => {
-                        menu.classList.remove("open");
-                    });
-                    });
-
-                                        // 🖱️ マウスが載ったときに自動でメニューを開く
-                    document.querySelectorAll(".dropdown").forEach(dropdown => {
-                        const toggle = dropdown.querySelector(".dropdown-toggle");
-                        const menu = dropdown.querySelector(".dropdown-menu");
-
-                        toggle.addEventListener("mouseenter", () => {
-                            menu.classList.add("open");
-                        });
-
-                        dropdown.addEventListener("mouseleave", () => {
-                            menu.classList.remove("open");
-                        });
+                    hamburger.addEventListener("click", function () {
+                        hamburger.classList.toggle("open");
+                        topNav.classList.toggle("open");
                     });
                 });
 

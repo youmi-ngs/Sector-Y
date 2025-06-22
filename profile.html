@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Youmi Nagase</title>
+        <title>About Youmi</title>
         <link rel="icon" href="images/logo-camera_dark.png">
         <link rel="stylesheet" href="style.css">
     </head>
@@ -12,6 +12,7 @@
 
         <header class="top-nav">
 
+          <button class="hamburger" aria-label="メニュー">&#9776;</button>
           <div class="site-title">
             <div class="site-logo">
               <a href="index.html">
@@ -23,22 +24,18 @@
               </a>
             </div>
 
-            <div class="dropdown">
-                <span class="dropdown-toggle">Gallery <span class="dropdown-icon">▼</span></span>
-                <div class="dropdown-menu">
-                  <a href="gallery/main/main.html">Main</a>
-                  <a href="gallery/disney/disney.html">Disney</a>
-                  <a href="gallery/daisy/daisy.html">Daisy</a>
-                  <a href="gallery/characters/characters.html">Characters</a>
-              </div>
+            <div class="nav-group">
+              <span class="nav-label">Gallery:</span>
+              <a href="gallery/main/main.html">Main</a>
+              <a href="gallery/disney/disney.html">Disney</a>
+              <a href="gallery/daisy/daisy.html">Daisy</a>
+              <a href=".gallery/characters/characters.html">Characters</a>
             </div>
-
-            <div class="dropdown">
-                <span class="dropdown-toggle">Sparkle <span class="dropdown-icon">▼</span></span>
-                <div class="dropdown-menu">
-                  <a href="sparkle/trail/trail.html">Trail</a>
-                  <a href="sparkle/quotes/quotes.html">Quotes</a>
-                </div>
+            
+            <div class="nav-group">
+              <span class="nav-label">Sparkle:</span>
+              <a href="sparkle/trail/trail.html">Trail</a>
+              <a href="sparkle/quotes/quotes.html">Quotes</a>
             </div>
 
             <a href="profile.html" class="active">AboutYoumi</a>
@@ -148,44 +145,15 @@
     </body>
 
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        document.querySelectorAll(".dropdown-toggle").forEach(toggle => {
-          const menu = toggle.nextElementSibling;
+        document.addEventListener("DOMContentLoaded", function () {
+            const hamburger = document.querySelector(".hamburger");
+            const topNav = document.querySelector(".top-nav");
 
-          toggle.addEventListener("click", function (e) {
-            e.stopPropagation();
-
-            // 他のメニューを全部閉じる
-            document.querySelectorAll(".dropdown-menu").forEach(m => {
-              if (m !== menu) m.classList.remove("open");
+            hamburger.addEventListener("click", function () {
+            hamburger.classList.toggle("open");
+            topNav.classList.toggle("open");
             });
-
-            // 自分のメニューだけ toggle（開閉）
-            menu.classList.toggle("open");
-          });
         });
-
-        // 画面の他の場所をクリックしたら全部閉じる
-        document.addEventListener("click", function () {
-          document.querySelectorAll(".dropdown-menu").forEach(menu => {
-            menu.classList.remove("open");
-          });
-        });
-
-        // 🖱️ マウスが載ったときに自動でメニューを開く
-        document.querySelectorAll(".dropdown").forEach(dropdown => {
-          const toggle = dropdown.querySelector(".dropdown-toggle");
-          const menu = dropdown.querySelector(".dropdown-menu");
-
-          toggle.addEventListener("mouseenter", () => {
-            menu.classList.add("open");
-          });
-
-          dropdown.addEventListener("mouseleave", () => {
-            menu.classList.remove("open");
-          });
-        });
-      });
     </script>
 
 </html>

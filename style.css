@@ -14,6 +14,99 @@ h1 {
     font-size: 35px;
 }
 
+/* ハンバーガー */
+.hamburger {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: white;
+  z-index: 2000;
+  cursor: pointer;
+}
+
+/* ナビ全体 */
+.top-nav {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  background-color: #1e1e1e;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0 24px; 
+  z-index: 1000;
+}
+
+.top-nav.open {
+  max-height: 1000px;
+  padding: 24px;
+}
+
+/* ハンバーガー見た目切り替え（例） */
+.hamburger.open {
+  transform: rotate(90deg);
+  color: #96d3d7;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* ロゴ画像 */
+.site-logo img {
+  height: 34px;
+  width: auto;
+  display: block;
+}
+
+/* ロゴ＋ナビの並び */
+.site-title {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-weight: bold;
+}
+
+/* Gallery / Sparkle 表示行 */
+.nav-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 16px;
+}
+
+.nav-label {
+  font-weight: bold;
+  color: #ffffff;
+}
+
+/* ナビ内リンク */
+.nav-group a,
+.top-nav > a {
+  font-size: 16px;
+  line-height: 1;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 4px 8px;
+}
+
+.nav-group a.active,
+.top-nav > a.active {
+  color: #969696;
+}
+
+.nav-group a:hover,
+.top-nav > a:hover {
+  background-color: #282828;
+  color: #96d3d7;
+  border-radius: 4px;
+  padding: 4px 8px;
+}
+
 .profile-layout {
   align-items: flex-start;
   display: flex;
@@ -275,112 +368,6 @@ pre, code {
     font-size: 9px;
 }
 
-.top-nav {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  padding: 18px 24px;
-  background-color: #1e1e1e;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-  height: 60px; /* ← 明示して揃える！ */
-}
-
-.top-nav a {
-  font-size: 20px;
-  line-height: 1;
-  color: #ffffff;
-  text-decoration: none;
-}
-
-.top-nav a.active {
-  color: #969696;
-  font-weight: bold;
-}
-
-.top-nav a:hover {
-  background-color: #282828;
-  color: #96d3d7;
-}
-
-.site-logo img {
-  height: 34px;
-  width: auto;
-  display: block;
-}
-
-.dropdown-toggle {
-  font-size: 20px;
-  line-height: 1;
-}
-
-/* Youmi Nagase (上部ナビゲーションの横) */
-.site-title {
-  display: flex;
-  align-items: center;
-  font-size: 28px;
-  font-weight: bold;
-  gap: 24px;
-}
-
-/* Gallery選択用のドロップダウンボタン */
-.dropdown {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  cursor: pointer;
-}
-
-.dropdown-icon {
-  font-size: 12px;
-  margin-left: 4px;
-  line-height: 1;
-  transform: translateY(1px);
-}
-
-/* ドロップダウンメニュー */
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: #333;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  border-radius: 6px;
-  padding: 8px 0px;
-  z-index: 1000;
-  min-width: 120px;
-}
-
-.dropdown-menu {
-  display: none;
-}
-
-.dropdown-menu.open {
-  display: block;
-}
-
-.dropdown-menu a {
-  display: block;
-  padding: 8px 16px;
-  text-decoration: none;
-  color: #ffffff;
-  font-size: 15px;
-  transition: all 0.2s ease;
-  font-weight: bold;
-}
-
-.dropdown-menu a.active {
-  color: #969696;
-  font-weight: bold;
-}
-
-.dropdown-menu a:hover
-/* ,.dropdown-menu a:active */ {
-  background-color: #282828;
-  color: #96d3d7;
-}
-
 .tag-section h3 {
   color: #96d3d7;
   margin: 24px 0 6px;
@@ -548,13 +535,6 @@ pre, code {
   h1 {
     font-size: 30px;
   }
-    /* .top-nav {
-    display: flex;
-    align-items: center;
-    padding: 0 12px;
-    gap: 8px;
-    overflow: hidden;
-  } */
 
   .site-title {
   display: flex;
