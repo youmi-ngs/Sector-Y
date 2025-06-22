@@ -113,6 +113,49 @@ h1 {
   color: #96d3d7;
 }
 
+.hero {
+  height: 100vh;
+  background-image: url("images/cover.JPG");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.hero-name {
+  position: absolute;
+  bottom: 0px;
+  right: 24px;
+  font-size: 6.5rem;
+  color: #ffffff;
+  font-weight: 800;
+  letter-spacing: 1px;
+  font-family: 'Orbitron', sans-serif;
+  text-align: right;
+  line-height: 1.1;
+}
+
+.hero {
+  background-position: left 63%;
+  background-size: cover;
+}
+
+.index-page .top-nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease, padding 0.2s ease;
+  padding: 0 24px;
+}
+
+.index-page .top-nav.open {
+  max-height: 1000px;
+  padding: 24px;
+}
+
 .profile-layout {
   align-items: flex-start;
   display: flex;
@@ -532,6 +575,16 @@ pre, code {
     font-size: 13px;
     padding-right: 10px;
   }
+
+  .hero-name {
+  right: 18px;
+  font-size: 3.5rem;
+  line-height: 1.0;
+}
+
+.hero {
+  background-position: 10% center;
+}
 
   .site-logo img {
     height: 17px;

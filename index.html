@@ -1,12 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="index-page" lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Youmi Nagase</title>
         <link rel="icon" href="images/logo-camera_dark.png">
         <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&display=swap" rel="stylesheet">
     </head>
+
+    <style>
+      .hamburger {
+        color: white;
+      }
+    </style>
 
     <body>
         <header class="top-nav">
@@ -44,24 +51,27 @@
         </header>
 
 
-      <main>
-        <img></img>
-        <h1>Youmi Nagase</h1>
+        <body>
 
-      </main>       
-    </body>
+          <div class="lock-scroll">
+            <main class="hero">
+              <h1 class="hero-name">Youmi<br>Nagase</h1>
+            </main> 
+          </div>    
 
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-            //　ハンバーガー
-            const hamburger = document.querySelector(".hamburger");
-            const topNav = document.querySelector(".top-nav");
+          <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                  //　ハンバーガー
+                  const hamburger = document.querySelector(".hamburger");
+                  const topNav = document.querySelector(".top-nav");
 
-            hamburger.addEventListener("click", function () {
-              hamburger.classList.toggle("open");
-              topNav.classList.toggle("open");
+                  hamburger.addEventListener("click", function () {
+                    hamburger.classList.toggle("open");
+                    topNav.classList.toggle("open");
+                  });
             });
-      });
-    </script>
+          </script>
+
+        </body>
 
 </html>
