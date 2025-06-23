@@ -52,13 +52,13 @@
         <h1>Gallery / Disney</h1>
         <div class="gallery">
             <div class="image-container"  data-title="" data-place="Tokyo DisneySea, Cafe Portofino" data-camera="Canon EOS R50, 45mm, f6.3, 1/60s, ISO 100">
-                <img src="images/photo2.jpg">
+                <img src="thumb/photo2.jpg">
             </div>
             <div class="image-container" data-title="未来" data-place="Tokyo Disneyland, Tomorrowland" data-camera="Canon EOS R50, 50mm, f1.8, 1/4000s, ISO 100">
-                <img src="images/photo3.jpg">
+                <img src="thumb/photo3.jpg">
             </div>
             <div class="image-container" data-title="パフィーと ハッピー！パルパルーザ！" data-place="Tokyo Disneyland" data-camera="Canon EOS R50, 50mm, f1.8, 1/4000s, ISO 100">
-                <img src="images/photo4.jpg">
+                <img src="thumb/photo4.jpg">
             </div>
         </div>
 
@@ -88,7 +88,9 @@
             const modalContent = document.querySelector('.modal-info');
             
             function showModal(container) {
-                modalImage.src = container.querySelector('img').src;
+                const thumbSrc = container.querySelector('img').src;
+                const fullSrc = thumbSrc.replace('/thumb/', '/images/');
+                modalImage.src = fullSrc;
             
                 const hasTitle = container.dataset.title && container.dataset.title.trim() !== '';
                 const hasPlace= container.dataset.place&& container.dataset.place.trim() !== '';

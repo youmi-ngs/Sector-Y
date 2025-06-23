@@ -83,19 +83,19 @@
             <h1>Gallery / Characters</h1>
             <div class="gallery">
                 <div class="image-container" data-tags="LiloAndStitch Stitch Land" data-title="Stitch" data-place="Tokyo Disneyland" data-camera="Canon EOS R50">
-                    <img src="images/stitch20250211.JPG">
+                    <img src="thumb/stitch20250211.JPG">
                 </div>
                 <div class="image-container" data-tags="LiloAndStitch Angel Land" data-title="Angel" data-place="Tokyo Disneyland" data-camera="Canon EOS R50">
-                    <img src="images/angel20250211.JPG">
+                    <img src="thumb/angel20250211.JPG">
                 </div>
                 <div class="image-container" data-tags="MickeyAndFriends Donald Sea" data-title="Donald Duck" data-place="Tokyo DisneySea" data-camera="Canon EOS R50">
-                    <img src="images/donald20250203.JPG">
+                    <img src="thumb/donald20250203.JPG">
                 </div>
                 <div class="image-container" data-tags="MickeyAndFriends Minnie Land" data-title="Minnie Mouse" data-place="Tokyo Disneyland" data-camera="Canon EOS R50">
-                    <img src="images/minnie20250203.JPG">
+                    <img src="thumb/minnie20250203.JPG">
                 </div>
                 <div class="image-container" data-tags="Pinocchio Foulfellow Land" data-title="J・Worthington Foulfellow" data-place="Tokyo Disneyland" data-camera="Canon EOS R50">
-                    <img src="images/honestJohn202502023.JPG"> 
+                    <img src="thumb/honestJohn202502023.JPG"> 
                 </div>
             </div>
         </main>
@@ -126,7 +126,9 @@
             const modalContent = document.querySelector('.modal-info');
             
             function showModal(container) {
-                modalImage.src = container.querySelector('img').src;
+                const thumbSrc = container.querySelector('img').src;
+                const fullSrc = thumbSrc.replace('/thumb/', '/images/');
+                modalImage.src = fullSrc;
             
                 const hasTitle = container.dataset.title && container.dataset.title.trim() !== '';
                 const hasPlace= container.dataset.place&& container.dataset.place.trim() !== '';
