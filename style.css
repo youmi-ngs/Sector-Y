@@ -119,11 +119,12 @@ h1 {
   background-size: cover;
   background-position: center;
   position: relative;
+  background-position: left 63%;
 }
 
 .hero-name {
   position: absolute;
-  bottom: 0px;
+  bottom: 56px;
   right: 24px;
   font-size: 6.5rem;
   color: #ffffff;
@@ -134,9 +135,14 @@ h1 {
   line-height: 1.1;
 }
 
-.hero {
-  background-position: left 63%;
-  background-size: cover;
+.hero-tagline {
+  position: absolute;
+  bottom: 16px;
+  right: 24px;
+  font-size: 1.5rem;
+  color: #ffffff;
+  letter-spacing: 0.05em;
+  font-family: 'Orbitron', sans-serif;
 }
 
 .index-page .top-nav {
@@ -577,14 +583,19 @@ pre, code {
   }
 
   .hero-name {
-  right: 18px;
-  font-size: 3.5rem;
-  line-height: 1.0;
-}
+    right: 18px;
+    font-size: 3.5rem;
+    line-height: 1.0;
+    bottom: 0px;
+  }
 
-.hero {
-  background-position: 10% center;
-}
+  .hero-tagline {
+    display: none;
+  }
+
+  .hero {
+    background-position: 10% center;
+  }
 
   .site-logo img {
     height: 17px;
