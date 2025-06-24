@@ -103,7 +103,9 @@
             function showModal(container) {
                 document.body.classList.add('modal-open');
                 const thumbSrc = container.querySelector('img').src;
-                const fullSrc = thumbSrc.replace('thumb/', 'images/');
+                const fullSrc = thumbSrc
+                                .replace('thumb/', 'images/')
+                                .replace('.JPG', '.JPG');
                 modalImage.src = fullSrc;
             
                 const hasTitle = container.dataset.title && container.dataset.title.trim() !== '';
