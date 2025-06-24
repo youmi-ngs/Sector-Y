@@ -431,18 +431,18 @@ pre, code {
 }
 
 #modal-place {
-    margin: 15px 0 5px;
+    margin: 15px 0 15px;
     font-size: 18px;
 }
 
 #modal-camera{
-    margin: 5px 0 20px;
+    margin: 15px 0 15px;
     font-size: 14px;
 }
 
 #modal-desc {
-    margin: 20px 0 10px;
-    font-size: 9px;
+    margin: 15px 0 10px;
+    font-size: 12px;
 }
 
 .tag-section h3 {
@@ -656,7 +656,7 @@ pre, code {
   }
 
   .site-logo img {
-    height: 17px;
+    height: 24px;
   }
 
   .image-container {
