@@ -158,6 +158,7 @@
             const modalContent = document.querySelector('.modal-info');
             
             function showModal(container) {
+                document.body.classList.add('modal-open');
                 const thumbSrc = container.querySelector('img').src;
                 const fullSrc = thumbSrc.replace('/thumb/', '/images/');
                 modalImage.src = fullSrc;
@@ -189,6 +190,11 @@
                     showModal(container);
                 };
             });
+
+            modal.onclick = function () {
+                modal.style.display = 'none';
+                document.body.classList.remove('modal-open');
+            };
 
             document.addEventListener("DOMContentLoaded", function () {
                 document.querySelectorAll(".tag-list button").forEach(button => {

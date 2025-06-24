@@ -447,6 +447,11 @@ pre, code {
     font-size: 12px;
 }
 
+body.modal-open {
+  overflow: hidden;
+  height: 100vh;
+}
+
 .tag-section h3 {
   color: #96d3d7;
   margin: 24px 0 6px;

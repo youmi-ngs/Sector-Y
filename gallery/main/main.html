@@ -92,7 +92,7 @@
                 <div class="image-container" data-title="Cherry blossom and a memory of springtime" data-place="Kamakura" data-camera="Canon EOS R50, 50mm, f3.5, 1/500s, ISO 100">
                     <img src="thumb/photo6.jpg">
                 </div>
-                <div class="image-container" data-title="Puddle" data-place="Kichijōji" data-camera="Canon EOS R50, 50mm, f1.8, 1/500s, ISO 800">
+                <div class="image-container" data-title="Puddle" data-place="Kichijoji" data-camera="Canon EOS R50, 50mm, f1.8, 1/500s, ISO 800">
                     <img src="thumb/photo7.jpg">
                 </div>
                 <div class="image-container" data-title="Sunset" data-place="Odaiba" data-camera="Canon EOS R50, 50mm, f1.8, 1/1000s, ISO 100">
@@ -147,6 +147,7 @@
             const modalContent = document.querySelector('.modal-info');
             
             function showModal(container) {
+                document.body.classList.add('modal-open');
                 const thumbSrc = container.querySelector('img').src;
                 const fullSrc = thumbSrc.replace('thumb/', 'images/');
                 modalImage.src = fullSrc;
@@ -178,6 +179,11 @@
                     showModal(container);
                 };
             });
+
+            modal.onclick = function () {
+                modal.style.display = 'none';
+                document.body.classList.remove('modal-open');
+            };
             
             // PC: キーボード矢印キー対応
             document.addEventListener('keydown', (e) => {
