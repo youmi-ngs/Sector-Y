@@ -146,6 +146,11 @@ h1 {
   color: #96d3d7;
 }
 
+.top-nav a,
+.top-nav .nav-label {
+  cursor: pointer;
+}
+
 .hero {
   height: 100vh;
   background-image: url("images/cover.JPG");

@@ -135,6 +135,11 @@ body{
   color: #96d3d7;
 }
 
+.top-nav a,
+.top-nav .nav-label {
+  cursor: pointer;
+}
+
 h1 {
     text-align: center;
     color: #96d3d7;
