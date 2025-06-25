@@ -201,7 +201,17 @@
                     hamburger.classList.toggle("open");
                     topNav.classList.toggle("open");
                 });
+            });
 
+            document.querySelectorAll('.image-container img').forEach(img => {
+            const container = img.parentElement;
+            if (img.complete) {
+                container.classList.add('loaded');
+            } else {
+                img.addEventListener('load', () => {
+                container.classList.add('loaded');
+                });
+            }
             });
         </script>
     </body>

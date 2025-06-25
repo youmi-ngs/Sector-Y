@@ -262,9 +262,14 @@
 
 
                 document.querySelectorAll('.image-container img').forEach(img => {
+                const container = img.parentElement;
+                if (img.complete) {
+                    container.classList.add('loaded');
+                } else {
                     img.addEventListener('load', () => {
-                        img.parentElement.classList.add('loaded');
+                    container.classList.add('loaded');
                     });
+                }
                 });
 
         </script>
