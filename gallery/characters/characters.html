@@ -94,39 +94,51 @@
             <h1>Gallery / Characters</h1>
             <div class="gallery">
                 <div class="image-container" data-tags="MickeyAndFriends ChipAndDale Dale Sea" data-title="Dale" data-place="Tokyo DisneySea" data-camera="Canon EOS R50">
+                    <div class="spinner"></div>
                     <img src="thumb/dale20240212.JPG">
                 </div>
                 <div class="image-container" data-tags="BigHero6 Hiro Land" data-title="My Cutie Pie" data-place="Tokyo Disneyland" data-camera="Canon EOS R50">
+                    <div class="spinner"></div>
                     <img src="thumb/hiro20240213.jpg">
                 </div>
                 <div class="image-container" data-tags="LiloAndStitch Stitch Land" data-title="Stitch" data-place="Tokyo Disneyland" data-camera="Canon EOS R50">
+                    <div class="spinner"></div>
                     <img src="thumb/stitch20240320.jpg">
                 </div>
                 <div class="image-container" data-tags="ThreeLittlePigs Wolf Land" data-title="Bad wolf" data-place="Tokyo Disneyland" data-camera="Canon EOS R50">
+                    <div class="spinner"></div>
                     <img src="thumb/wolf20240320.jpg">
                 </div>
                 <div class="image-container" data-tags="DuffyAndFriends ShellieMay Sea" data-title="ShellieMay" data-place="Tokyo DisneySea" data-camera="Canon EOS R50">
+                    <div class="spinner"></div>
                     <img src="thumb/shellieMay20240415.jpg">
                 </div>
                 <div class="image-container" data-tags="Pocahontas Meeko Land" data-title="Meeko" data-place="Tokyo Disneyland" data-camera="Canon EOS R50">
+                    <div class="spinner"></div>
                     <img src="thumb/meeko20240607.JPG">
                 </div>
                 <div class="image-container" data-tags="Pinocchio Foulfellow Land" data-title="J・Worthington Foulfellow" data-place="Tokyo Disneyland" data-camera="Canon EOS R50">
+                    <div class="spinner"></div>
                     <img src="thumb/honestJohn20250203.jpg">
                 </div>
                 <div class="image-container" data-tags="LiloAndStitch Stitch Land" data-title="Stitch" data-place="Tokyo Disneyland" data-camera="Canon EOS R50">
+                    <div class="spinner"></div>
                     <img src="thumb/stitch20250211.JPG">
                 </div>
                 <div class="image-container" data-tags="LiloAndStitch Angel Land" data-title="Angel" data-place="Tokyo Disneyland" data-camera="Canon EOS R50">
+                    <div class="spinner"></div>
                     <img src="thumb/angel20250211.JPG">
                 </div>
                 <div class="image-container" data-tags="MickeyAndFriends Donald Sea" data-title="Donald Duck" data-place="Tokyo DisneySea" data-camera="Canon EOS R50">
+                    <div class="spinner"></div>
                     <img src="thumb/donald20250203.JPG">
                 </div>
                 <div class="image-container" data-tags="MickeyAndFriends Minnie Land" data-title="Minnie Mouse" data-place="Tokyo Disneyland" data-camera="Canon EOS R50">
+                    <div class="spinner"></div>
                     <img src="thumb/minnie20250203.JPG">
                 </div>
                 <div class="image-container" data-tags="Pinocchio Foulfellow Land" data-title="J・Worthington Foulfellow" data-place="Tokyo Disneyland" data-camera="Canon EOS R50">
+                    <div class="spinner"></div>
                     <img src="thumb/honestJohn202502023.JPG"> 
                 </div>
             </div>
@@ -134,6 +146,7 @@
 
         <div id="modal" class="modal" onclick="this.style.display='none'">
             <div class = "modal-content">
+                <div class="spinner"></div>
                 <img id="modal-image">
                 <div class="modal-info">
                     <h2 id="modal-title"></h2>
@@ -162,6 +175,7 @@
                 const thumbSrc = container.querySelector('img').src;
                 const fullSrc = thumbSrc.replace('thumb/', 'images/');
                 modalImage.src = fullSrc;
+                modalImage.parentElement.classList.remove('loaded');
             
                 const hasTitle = container.dataset.title && container.dataset.title.trim() !== '';
                 const hasPlace= container.dataset.place&& container.dataset.place.trim() !== '';
@@ -183,6 +197,10 @@
             
                 modal.style.display = 'flex';
             }
+
+            modalImage.addEventListener('load', () => {
+                modalImage.parentElement.classList.add('loaded'); 
+            });
             
             containers.forEach((container, index) => {
                 container.onclick = () => {
