@@ -96,7 +96,6 @@ body{
 .nav-group {
   padding: 0px;
   flex-wrap: wrap;
-  font-size: 18px;
   display: inline-flex;
   align-items: baseline;
 }
@@ -104,17 +103,21 @@ body{
 .nav-label {
   font-weight: bold;
   color: #ffffff;
-  padding-right: 16px;
+  padding-right: 25px;
+  cursor: default;
+  font-size: 14px;
+  width: 70px;
+  text-align: right;
 }
 
 /* ナビ内リンク */
 .site-title a {
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1;
   color: #ffffff;
   text-decoration: none;
   font-weight: bold;
-  padding-right: 16px;
+  padding-right: 20px;
 }
 
 .nav-group .nav-label,
@@ -135,8 +138,7 @@ body{
   color: #96d3d7;
 }
 
-.top-nav a,
-.top-nav .nav-label {
+.top-nav a {
   cursor: pointer;
 }
 
@@ -321,18 +323,19 @@ h1 {
     font-size: 30px;
   }
 
-.nav-label {
-    padding-right: 10px;
-    font-size: 15px;
+  .nav-label {
+    padding-right: 20px;
+    font-size: 10px;
+    width: 50px;
   }
 
   .site-title a {
-    font-size: 13px;
-    padding-right: 10px;
+    font-size: 12.5px;
+    padding-right: 15px;
   }
 
   .site-logo img {
-    height: 17px;
+    height: 25px;
   }
 
   .hamburger {

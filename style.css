@@ -107,7 +107,6 @@ h1 {
 .nav-group {
   padding: 0px;
   flex-wrap: wrap;
-  font-size: 18px;
   display: inline-flex;
   align-items: baseline;
 }
@@ -115,17 +114,21 @@ h1 {
 .nav-label {
   font-weight: bold;
   color: #ffffff;
-  padding-right: 16px;
+  padding-right: 25px;
+  cursor: default;
+  font-size: 14px;
+  width: 70px;
+  text-align: right;
 }
 
 /* ナビ内リンク */
 .site-title a {
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1;
   color: #ffffff;
   text-decoration: none;
   font-weight: bold;
-  padding-right: 16px;
+  padding-right: 20px;
 }
 
 .nav-group .nav-label,
@@ -146,8 +149,7 @@ h1 {
   color: #96d3d7;
 }
 
-.top-nav a,
-.top-nav .nav-label {
+.top-nav a {
   cursor: pointer;
 }
 
@@ -165,7 +167,7 @@ h1 {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.35);
   z-index: 1;
   pointer-events: none;
 }
@@ -677,14 +679,19 @@ body.modal-open {
     font-size: 30px;
   }
 
+  .modal-content {
+    max-width:  100%;
+}
+
   .nav-label {
-    padding-right: 10px;
-    font-size: 15px;
+    padding-right: 20px;
+    font-size: 10px;
+    width: 50px;
   }
 
   .site-title a {
-    font-size: 13px;
-    padding-right: 10px;
+    font-size: 12.5px;
+    padding-right: 15px;
   }
 
   .hamburger {
@@ -726,7 +733,7 @@ body.modal-open {
   }
 
   .site-logo img {
-    height: 24px;
+    height: 25px;
   }
   
   .gallery {
