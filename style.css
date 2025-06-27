@@ -687,7 +687,7 @@ body.modal-open {
 }
 
 /* スマホ用の設定 */
-@media (max-width: 600px) {
+@media (max-width: 660px) {
 
   h1 {
     font-size: 30px;
@@ -757,6 +757,9 @@ body.modal-open {
     font-size: 1.0rem;
     right: 14px;
     bottom: 24px;
+    max-width: 90vw;
+    text-align: right;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6); /* 視認性UP */
   }
 
   .tagline-break {
