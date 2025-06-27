@@ -104,24 +104,33 @@ h1 {
 }
 
 /* Gallery / Sparkle 表示行 */
+
 .nav-group {
+  display: grid;
   padding: 0px;
-  flex-wrap: wrap;
-  display: inline-flex;
+  grid-template-columns: 70px 1fr; 
+  column-gap: 25px;
+  row-gap: 4px;
+  align-items: start;
+  margin-bottom: 16px;
   align-items: baseline;
 }
 
 .nav-label {
   font-weight: bold;
   color: #ffffff;
-  padding-right: 25px;
   cursor: default;
   font-size: 14px;
+  white-space: nowrap;
   width: 70px;
   text-align: right;
 }
 
-/* ナビ内リンク */
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .site-title a {
   font-size: 18px;
   line-height: 1;
@@ -129,13 +138,6 @@ h1 {
   text-decoration: none;
   font-weight: bold;
   padding-right: 20px;
-}
-
-.nav-group .nav-label,
-.nav-group a {
-  display: inline-block;
-  vertical-align: baseline;
-  line-height: 1.4;
 }
 
 /* アクティブ状態のリンク */
@@ -677,6 +679,16 @@ body.modal-open {
 
   h1 {
     font-size: 30px;
+  }
+
+  .nav-group {
+    column-gap: 20px;
+    grid-template-columns: 50px 1fr;
+    margin-bottom: 0px;
+  }
+
+  .nav-links a {
+    line-height: 1.5;
   }
 
   .modal-content {

@@ -93,21 +93,31 @@ body{
 }
 
 /* Gallery / Sparkle 表示行 */
+
 .nav-group {
+  display: grid;
   padding: 0px;
-  flex-wrap: wrap;
-  display: inline-flex;
+  grid-template-columns: 70px 1fr; 
+  column-gap: 25px;
+  row-gap: 10px;
+  align-items: start;
+  margin-bottom: 16px;
   align-items: baseline;
 }
 
 .nav-label {
   font-weight: bold;
   color: #ffffff;
-  padding-right: 25px;
   cursor: default;
   font-size: 14px;
+  white-space: nowrap;
   width: 70px;
   text-align: right;
+}
+
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 /* ナビ内リンク */
@@ -118,13 +128,6 @@ body{
   text-decoration: none;
   font-weight: bold;
   padding-right: 20px;
-}
-
-.nav-group .nav-label,
-.nav-group a {
-  display: inline-block;
-  vertical-align: baseline;
-  line-height: 1.4;
 }
 
 /* アクティブ状態のリンク */
@@ -317,14 +320,23 @@ h1 {
     color: #555;
   }
 
-@media (max-width: 700px) {
+@media (max-width: 600px) {
 
   h1 {
     font-size: 30px;
   }
 
+  .nav-group {
+    column-gap: 20px;
+    grid-template-columns: 50px 1fr; 
+    margin-bottom: 0px;
+  }
+
+  .nav-links a {
+    line-height: 1.5;
+  }
+
   .nav-label {
-    padding-right: 20px;
     font-size: 10px;
     width: 50px;
   }
