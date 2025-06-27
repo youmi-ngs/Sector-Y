@@ -18,14 +18,12 @@ h1 {
 
 /* ハンバーガー */
 .hamburger {
+  display: block;
   position: fixed;
   top: 24px;
   right: 24px;
   width: 32px;
   height: 24px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   background: none;
   border: none;
   padding: 0;
@@ -34,21 +32,33 @@ h1 {
 }
 
 .hamburger span {
-  display: block;
+  position: absolute;
+  left: 0;
   width: 100%;
   height: 3px;
   background: white;
   border-radius: 2px;
   transition: all 0.3s ease;
+  transform-origin: center;
 }
 
-.hamburger.open span {
-    background: #96d3d7;
+.hamburger span:nth-child(1) {
+  top: 0;
 }
 
-/* アニメーション */
+.hamburger span:nth-child(2) {
+  top: 10.5px;
+}
+
+.hamburger span:nth-child(3) {
+  top: 21px;
+}
+
+/* アニメーション時 */
 .hamburger.open span:nth-child(1) {
-  transform: translateY(10px) rotate(45deg);
+  transform: rotate(45deg);
+  top: 10.5px;
+  background: #96d3d7;
 }
 
 .hamburger.open span:nth-child(2) {
@@ -56,10 +66,10 @@ h1 {
 }
 
 .hamburger.open span:nth-child(3) {
-  transform: translateY(-10px) rotate(-45deg);
+  transform: rotate(-45deg);
+  top: 10.5px;
+  background: #96d3d7;
 }
-
-
 /* ナビ全体 */
 .top-nav {
   max-height: 0;
@@ -647,7 +657,9 @@ body.modal-open {
     background: #000000;
   }
 
-  .hamburger.open span {
+
+  .hamburger.open span:nth-child(1),
+  .hamburger.open span:nth-child(3) {
     background: #5db14e;
   }
   
