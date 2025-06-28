@@ -560,7 +560,6 @@ body.modal-open {
 .tag-list button.active {
   background-color: #96d3d7;
   color: #000;
-  /* font-weight: bold; */
 }
 
 /* ライトモード時の設定 */
@@ -777,6 +776,18 @@ body.modal-open {
   .gallery {
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     gap: 3px;
+  }
+
+  .tag-list {
+    margin: 8px 15px 8px 18px;
+    gap: 6px;
+    justify-content: flex-start;
+  }
+
+  .tag-list button {
+    font-size: 12.5px;
+    padding: 4px 10px;
+    border-radius: 4px;
   }
 
   .profile-layout {
