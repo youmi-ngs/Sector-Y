@@ -1,5 +1,3 @@
-/* NOTE: .JPG に統一予定（現在は .jpg/.JPG 混在あり） */
-
 body {
   background-color: #0d0d0d;
   color: #f0f0f0;
@@ -16,10 +14,30 @@ h1 {
     font-size: 35px;
 }
 
+/* ナビ全体 */
+.top-nav {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.1s ease, padding 0.1s ease;
+  background-color: #1e1e1e;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0 24px; 
+  z-index: 1000;
+  position: relative;
+}
+
+.top-nav.open {
+  max-height: 1000px;
+  padding: 24px 24px;
+}
+
 /* ハンバーガー */
 .hamburger {
   display: block;
-  position: fixed;
+  position: absolute;
   top: 24px;
   right: 24px;
   width: 32px;
@@ -28,7 +46,7 @@ h1 {
   border: none;
   padding: 0;
   cursor: pointer;
-  z-index: 2000;
+  z-index: 9999;
 }
 
 .hamburger span {
@@ -69,24 +87,6 @@ h1 {
   transform: rotate(-45deg);
   top: 10.5px;
   background: #96d3d7;
-}
-/* ナビ全体 */
-.top-nav {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.1s ease, padding 0.1s ease;
-  background-color: #1e1e1e;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  padding: 0 24px; 
-  z-index: 1000;
-}
-
-.top-nav.open {
-  max-height: 1000px;
-  padding: 24px 24px;
 }
 
 /* ハンバーガー見た目切り替え */
