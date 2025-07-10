@@ -165,6 +165,12 @@
 
         <script>
             let currentImageIndex = 0;
+
+            function getVisibleContainers() {
+                return Array.from(document.querySelectorAll('.image-container'))
+                    .filter(container => container.style.display !== 'none');
+            }
+
             const containers = Array.from(document.querySelectorAll('.image-container'));
             
             const modal = document.getElementById('modal');
@@ -203,16 +209,21 @@
                 modal.style.display = 'flex';
             }
 
+            function assignClickEvents() {
+                const visibleContainers = getVisibleContainers();
+                visibleContainers.forEach((container, index) => {
+                    container.onclick = () => {
+                        currentImageIndex = index;
+                        showModal(container);
+                    };
+                });
+            }
+
             modalImage.addEventListener('load', () => {
                 modalImage.parentElement.classList.add('loaded'); 
             });
             
-            containers.forEach((container, index) => {
-                container.onclick = () => {
-                    currentImageIndex = index;
-                    showModal(container);
-                };
-            });
+            assignClickEvents();
 
             modal.onclick = function () {
                 modal.style.display = 'none';
@@ -238,16 +249,18 @@
                     });
                 });
             });
+
             
             // PC: キーボード矢印キー対応
             document.addEventListener('keydown', (e) => {
+                const visible = getVisibleContainers();
                 if (modal.style.display === 'flex') {
                     if (e.key === 'ArrowRight') {
-                        currentImageIndex = (currentImageIndex + 1) % containers.length;
-                        showModal(containers[currentImageIndex]);
+                        currentImageIndex = (currentImageIndex + 1) % visible.length;
+                        showModal(visible[currentImageIndex]);
                     } else if (e.key === 'ArrowLeft') {
-                        currentImageIndex = (currentImageIndex - 1 + containers.length) % containers.length;
-                        showModal(containers[currentImageIndex]);
+                        currentImageIndex = (currentImageIndex - 1 + visible.length) % visible.length;
+                        showModal(visible[currentImageIndex]);
                     } else if (e.key === 'Escape') {
                         modal.style.display = 'none';
                     }
@@ -268,13 +281,14 @@
             });
             
             function handleSwipe() {
+                const visible = getVisibleContainers();
                 if (touchEndX < touchStartX - 50) {
-                    currentImageIndex = (currentImageIndex + 1) % containers.length;
-                    showModal(containers[currentImageIndex]);
+                    currentImageIndex = (currentImageIndex + 1) % visible.length;
+                    showModal(visible[currentImageIndex]);
                 }
                 if (touchEndX > touchStartX + 50) {
-                    currentImageIndex = (currentImageIndex - 1 + containers.length) % containers.length;
-                    showModal(containers[currentImageIndex]);
+                    currentImageIndex = (currentImageIndex - 1 + visible.length) % visible.length;
+                    showModal(visible[currentImageIndex]);
                 }
             }
 
