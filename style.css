@@ -403,16 +403,16 @@ pre, code {
 /* ギャラリー全体の設定 */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 6px;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 5px;
   padding: 0 8px;
   margin: 0 auto;
-  max-width: 100%;
 }
 
   /* ギャラリーの写真の設定 */
 .image-container {
   aspect-ratio: 1 / 1;
+  width: 100%;
   background-color: #1e1e1e;
   border-radius: 6px;
   overflow: hidden;
@@ -421,7 +421,6 @@ pre, code {
   align-items: center;
   position: relative;
 }
-
 .image-container img {
   width: 100%;
   height: 100%;
@@ -774,7 +773,7 @@ body.modal-open {
   }
   
   .gallery {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 3px;
   }
 
@@ -823,6 +822,13 @@ body.modal-open {
     top: 0.1em; 
   }
   
+}
+
+@media (max-width: 800px) {
+  .gallery {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3px;
+  }
 }
 
 /* 新しいページを作るときの表示 */
