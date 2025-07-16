@@ -233,7 +233,7 @@ h1 {
 }
 
 .definitions {
-  gap: 50px;
+  color: #ffffff;
   padding-bottom: 50px;
 }
 
@@ -242,7 +242,6 @@ h1 {
   line-height: 1.6;
   font-size: 18px;
   text-align: center;
-  /* font-weight: lighter; */
 }
 
 .profile-layout {
@@ -567,6 +566,10 @@ body.modal-open {
     color: #000000;
   }
 
+  .definitions {
+    color: #000000;
+  }
+
   .keyword {
     color: #a0459f
   }
@@ -680,7 +683,7 @@ body.modal-open {
 }
 
 /* スマホ用の設定 */
-@media (max-width: 660px) {
+@media (max-width: 700px) {
 
   h1 {
     font-size: 30px;
@@ -766,6 +769,11 @@ body.modal-open {
   .site-logo img {
     height: 25px;
   }
+
+  .definitions p {
+    line-height: 1.3;
+    font-size: 13px;
+  }
   
   .gallery {
     grid-template-columns: repeat(3, 1fr);
@@ -796,7 +804,7 @@ body.modal-open {
 
 }
 
-@media (max-width: 800px) {
+@media (max-width: 860px) {
   .gallery {
     grid-template-columns: repeat(4, 1fr);
     gap: 3px;
