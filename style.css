@@ -234,7 +234,6 @@ h1 {
 
 .definitions {
   color: #ffffff;
-  padding-bottom: 50px;
 }
 
 .definitions p{
@@ -246,16 +245,46 @@ h1 {
 
 .secret-button {
   display: inline-block;
-  padding: 10px 16px;
-  background-color: #96d3d7;
-  color: #000;
-  font-weight: bold;
+  margin: 32px auto;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 15px;
+  color: #6c8e92;
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 6px 16px;
+  border-radius: 6px;
   text-decoration: none;
-  border-radius: 8px;
-  transition: 0.3s;
+  letter-spacing: 0.8px;
+  transition: all 0.3s ease;
+  opacity: 0.6;
 }
+
 .secret-button:hover {
-  background-color: #5bbfc6;
+  border-color: #96d3d7;
+  color: #96d3d7;
+  background-color: rgba(150, 211, 215, 0.05);
+  opacity: 1;
+  cursor: pointer;
+}
+
+.secret-button::before {
+  content: "→ ";
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.secret-button:hover::before {
+  opacity: 1;
+}
+
+.access-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 20px;
+  color: #96d3d7;
+  text-align: center;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 .profile-layout {
@@ -582,6 +611,11 @@ body.modal-open {
 
   .definitions {
     color: #000000;
+  }
+
+  .secret-button:hover {
+    border-color: #5db14e;
+    color: #5db14e;
   }
 
   .keyword {

@@ -12,10 +12,11 @@
     <body>
         <main>
             <div id="unlock">
-            <p>Enter access key to unlock Sector Y</p>
-            <input type="password" id="password-input" placeholder="Access key">
-            <button onclick="checkPassword()">Enter</button>
-            <p id="error-msg" style="color:red; display:none;">Wrong key.</p>
+                <h2 class="access-title">Access Key Required</h2>
+                <p>Enter access key to unlock</p>
+                <input type="password" id="password-input" placeholder="Access key">
+                <button onclick="checkPassword()">Enter</button>
+                <p id="error-msg" style="color:red; display:none;">Wrong key.</p>
             </div>
 
             <div id="secret-content" style="display:none;">
