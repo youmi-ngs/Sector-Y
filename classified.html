@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Secret base</title>
+        <link rel="icon" href="images/logo-camera_dark.png">
+        <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&display=swap" rel="stylesheet">
+    </head>
+
+    <body>
+        <main>
+            <div id="unlock">
+            <p>Enter access key to unlock Sector Y</p>
+            <input type="password" id="password-input" placeholder="Access key">
+            <button onclick="checkPassword()">Enter</button>
+            <p id="error-msg" style="color:red; display:none;">Wrong key.</p>
+            </div>
+
+            <div id="secret-content" style="display:none;">
+                <p>
+                    Sector Y は、<br>
+                    "Youmi" という人間を知ってもらうための場所である。<br>
+                    高校生活で見てきたもの、感じたもの、夢中になったものを記録している。<br>
+                    好きなものと考え方をここに詰め込んだ。<br>
+                    誰に見られなくても構わない。<br>
+                    きっと、届くと信じている。
+                </p>
+
+                <p>
+                    Sector Y は、<br>
+                    現実から隔離されたどこでもない空間である。<br>
+                    ここは、私の思考をもとに、私自身が設計した世界。<br>
+                    未来のような過去の破片と、今という未来への切符が並んでいる。<br>
+                    記録は過去から届き、今の中に未来への入り口がある。<br>
+                    私がこの世界 "Sector Y" の創造主だ。
+                </p>
+
+                <p>
+                    Sector Y は、<br>
+                    背景と言葉の奥に、静かな気配を漂わせている空間である。<br>
+                    写真は、過去からこぼれ落ちた破片。<br>
+                    ひとつずつ拾い上げ、静かに観測するために置かれている。<br>
+                    私はここにいないけれど、どこかに気配だけは残した。<br>
+                    誰かに何かがふと届きますように。
+                </p>
+            </div>
+        </main>
+
+        <script>
+            function checkPassword() {
+                const input = document.getElementById('password-input').value;
+                if (input === "youmi") { 
+                document.getElementById('unlock').style.display = 'none';
+                document.getElementById('secret-content').style.display = 'block';
+                } else {
+                document.getElementById('error-msg').style.display = 'block';
+                }
+            }
+        </script>
+
+    </body>
+</html>

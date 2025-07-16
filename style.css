@@ -244,6 +244,20 @@ h1 {
   text-align: center;
 }
 
+.secret-button {
+  display: inline-block;
+  padding: 10px 16px;
+  background-color: #96d3d7;
+  color: #000;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+.secret-button:hover {
+  background-color: #5bbfc6;
+}
+
 .profile-layout {
   align-items: flex-start;
   display: flex;
