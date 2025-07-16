@@ -1,0 +1,149 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #000000;
+  font-family: 'Orbitron', sans-serif;
+  color: #d0d0d0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+}
+
+#unlock {
+  background-color: #111;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 24px;
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+  box-sizing: border-box;
+}
+
+#unlock input[type="password"] {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  margin: 12px auto;
+  padding: 8px;
+  border: none;
+  background-color: #222;
+  color: #ccc;
+  border-bottom: 1px solid #555;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+#unlock button {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  margin: 16px auto;
+  padding: 8px 18px;
+  background-color: transparent;
+  color: #96d3d7;
+  border: 1px solid #96d3d7;
+  border-radius: 6px;
+  font-family: 'Orbitron', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+#unlock button:hover {
+  background-color: #96d3d7;
+  color: #000;
+}
+
+#error-msg {
+  margin-top: 10px;
+  color: #ff6b6b;
+  font-size: 13px;
+}
+
+#secret-content {
+  width: 100%;
+  max-width: 700px;
+  margin: 80px auto;
+  padding: 0 40px;
+  box-sizing: border-box;
+  line-height: 1.9;
+}
+
+#secret-content h2 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: #96d3d7;
+}
+
+#secret-content p {
+  margin-bottom: 28px;
+}
+
+@media (max-width: 400px) {
+  body {
+    font-size: 14px;
+  }
+
+  #unlock {
+    margin: 60px auto 40px;
+    padding: 16px;
+    max-width: 90%;
+  }
+
+  #unlock input[type="password"],
+  #unlock button {
+    font-size: 14px;
+  }
+
+  #secret-content {
+    margin: 60px auto;
+    padding: 0 24px;
+    max-width: 95%;
+  }
+
+  #secret-content h2 {
+    font-size: 18px;
+  }
+
+  #secret-content p {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  html, body {
+    background: #ffffff;
+    color: #000000;
+  }
+
+    #unlock {
+        background-color: #f5f5f5;
+    }
+
+    #unlock input[type="password"] {
+        background-color: #d6d6d6;
+        color: #222;
+        border-bottom: #acacac;
+    }
+
+    #unlock button {
+        color: #5db14e;
+        border: #5db14e;
+    }
+
+    #unlock button:hover {
+        background-color: #5db14e;
+        color: #fff;
+    }
+
+    #secret-content h2 {
+        color: #5db14e;
+    }
+
+}
