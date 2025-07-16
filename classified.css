@@ -13,6 +13,40 @@ html, body {
   letter-spacing: 0.5px;
 }
 
+.back-button {
+  display: inline-block;
+  margin: 32px auto;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 15px;
+  color: #6c8e92;
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 6px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  letter-spacing: 0.8px;
+  transition: all 0.3s ease;
+  opacity: 0.6;
+}
+
+.back-button:hover {
+  border-color: #96d3d7;
+  color: #96d3d7;
+  background-color: rgba(150, 211, 215, 0.05);
+  opacity: 1;
+  cursor: pointer;
+}
+
+.back-button::before {
+  content: "→ ";
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.back-button:hover::before {
+  opacity: 1;
+}
+
 #unlock {
   background-color: #111;
   border: 1px solid #333;
@@ -120,6 +154,11 @@ html, body {
   html, body {
     background: #ffffff;
     color: #000000;
+  }
+
+  .back-button:hover {
+    border-color: #5db14e;
+    color: #5db14e;
   }
 
     #unlock {
