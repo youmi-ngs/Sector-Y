@@ -85,8 +85,9 @@ html, body {
 
 #error-msg {
   margin-top: 10px;
-  color: #ff6b6b;
+  color: #ff6d6d;
   font-size: 13px;
+  display: none;
 }
 
 #secret-content {
