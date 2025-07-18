@@ -37,6 +37,11 @@ html, body {
   cursor: pointer;
 }
 
+.hint {
+  font-size: 12px;
+  color: #444;
+}
+
 #unlock {
   background-color: #111;
   border: 1px solid #333;
