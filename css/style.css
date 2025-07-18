@@ -167,12 +167,14 @@ h1 {
 
 .hero {
   height: 100vh;
-  background-image: url("images/cover.JPG");
+  background-image: url("../images/cover.jpg");
+  /* background-color: red; */
   background-size: cover;
   background-position: center;
   position: relative;
   background-position: left 63%;
   font-family: 'Orbitron', sans-serif;
+  z-index: 0;
 }
 
 .hero::before {
@@ -583,7 +585,7 @@ body.modal-open {
 }
 
 /* ライトモード時の設定 */
-@media (prefers-color-scheme: light) {
+/* @media (prefers-color-scheme: light) {
   body {
     background-color: #FFFFFF;
     color: #000000;
@@ -708,7 +710,7 @@ body.modal-open {
     background-color: #4caf50;
     color: #fff;
 }
-}
+} */
 
 /* スマホ用の設定 */
 @media (max-width: 700px) {
