@@ -1,14 +1,9 @@
 html, body {
-  height: 100%;
   margin: 0;
   padding: 0;
   background: #0d0d0d;
   font-family: 'Orbitron', sans-serif;
   color: #d0d0d0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
   font-size: 15px;
   letter-spacing: 0.5px;
 }
@@ -43,14 +38,18 @@ html, body {
 }
 
 #unlock {
+  box-sizing: border-box;
   background-color: #111;
   border: 1px solid #333;
   border-radius: 8px;
   padding: 24px;
+  max-width: 400px;
+  margin: 80px auto 40px;
   text-align: center;
-  width: 100%;
-  max-width: 500px;
-  box-sizing: border-box;
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: center;
 }
 
 #unlock input[type="password"] {
@@ -98,7 +97,8 @@ html, body {
 #secret-content {
   width: 100%;
   max-width: 700px;
-  margin: 80px auto;
+  margin: 20px auto;
+  margin-top: 80px;
   padding: 0 40px;
   box-sizing: border-box;
   line-height: 1.9;
@@ -114,7 +114,7 @@ html, body {
   margin-bottom: 28px;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 450px) {
   body {
     font-size: 14px;
   }
@@ -130,12 +130,6 @@ html, body {
     font-size: 16px;
   }
 
-  #secret-content {
-    margin: 60px auto;
-    padding: 0 24px;
-    max-width: 95%;
-  }
-
   #secret-content h2 {
     font-size: 18px;
   }
@@ -144,6 +138,20 @@ html, body {
     font-size: 14px;
     line-height: 1.6;
   }
+}
+
+@media (max-width: 700px) {
+    #secret-content {
+    margin: 40px auto;
+    margin-bottom: 20px;
+    padding: 0 40px;
+    max-width: 95%;
+  }
+  
+  .back-button {
+  margin: 40px auto;
+  margin-top: 0px;
+}
 }
 
 /* @media (prefers-color-scheme: light) {
