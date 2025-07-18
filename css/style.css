@@ -96,6 +96,10 @@ h1 {
   transition: transform 0.1s ease, color 0.1s ease;
 }
 
+.modal-open .hamburger {
+  display: none;
+}
+
 /* ロゴ画像 */
 .site-logo img {
   height: 34px;
