@@ -1,5 +1,5 @@
 body {
-  background-color: #0d0d0d;
+  background-color: #000;
   color: #f0f0f0;
   font-family: 'Orbitron', sans-serif;
   margin: 0;
@@ -19,7 +19,7 @@ h1 {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.1s ease, padding 0.1s ease;
-  background-color: #1e1e1e;
+  background-color: #0d0d0d;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
@@ -102,7 +102,7 @@ h1 {
 
 /* ロゴ画像 */
 .site-logo img {
-  height: 34px;
+  height: 70px;
   width: auto;
   display: block;
 }
@@ -801,7 +801,7 @@ body.modal-open {
   }
 
   .site-logo img {
-    height: 25px;
+    height: 50px;
   }
 
   .definitions p {
