@@ -8,7 +8,7 @@ body {
 
 h1 {
     text-align: center;
-    color: #96d3d7;
+    color: #9bd3ed;
     margin-bottom: 40px;
     margin-top: 40px;
     font-size: 35px;
@@ -76,7 +76,7 @@ h1 {
 .hamburger.open span:nth-child(1) {
   transform: rotate(45deg);
   top: 10.5px;
-  background: #96d3d7;
+  background: #9bd3ed;
 }
 
 .hamburger.open span:nth-child(2) {
@@ -86,13 +86,13 @@ h1 {
 .hamburger.open span:nth-child(3) {
   transform: rotate(-45deg);
   top: 10.5px;
-  background: #96d3d7;
+  background: #9bd3ed;
 }
 
 /* ハンバーガー見た目切り替え */
 .hamburger.open {
   transform: rotate(90deg);
-  color: #96d3d7;
+  color: #9bd3ed;
   transition: transform 0.1s ease, color 0.1s ease;
 }
 
@@ -102,7 +102,7 @@ h1 {
 
 /* ロゴ画像 */
 .site-logo img {
-  height: 70px;
+  height: 50px;
   width: auto;
   display: block;
 }
@@ -162,7 +162,7 @@ h1 {
 /* ホバー時のスタイル */
 .site-title a:hover,
 .site-title a.active:hover {
-  color: #96d3d7;
+  color: #9bd3ed;
 }
 
 .top-nav a {
@@ -267,8 +267,8 @@ h1 {
 }
 
 .secret-button:hover {
-  border-color: #96d3d7;
-  color: #96d3d7;
+  border-color: #9bd3ed;
+  color: #9bd3ed;
   opacity: 1;
   cursor: pointer;
 }
@@ -294,7 +294,7 @@ h1 {
 
 .profile-left h2 {
   text-align: center;
-  color: #96d3d7;
+  color: #9bd3ed;
 }
 
 /* SNSリンク用の箱 */
@@ -556,7 +556,7 @@ body.modal-open {
 }
 
 .tag-section h3 {
-  color: #96d3d7;
+  color: #9bd3ed;
   margin: 24px 0 6px;
   font-size: 16px;
 }
@@ -580,11 +580,11 @@ body.modal-open {
 }
 
 .tag-list button:hover {
-  color: #96d3d7;
+  color: #9bd3ed;
 }
 
 .tag-list button.active {
-  background-color: #96d3d7;
+  background-color: #9bd3ed;
   color: #000;
 }
 
@@ -801,7 +801,7 @@ body.modal-open {
   }
 
   .site-logo img {
-    height: 50px;
+    height: 35px;
   }
 
   .definitions p {
