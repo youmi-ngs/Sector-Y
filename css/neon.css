@@ -1,1 +1,68 @@
-/* here is "neon css" */
+:root {
+  --color-lightblue: #9bd3ed;
+  --color-blue:  #00ffff;
+  --color-orange:    #ff6600;
+  --color-yellow:    #e8d843;
+  --color-white:     #ffffff;
+  --color-black:     #000000;
+}
+
+.neon-blue {
+  color: var(--color-blue);
+  text-shadow:
+    0 0 4px var(--color-blue),
+    0 0 8px var(--color-blue),
+    0 0 16px var(--color-blue),
+    0 0 32px var(--color-blue);
+}
+
+.neon-orange {
+  color: var(--color-orange);
+  text-shadow:
+    0 0 4px var(--color-orange),
+    0 0 10px var(--color-orange),
+    0 0 20px var(--color-orange);
+}
+
+.neon-yellow {
+  color: var(--color-yellow);
+  text-shadow:
+    0 0 4px var(--color-yellow),
+    0 0 8px var(--color-yellow),
+    0 0 16px var(--color-yellow);
+}
+
+.soft-blue {
+  color: var(--color-lightblue);
+}
+
+.neon {
+  transition: all 0.3s ease-in-out;
+}
+
+.glow-on-hover:hover {
+  filter: brightness(1.5);
+}
+
+.glow-smooth {
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+.hamburger.neon-blue span {
+    box-shadow:
+    0 0 3px var(--color-blue),
+    0 0 6px var(--color-blue);
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    text-shadow:
+      0 0 4px currentColor,
+      0 0 10px currentColor;
+  }
+  50% {
+    text-shadow:
+      0 0 10px currentColor,
+      0 0 20px currentColor;
+  }
+}
