@@ -722,30 +722,6 @@ body.modal-open {
     top: 9px;
   }
 
-  .hero-name {
-    right: 14px;
-    bottom: 88px;
-    font-size: 3.5rem;
-    line-height: 1.0;
-  }
-
-  .hero-tagline {
-    font-size: 1.0rem;
-    right: 14px;
-    bottom: 24px;
-    max-width: 90vw;
-    text-align: right;
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6); /* 視認性UP */
-  }
-
-  .tagline-break {
-    display: inline;
-  }
-
-  .hero {
-    background-position: 10% center;
-  }
-
   .site-logo img {
     height: 35px;
   }
