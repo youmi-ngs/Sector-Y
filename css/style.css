@@ -1,5 +1,5 @@
 body {
-  background-color: #000;
+  background-color: var(--color-black);
   color: #f0f0f0;
   font-family: 'Orbitron', sans-serif;
   margin: 0;
@@ -8,7 +8,7 @@ body {
 
 h1 {
     text-align: center;
-    color: #9bd3ed;
+    color: var(--color-lightblue);
     margin-bottom: 40px;
     margin-top: 40px;
     font-size: 35px;
@@ -54,7 +54,7 @@ h1 {
   left: 0;
   width: 100%;
   height: 3px;
-  background: white;
+  background: var(--color-white);
   border-radius: 2px;
   transition: all 0.3s ease;
   transform-origin: center;
@@ -76,7 +76,7 @@ h1 {
 .hamburger.open span:nth-child(1) {
   transform: rotate(45deg);
   top: 10.5px;
-  background: #9bd3ed;
+  background: var(--color-lightblue);
 }
 
 .hamburger.open span:nth-child(2) {
@@ -86,13 +86,13 @@ h1 {
 .hamburger.open span:nth-child(3) {
   transform: rotate(-45deg);
   top: 10.5px;
-  background: #9bd3ed;
+  background: var(--color-lightblue);
 }
 
 /* ハンバーガー見た目切り替え */
 .hamburger.open {
   transform: rotate(90deg);
-  color: #9bd3ed;
+  color: var(--color-lightblue);
   transition: transform 0.1s ease, color 0.1s ease;
 }
 
@@ -148,7 +148,7 @@ h1 {
 .site-title a {
   font-size: 18px;
   line-height: 1;
-  color: #ffffff;
+  color: var(--color-white);
   text-decoration: none;
   font-weight: bold;
   padding-right: 20px;
@@ -160,65 +160,12 @@ h1 {
 }
 
 /* ホバー時のスタイル */
-.site-title a:hover,
 .site-title a.active:hover {
-  color: #9bd3ed;
+  color: var(--color-white);
 }
 
 .top-nav a {
   cursor: pointer;
-}
-
-.hero {
-  height: 100vh;
-  background-image: url("../images/cover.jpg");
-  /* background-color: red; */
-  background-size: cover;
-  background-position: center;
-  position: relative;
-  background-position: left 63%;
-  font-family: 'Orbitron', sans-serif;
-  z-index: 0;
-}
-
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.35);
-  z-index: 1;
-  pointer-events: none;
-}
-
-.hero > * {
-  position: relative;
-  z-index: 2;
-}
-
-.hero-name {
-  position: absolute;
-  bottom: 90px;
-  right: 24px;
-  font-size: 6.5rem;
-  color: #ffffff;
-  font-weight: 800;
-  letter-spacing: 1px;
-  text-align: right;
-  line-height: 1.0;
-}
-
-.hero-tagline {
-  position: absolute;
-  bottom: 32px;
-  right: 24px;
-  font-size: 1.5rem;
-  color: #ffffff;
-  letter-spacing: 0.05em;
-  text-align: right;
-}
-
-.tagline-break {
-  display: none;
 }
 
 .index-page .top-nav {
@@ -239,7 +186,7 @@ h1 {
 }
 
 .definitions {
-  color: #ffffff;
+  color: var(--color-white);
 }
 
 .definitions p{
@@ -267,8 +214,8 @@ h1 {
 }
 
 .secret-button:hover {
-  border-color: #9bd3ed;
-  color: #9bd3ed;
+  border-color: var(--color-lightblue);
+  color: var(--color-lightblue);
   opacity: 1;
   cursor: pointer;
 }
@@ -322,13 +269,12 @@ h1 {
 .sns-links a {
   font-size: 12px;
   padding-left: 20px;
-  color: #ffffff;
+  color: var(--color-white);
 }
 
 .sns-links :hover {
     opacity: 0.7; 
     background-color: #68686800;
-
 }
 
 .profile-info {
@@ -556,7 +502,7 @@ body.modal-open {
 }
 
 .tag-section h3 {
-  color: #9bd3ed;
+  color: var(--color-lightblue);
   margin: 24px 0 6px;
   font-size: 16px;
 }
@@ -580,11 +526,11 @@ body.modal-open {
 }
 
 .tag-list button:hover {
-  color: #9bd3ed;
+  color: var(--color-lightblue);
 }
 
 .tag-list button.active {
-  background-color: #9bd3ed;
+  background-color: var(--color-lightblue);
   color: #000;
 }
 

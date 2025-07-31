@@ -1,6 +1,7 @@
 :root {
   --color-lightblue: #9bd3ed;
   --color-blue:  #00ffff;
+  --color-darkblue: #008e8e;
   --color-orange:    #ff6600;
   --color-yellow:    #e8d843;
   --color-white:     #ffffff;
@@ -10,24 +11,36 @@
 .neon-blue {
   color: var(--color-blue);
   text-shadow:
-    0 0 2px var(--color-blue),
-    0 0 16px var(--color-blue);
+    0 0 2px var(--color-white),
+    0 0 8px var(--color-blue);
 }
 
 .neon-orange {
   color: var(--color-orange);
   text-shadow:
-    0 0 4px var(--color-orange),
-    0 0 10px var(--color-orange),
-    0 0 20px var(--color-orange);
+    0 0 2px var(--color-orange),
+    0 0 16px var(--color-orange);
 }
 
 .neon-yellow {
   color: var(--color-yellow);
-  text-shadow:
-    0 0 4px var(--color-yellow),
-    0 0 8px var(--color-yellow),
+  text-shadow:    
+    0 0 2px var(--color-yellow),
     0 0 16px var(--color-yellow);
+}
+
+/* .neon-white {
+  color: var(--color-blue);
+  text-shadow:
+    0 0 2px var(--color-white),
+    0 0 8px var(--color-blue);
+} */
+
+.neon-black {
+  color: var(--color-black);
+  text-shadow:
+    0 0 2px var(--color-black),
+    0 0 16px var(--color-black);
 }
 
 .soft-blue {
@@ -46,10 +59,21 @@
   animation: glowPulse 2s ease-in-out infinite;
 }
 
-.hamburger.neon-blue span {
+.hamburger.neon-white span {
     box-shadow:
-    0 0 3px var(--color-blue),
+    0 0 6px var(--color-blue),
+    0 0 8px var(--color-white);
+}
+
+.hamburger.open.neon-blue span {
+    box-shadow:
     0 0 6px var(--color-blue);
+}
+
+.top-nav a:hover {
+  text-shadow:
+    0 0 5px var(--color-blue);
+    transition: all 0.3s ease-in-out;
 }
 
 @keyframes glowPulse {

@@ -1,0 +1,56 @@
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+.hero {
+  height: 100vh;
+  background-image: url("../images/cover.jpg");
+  /* background-color: red; */
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  background-position: left 63%;
+  font-family: 'Orbitron', sans-serif;
+  z-index: 0;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero > * {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-name {
+  position: absolute;
+  bottom: 90px;
+  right: 24px;
+  font-size: 6.5rem;
+  color: var(--color-white);
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-align: right;
+  line-height: 1.0;
+}
+
+.hero-tagline {
+  position: absolute;
+  bottom: 32px;
+  right: 24px;
+  font-size: 1.5rem;
+  color: var(--color-white);
+  letter-spacing: 0.05em;
+  text-align: right;
+}
+
+.tagline-break {
+  display: none;
+}
