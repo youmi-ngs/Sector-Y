@@ -6,7 +6,6 @@ html, body {
 .hero {
   height: 100svh;
   background-image: url("../images/cover.jpg");
-  /* background-color: red; */
   background-size: cover;
   background-position: center;
   position: relative;
@@ -69,7 +68,7 @@ html, body {
         bottom: 24px;
         max-width: 90vw;
         text-align: right;
-        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6); /* 視認性UP */
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6); 
     }
 
     .tagline-break {
