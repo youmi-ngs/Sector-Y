@@ -10,10 +10,8 @@
 .neon-blue {
   color: var(--color-blue);
   text-shadow:
-    0 0 4px var(--color-blue),
-    0 0 8px var(--color-blue),
-    0 0 16px var(--color-blue),
-    0 0 32px var(--color-blue);
+    0 0 2px var(--color-blue),
+    0 0 16px var(--color-blue);
 }
 
 .neon-orange {
