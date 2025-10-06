@@ -1,61 +1,123 @@
-html, body {
-  height: 100%;
-  overflow: hidden;
+.logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10; 
 }
 
-.hero {
+.logo img {
+  width: 30vmin;    
+  display: block;
+  user-select: none;
+  pointer-events: none; 
+}
+
+html, body {
   height: 100svh;
-  background-image: url("../images/cover.jpg");
+  margin: 0;
+  background: #000;
+  overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.universe {
+  position: relative;
+  /* 画面に必ず収まる正方形。余白を少し確保 */
+  width: min(92vmin, 100svh - 8svh);
+  height: min(92vmin, 100svh - 8svh);
+}
+
+/* 軌道（リング） */
+.orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 0.1px solid rgba(245,245,245);
+  /* filter: drop-shadow(0 0 0.8vmin rgba(245,245,245,0.3)); */
+  border-radius: 50%;
+  z-index: 0; 
+}
+
+.orbit::after {
+  content: "";
+  position: absolute;
+  inset: 0vmin;              /* リングより少し外側に広げる */
+  border-radius: 50%;
+  pointer-events: none;  
+  box-shadow:
+    0 0 0.8vmin rgba(245,245,245,0.5),
+    0 0 2.2vmin rgba(245,245,245,0.16);
+  /* 微調整用：不透明度を上下 or inset値を± */
+  mix-blend-mode: screen;
+  z-index: 0; 
+}
+
+/* ★半径を80%に縮小（0.8倍） */
+.orbit-core    { --R: calc(46vmin * 0.8);  width: calc(2*var(--R)); height: calc(2*var(--R)); animation: orbitCore    300s linear infinite; }
+.orbit-gallery { --R: calc(37vmin * 0.8);  width: calc(2*var(--R)); height: calc(2*var(--R)); animation: orbitGallery  90s linear infinite; }
+.orbit-sparkle { --R: calc(28vmin * 0.8);  width: calc(2*var(--R)); height: calc(2*var(--R)); animation: orbitSparkle  40s linear infinite; }
+
+/* 惑星共通 */
+.planet {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
   background-size: cover;
   background-position: center;
-  position: relative;
-  background-position: left 63%;
-  font-family: 'Orbitron', sans-serif;
-  z-index: 0;
+  z-index: 2; 
 }
 
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.35);
-  z-index: 1;
-  pointer-events: none;
+/* サイズはそのまま（切れ防止済）・向き補正 --fix */
+.sparkle {
+  width: 11vmin; height: 11vmin;
+  transform: translate(-50%, -50%) translateX(var(--R)) rotate(calc(15deg + var(--fix,0deg)));
+  animation: unspinSparkle 40s linear infinite;
+  background-image: url("../images/planets/planet-p.png");
+  --fix: 90deg;
 }
 
-.hero > * {
-  position: relative;
-  z-index: 2;
+.gallery {
+  width: 13vmin; height: 13vmin;
+  transform: translate(-50%, -50%) translateX(var(--R)) rotate(calc(-10deg + var(--fix,0deg)));
+  animation: unspinGallery 90s linear infinite;
+  background-image: url("../images/planets/planet-g.png");
+  --fix: 0deg;
 }
 
-.hero-name {
-  position: absolute;
-  bottom: 90px;
-  right: 24px;
-  font-size: 6.5rem;
-  color: var(--color-white);
-  font-weight: 800;
-  letter-spacing: 1px;
-  text-align: right;
-  line-height: 1.0;
+.core {
+  width: 20vmin; height: 20vmin;
+  transform: translate(-50%, -50%) translateX(var(--R)) rotate(calc(20deg + var(--fix,0deg)));
+  animation: unspinCore 300s linear infinite;
+  background-image: url("../images/planets/planet-b.png");
+  --fix: 240deg;
 }
 
-.hero-tagline {
-  position: absolute;
-  bottom: 32px;
-  right: 24px;
-  font-size: 1.5rem;
-  color: var(--color-white);
-  letter-spacing: 0.05em;
-  text-align: right;
+/* 公転（開始角はそのまま） */
+@keyframes orbitCore    { from{ transform:translate(-50%,-50%) rotate(100deg);} to{ transform:translate(-50%,-50%) rotate(460deg);} }
+@keyframes orbitGallery { from{ transform:translate(-50%,-50%) rotate(0deg);}   to{ transform:translate(-50%,-50%) rotate(360deg);} }
+@keyframes orbitSparkle { from{ transform:translate(-50%,-50%) rotate(240deg);} to{ transform:translate(-50%,-50%) rotate(600deg);} }
+
+/* 自転相殺（向き固定＋微調整 --fix） */
+@keyframes unspinCore {
+  from { transform: translate(-50%, -50%) translateX(var(--R)) rotate(calc(20deg  + var(--fix,0deg))); }
+  to   { transform: translate(-50%, -50%) translateX(var(--R)) rotate(calc(-340deg + var(--fix,0deg))); }
 }
 
-.tagline-break {
-  display: none;
+@keyframes unspinGallery {
+  from { transform: translate(-50%, -50%) translateX(var(--R)) rotate(calc(-10deg + var(--fix,0deg))); }
+  to   { transform: translate(-50%, -50%) translateX(var(--R)) rotate(calc(-370deg + var(--fix,0deg))); }
+}
+
+@keyframes unspinSparkle {
+  from { transform: translate(-50%, -50%) translateX(var(--R)) rotate(calc(15deg  + var(--fix,0deg))); }
+  to   { transform: translate(-50%, -50%) translateX(var(--R)) rotate(calc(-345deg + var(--fix,0deg))); }
 }
 
 @media (max-width: 700px) {
-    .hero-name {
+    /* .hero-name {
         right: 14px;
         bottom: 88px;
         font-size: 3.5rem;
@@ -77,5 +139,5 @@ html, body {
 
     .hero {
         background-position: 10% center;
-    }
+    } */
 }
