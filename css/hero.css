@@ -28,6 +28,21 @@ html, body {
   isolation: isolate;
 }
 
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10; 
+}
+
+.center img {
+  width: 19vmin;    
+  display: block;
+  user-select: none;
+  pointer-events: none; 
+}
+
 /* 軌道（リング） */
 .orbit {
   position: absolute;
@@ -57,8 +72,8 @@ html, body {
 }
 
 .orbit-core    { --R: calc(35vmin);  width: calc(2*var(--R)); height: calc(2*var(--R)); animation: orbitCore    90s linear infinite; }
-.orbit-gallery { --R: calc(25.75vmin);  width: calc(2*var(--R)); height: calc(2*var(--R)); animation: orbitGallery  40s linear infinite; }
-.orbit-sparkle { --R: calc(20vmin);  width: calc(2*var(--R)); height: calc(2*var(--R)); animation: orbitSparkle  25s linear infinite; }
+.orbit-gallery { --R: calc(25vmin);  width: calc(2*var(--R)); height: calc(2*var(--R)); animation: orbitGallery  40s linear infinite; }
+.orbit-sparkle { --R: calc(18vmin);  width: calc(2*var(--R)); height: calc(2*var(--R)); animation: orbitSparkle  25s linear infinite; }
 
 /* 90 40 25 */
 
@@ -71,7 +86,6 @@ html, body {
   background-size: contain; 
   background-repeat: no-repeat;
   background-position: center;
-  border-radius: 0;  
   z-index: 2; 
   image-rendering: auto;
   transform-origin: center center;
