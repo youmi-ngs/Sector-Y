@@ -56,9 +56,11 @@ html, body {
   z-index: -1; 
 }
 
-.orbit-core    { --R: calc(46vmin * 0.8);  width: calc(2*var(--R)); height: calc(2*var(--R)); animation: orbitCore    300s linear infinite; }
-.orbit-gallery { --R: calc(37vmin * 0.8);  width: calc(2*var(--R)); height: calc(2*var(--R)); animation: orbitGallery  90s linear infinite; }
-.orbit-sparkle { --R: calc(28vmin * 0.8);  width: calc(2*var(--R)); height: calc(2*var(--R)); animation: orbitSparkle  30s linear infinite; }
+.orbit-core    { --R: calc(35vmin);  width: calc(2*var(--R)); height: calc(2*var(--R)); animation: orbitCore    90s linear infinite; }
+.orbit-gallery { --R: calc(25.75vmin);  width: calc(2*var(--R)); height: calc(2*var(--R)); animation: orbitGallery  40s linear infinite; }
+.orbit-sparkle { --R: calc(20vmin);  width: calc(2*var(--R)); height: calc(2*var(--R)); animation: orbitSparkle  25s linear infinite; }
+
+/* 90 40 25 */
 
 /* 惑星共通 */
 .planet {
@@ -77,25 +79,25 @@ html, body {
 
 /* サイズはそのまま（切れ防止済）・向き補正 --fix */
 .sparkle {
-  width: 7vmin; height: 7vmin;
+  width: 5vmin; height: 5vmin;
   transform: translate(-50%, -50%) translateX(var(--R)) rotate(calc(15deg + var(--fix,0deg)));
-  animation: unspinSparkle 30s linear infinite;
+  animation: unspinSparkle 25s linear infinite;
   background-image: url("../images/planets/planet-p.png");
   --fix: 90deg;
 }
 
 .gallery {
-  width: 9vmin; height: 9vmin;
+  width: 8vmin; height: 7vmin;
   transform: translate(-50%, -50%) translateX(var(--R)) rotate(calc(-10deg + var(--fix,0deg)));
-  animation: unspinGallery 90s linear infinite;
+  animation: unspinGallery 40s linear infinite;
   background-image: url("../images/planets/planet-g.png");
   --fix: 0deg;
 }
 
 .core {
-  width: 15vmin; height: 15vmin;
+  width: 15vmin; height: 9vmin;
   transform: translate(-50%, -50%) translateX(var(--R)) rotate(calc(20deg + var(--fix,0deg)));
-  animation: unspinCore 300s linear infinite;
+  animation: unspinCore 90s linear infinite;
   background-image: url("../images/planets/planet-b.png");
   --fix: 240deg;
 }
