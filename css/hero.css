@@ -16,16 +16,16 @@
 html, body {
   height: 100svh;
   margin: 0;
-  background: #000;
-  overflow: hidden;
+  background: #000000;
   display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
 }
 
 .universe {
-  position: relative;
-  /* 画面に必ず収まる正方形。余白を少し確保 */
   width: min(92vmin, 100svh - 8svh);
   height: min(92vmin, 100svh - 8svh);
+  position: relative;
+  isolation: isolate;
 }
 
 /* 軌道（リング） */
@@ -34,53 +34,58 @@ html, body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border: 0.1px solid rgba(245,245,245);
-  /* filter: drop-shadow(0 0 0.8vmin rgba(245,245,245,0.3)); */
+  border: 1px solid rgb(255, 255, 255);
   border-radius: 50%;
-  z-index: 0; 
+  z-index: 1; 
 }
 
 .orbit::after {
   content: "";
   position: absolute;
-  inset: 0vmin;              /* リングより少し外側に広げる */
+  inset: 0vmin; 
   border-radius: 50%;
   pointer-events: none;  
   box-shadow:
-    0 0 0.8vmin rgba(245,245,245,0.5),
-    0 0 2.2vmin rgba(245,245,245,0.16);
-  /* 微調整用：不透明度を上下 or inset値を± */
+    /* 内側の光 */
+    inset 0 0 1.65vmin rgba(0, 255, 235, 0.4),
+    inset 0 0 8vmin rgba(0, 255, 235, 0.1),
+    /* 外側の光 */
+    0 0 1.65vmin rgba(0, 255, 235, 0.4),
+    0 0 8vmin rgba(0, 255, 235, 0.2);
   mix-blend-mode: screen;
-  z-index: 0; 
+  z-index: -1; 
 }
 
-/* ★半径を80%に縮小（0.8倍） */
 .orbit-core    { --R: calc(46vmin * 0.8);  width: calc(2*var(--R)); height: calc(2*var(--R)); animation: orbitCore    300s linear infinite; }
 .orbit-gallery { --R: calc(37vmin * 0.8);  width: calc(2*var(--R)); height: calc(2*var(--R)); animation: orbitGallery  90s linear infinite; }
-.orbit-sparkle { --R: calc(28vmin * 0.8);  width: calc(2*var(--R)); height: calc(2*var(--R)); animation: orbitSparkle  40s linear infinite; }
+.orbit-sparkle { --R: calc(28vmin * 0.8);  width: calc(2*var(--R)); height: calc(2*var(--R)); animation: orbitSparkle  30s linear infinite; }
 
 /* 惑星共通 */
 .planet {
   position: absolute;
   top: 50%;
   left: 50%;
-  border-radius: 50%;
-  background-size: cover;
+  border-radius: 0;
+  background-size: contain; 
+  background-repeat: no-repeat;
   background-position: center;
+  border-radius: 0;  
   z-index: 2; 
+  image-rendering: auto;
+  transform-origin: center center;
 }
 
 /* サイズはそのまま（切れ防止済）・向き補正 --fix */
 .sparkle {
-  width: 11vmin; height: 11vmin;
+  width: 7vmin; height: 7vmin;
   transform: translate(-50%, -50%) translateX(var(--R)) rotate(calc(15deg + var(--fix,0deg)));
-  animation: unspinSparkle 40s linear infinite;
+  animation: unspinSparkle 30s linear infinite;
   background-image: url("../images/planets/planet-p.png");
   --fix: 90deg;
 }
 
 .gallery {
-  width: 13vmin; height: 13vmin;
+  width: 9vmin; height: 9vmin;
   transform: translate(-50%, -50%) translateX(var(--R)) rotate(calc(-10deg + var(--fix,0deg)));
   animation: unspinGallery 90s linear infinite;
   background-image: url("../images/planets/planet-g.png");
@@ -88,7 +93,7 @@ html, body {
 }
 
 .core {
-  width: 20vmin; height: 20vmin;
+  width: 15vmin; height: 15vmin;
   transform: translate(-50%, -50%) translateX(var(--R)) rotate(calc(20deg + var(--fix,0deg)));
   animation: unspinCore 300s linear infinite;
   background-image: url("../images/planets/planet-b.png");
