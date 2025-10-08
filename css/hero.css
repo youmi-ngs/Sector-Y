@@ -75,8 +75,6 @@ html, body {
 .orbit-gallery { --R: calc(25vmin);  width: calc(2*var(--R)); height: calc(2*var(--R)); animation: orbitGallery  40s linear infinite; }
 .orbit-sparkle { --R: calc(18vmin);  width: calc(2*var(--R)); height: calc(2*var(--R)); animation: orbitSparkle  25s linear infinite; }
 
-/* 90 40 25 */
-
 /* 惑星共通 */
 .planet {
   position: absolute;
