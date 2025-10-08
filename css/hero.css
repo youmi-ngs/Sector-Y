@@ -135,6 +135,56 @@ html, body {
   to   { transform: translate(-50%, -50%) translateX(var(--R)) rotate(calc(-345deg + var(--fix,0deg))); }
 }
 
+.terminal { 
+  font-family:'Share Tech Mono',monospace; 
+  color:#7dcdff; opacity:.9; 
+  letter-spacing:.05em; 
+}
+
+.terminal p { 
+  margin:.3em 0; 
+  white-space:pre-wrap; 
+}
+
+.command{ 
+  color: #ff9900; 
+}
+
+.system { 
+  color: #7dcdff; 
+}
+
+.someone{ 
+  color: #7dcdff;
+}
+
+.log    { 
+  color: #f6ff00; 
+}
+
+.caret  { 
+  display:inline-block; 
+  width:0.6ch; animation:blink 1s step-end infinite; 
+}
+
+@keyframes blink { 
+  50% { opacity:0; } 
+}
+
+.editable{
+  display:inline-block;
+  min-width:6ch;
+  outline:none;
+  border-bottom:1px solid rgba(255,255,255,.25);
+  padding:0 .2ch;
+}
+.editable:empty::before{
+  content:attr(data-placeholder);
+  color:rgba(255,255,255,.35);
+}
+.bad{ color:#ff3b3b; text-shadow:0 0 6px #ff3b3b; }
+
+
 @media (max-width: 700px) {
     /* .hero-name {
         right: 14px;

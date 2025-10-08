@@ -61,8 +61,6 @@
               <img src="images/logo.png" alt="Sector Y Logo">
             </div> -->
 
-          <div class="right-text">
-          </div>
 
           <div class="universe">
 
@@ -84,7 +82,33 @@
 
           </div>
 
-          <div class="left-text">
+          <div class="terminal" id="terminal">
+            <p class="command" data-text="SECTOR Y // TERMINAL O{RAND}"></p>
+            <p class="command" data-text="&quot;UNKNOWN&quot; ATTEMPTS CONNECTION"></p>
+            <p class="command" data-text="NO CREATOR DETECTED GUIDANCE WILL PROCEED AUTOMATICALLY"></p>
+            <br>
+            <p class="log" data-text="LOG: VISIT SECTOR_Y"></p>
+            <br>
+            <p class="system"  data-text="SYSTEM: CONNECTION STABLE"></p>
+            <p class="system"  data-text="SYSTEM: TERMINAL ACTIVE"></p>
+            <p class="system"  data-text="SYSTEM: ORBIT SYNC OK"></p>
+            <p class="system"  data-text="SYSTEM: READY"></p>
+            <br>
+            <p class="system"  data-text="SYSTEM: WHO ARE YOU?"></p>
+            <p class="someone" data-text="SOMEONE: {NAME}"></p>
+            <p class="system"  data-text="SYSTEM: HELLO, {NAME}"></p>
+            <br>
+            <p class="system"  data-text="SYSTEM: OBSERVE SECTOR_Y? Y/N"></p>
+            <p class="someone" data-text="{NAME}: {YN}"></p>
+            <br>
+            <p class="system"  data-text="SYSTEM: WELCOME TO SECTOR_Y"></p>
+            <p class="system"  data-text="SYSTEM: CATCH ANY PLANET TO OBSERVE"></p>
+            <p class="system"  data-text="SYSTEM: ENJOY"></p>
+            <br>
+            <p class="log"     data-text="LOG: OBSERVING SECTOR_Y"></p>
+            <p class="log"     data-text="LOG: CAUGHT PLANET: CORE"></p>
+            <br>
+            <p class="command" data-text="ENDED SIGNAL FROM SYSTEM"></p>
           </div>
 
           <script>
@@ -98,6 +122,138 @@
                     topNav.classList.toggle("open");
                   });
             });
+
+            (() => {
+              // セッション値（任意）
+              let NAME = sessionStorage.getItem('sy_observer_name') || 'SOMEONE';
+              let YN   = ''; // 後で入力
+              const RAND = String(Math.ceil(Math.random() * 9));
+
+              const term  = document.getElementById('terminal');
+              const lines = [...term.querySelectorAll('[data-text]')]; // 配列として扱う
+
+              // 初期置換：RAND だけ。← ここ重要（{NAME}は触らない！）
+              lines.forEach(el => {
+                el.dataset.text = el.dataset.text.replaceAll('{RAND}', RAND);
+              });
+
+              const CHAR_MS  = 45;
+              const LINE_GAP = 150;
+              let i = 0;
+
+              const caret = document.createElement('span');
+              caret.className = 'caret';
+              caret.textContent = '▌';
+
+              function typeLine(el, text, done) {
+                el.textContent = '';
+                el.appendChild(caret);
+                let j = 0;
+                (function tick() {
+                  caret.before(text[j] || '');
+                  j++;
+                  if (j <= text.length) setTimeout(tick, CHAR_MS);
+                  else setTimeout(done, LINE_GAP);
+                })();
+              }
+
+              function placeCaretEnd(el) {
+                const r = document.createRange();
+                r.selectNodeContents(el);
+                r.collapse(false);
+                const s = getSelection();
+                s.removeAllRanges();
+                s.addRange(r);
+              }
+
+              // 名前入力
+              function askName(el) {
+                el.textContent = 'SOMEONE: ';
+                const inp = document.createElement('span');
+                inp.className = 'editable';
+                inp.contentEditable = 'true';
+                inp.dataset.placeholder = ' ';
+                el.appendChild(inp);
+                caret.remove();
+                inp.focus();
+
+                inp.addEventListener('input', () => {
+                  inp.textContent = (inp.textContent || '').toUpperCase();
+                  placeCaretEnd(inp);
+                });
+
+                inp.addEventListener('keydown', (e) => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault();
+                    NAME = (inp.textContent || '').trim().toUpperCase() || 'SOMEONE';
+                    sessionStorage.setItem('sy_observer_name', NAME);
+                    inp.replaceWith(document.createTextNode(NAME));
+                    // 以降の {NAME} を置換
+                    for (let k = i + 1; k < lines.length; k++) {
+                      lines[k].dataset.text = (lines[k].dataset.text || '').replaceAll('{NAME}', NAME);
+                    }
+                    i++;
+                    next();
+                  }
+                });
+              }
+
+              // Y/N 入力
+              function askYN(el) {
+                el.textContent = (NAME || 'SOMEONE') + ': ';
+                const inp = document.createElement('span');
+                inp.className = 'editable';
+                inp.contentEditable = 'true';
+                inp.dataset.placeholder = ' ';
+                el.appendChild(inp);
+                caret.remove();
+                inp.focus();
+
+                inp.addEventListener('input', () => {
+                  let v = (inp.textContent || '').toUpperCase().replace(/[^YN]/g, '');
+                  inp.textContent = v.slice(0, 1);
+                  placeCaretEnd(inp);
+                });
+
+                inp.addEventListener('keydown', (e) => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault();
+                    YN = (inp.textContent || '').trim().toUpperCase() || 'N';
+                    // 今の行の {YN} も置換して再描画
+                    el.textContent = el.textContent.replace('{YN}', YN);
+                    // 以降の {YN} を置換
+                    for (let k = i + 1; k < lines.length; k++) {
+                      lines[k].dataset.text = (lines[k].dataset.text || '').replaceAll('{YN}', YN);
+                    }
+
+                    if (YN === 'N') {
+                      // GOOD BYE を差し込み、以降の行は捨てて終了
+                      const bye = document.createElement('p');
+                      bye.className = 'system bad';
+                      bye.dataset.text = 'SYSTEM: GOOD BYE';
+                      lines.splice(i + 1, lines.length - (i + 1), bye); // ← 後続を全部この1行に置換
+                      el.parentNode.insertBefore(bye, el.nextSibling);
+                    }
+
+                    i++;
+                    next();
+                  }
+                });
+              }
+
+              function next() {
+                if (i >= lines.length) { caret.remove(); return; }
+                const el   = lines[i];
+                const text = el.dataset.text || '';
+
+                if (text.includes('SOMEONE: {NAME}')) { askName(el); return; }
+                if (text.includes('{YN}'))            { askYN(el);   return; }
+
+                typeLine(el, text, () => { i++; next(); });
+              }
+
+              next();
+            })();
           </script>
 
         </body>
