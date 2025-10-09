@@ -198,14 +198,14 @@ html, body {
 
 .editable{
   display:inline-block;
-  min-width:6ch;            /* 下線の長さ */
+  /* min-width:6ch; */
   outline:none;
-  border-bottom:1px solid rgba(255,255,255,.25);
+  /* border-bottom:1px solid rgba(255,255,255,.25); */
   padding:0 .2ch;
 }
 
 .editable:empty::before{
-  content: attr(data-placeholder);  /* 例: '_____' */
+  content: attr(data-placeholder); 
   color: rgba(255,255,255,.35);
 }
 

@@ -82,12 +82,14 @@
               <p class="command" data-text="&quot;UNKNOWN&quot; ATTEMPTS CONNECTION"></p>
               <p class="command" data-text="NO CREATOR DETECTED GUIDANCE WILL PROCEED AUTOMATICALLY"></p>
               <br>
+              <p class="command"  data-text="THIS UNIVERSE IS FOR OBSERVING THE WORLD OF YOUMI"></p>
+              <br>
               <p class="log" data-text="LOG: VISIT SECTOR_Y"></p>
               <br>
               <p class="system"  data-text="SYSTEM: CONNECTION STABLE"></p>
               <p class="system"  data-text="SYSTEM: TERMINAL ACTIVE"></p>
               <p class="system"  data-text="SYSTEM: ORBIT SYNC OK"></p>
-              <p class="system"  data-text="SYSTEM: READY"></p>
+              <p class="system"  data-text="SYSTEM: READY..."></p>
               <br>
               <p class="system"  data-text="SYSTEM: WHO ARE YOU?"></p>
               <p class="someone" data-text="SOMEONE: {NAME}"></p>
@@ -121,7 +123,7 @@
 
             (() => {
               // -------- 設定値 --------
-              const CHAR_MS  = 50;   // 1文字の表示間隔（ms）
+              const CHAR_MS  = 40;   // 1文字の表示間隔（ms）
               const LINE_GAP = 140;  // 行送りの待ち時間（ms）
 
               // -------- 参照取得 --------
@@ -236,7 +238,7 @@
                       bye.className = 'system bad';
                       bye.dataset.text = 'SYSTEM: GOOD BYE';
 
-                      const spacer = document.createElement('p');  // 空行
+                      const spacer = document.createElement('br');  // 空行
                       spacer.className = 'spacer';
                       spacer.textContent = '';
 
