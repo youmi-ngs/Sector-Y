@@ -54,14 +54,7 @@
           </div>
         </header>
 
-
-        <body>
-
-            <!-- <div class="logo">
-              <img src="images/logo.png" alt="Sector Y Logo">
-            </div> -->
-
-
+        <main id="universe-wrapper" class="hidden">
           <div class="universe">
 
             <div class="center">
@@ -79,36 +72,39 @@
             <div class="orbit orbit-core">
               <div class="planet core"></div>
             </div>
-
+            
           </div>
+        </main>
 
-          <div class="terminal" id="terminal">
-            <p class="command" data-text="SECTOR Y // TERMINAL O{RAND}"></p>
-            <p class="command" data-text="&quot;UNKNOWN&quot; ATTEMPTS CONNECTION"></p>
-            <p class="command" data-text="NO CREATOR DETECTED GUIDANCE WILL PROCEED AUTOMATICALLY"></p>
-            <br>
-            <p class="log" data-text="LOG: VISIT SECTOR_Y"></p>
-            <br>
-            <p class="system"  data-text="SYSTEM: CONNECTION STABLE"></p>
-            <p class="system"  data-text="SYSTEM: TERMINAL ACTIVE"></p>
-            <p class="system"  data-text="SYSTEM: ORBIT SYNC OK"></p>
-            <p class="system"  data-text="SYSTEM: READY"></p>
-            <br>
-            <p class="system"  data-text="SYSTEM: WHO ARE YOU?"></p>
-            <p class="someone" data-text="SOMEONE: {NAME}"></p>
-            <p class="system"  data-text="SYSTEM: HELLO, {NAME}"></p>
-            <br>
-            <p class="system"  data-text="SYSTEM: OBSERVE SECTOR_Y? Y/N"></p>
-            <p class="someone" data-text="{NAME}: {YN}"></p>
-            <br>
-            <p class="system"  data-text="SYSTEM: WELCOME TO SECTOR_Y"></p>
-            <p class="system"  data-text="SYSTEM: CATCH ANY PLANET TO OBSERVE"></p>
-            <p class="system"  data-text="SYSTEM: ENJOY"></p>
-            <br>
-            <p class="log"     data-text="LOG: OBSERVING SECTOR_Y"></p>
-            <p class="log"     data-text="LOG: CAUGHT PLANET: CORE"></p>
-            <br>
-            <p class="command" data-text="ENDED SIGNAL FROM SYSTEM"></p>
+          <div id="boot-sequence">
+            <div class="terminal" id="terminal">
+              <p class="command" data-text="SECTOR Y // TERMINAL O{RAND}"></p>
+              <p class="command" data-text="&quot;UNKNOWN&quot; ATTEMPTS CONNECTION"></p>
+              <p class="command" data-text="NO CREATOR DETECTED GUIDANCE WILL PROCEED AUTOMATICALLY"></p>
+              <br>
+              <p class="log" data-text="LOG: VISIT SECTOR_Y"></p>
+              <br>
+              <p class="system"  data-text="SYSTEM: CONNECTION STABLE"></p>
+              <p class="system"  data-text="SYSTEM: TERMINAL ACTIVE"></p>
+              <p class="system"  data-text="SYSTEM: ORBIT SYNC OK"></p>
+              <p class="system"  data-text="SYSTEM: READY"></p>
+              <br>
+              <p class="system"  data-text="SYSTEM: WHO ARE YOU?"></p>
+              <p class="someone" data-text="SOMEONE: {NAME}"></p>
+              <p class="system"  data-text="SYSTEM: HELLO, {NAME}"></p>
+              <br>
+              <p class="system"  data-text="SYSTEM: OBSERVE SECTOR_Y? Y/N"></p>
+              <p class="someone" data-text="{NAME}: {YN}"></p>
+              <br>
+              <p class="system"  data-text="SYSTEM: WELCOME TO SECTOR_Y"></p>
+              <p class="system"  data-text="SYSTEM: CATCH ANY PLANET TO OBSERVE"></p>
+              <p class="system"  data-text="SYSTEM: ENJOY"></p>
+              <br>
+              <p class="log"     data-text="LOG: OBSERVING SECTOR_Y"></p>
+              <!-- <p class="log"     data-text="LOG: CAUGHT PLANET: CORE"></p> -->
+              <br>
+              <p class="command" data-text="ENDED SIGNAL FROM SYSTEM"></p>
+            </div>
           </div>
 
           <script>
@@ -124,27 +120,31 @@
             });
 
             (() => {
-              // セッション値（任意）
-              let NAME = sessionStorage.getItem('sy_observer_name') || 'SOMEONE';
-              let YN   = ''; // 後で入力
-              const RAND = String(Math.ceil(Math.random() * 9));
+              // -------- 設定値 --------
+              const CHAR_MS  = 50;   // 1文字の表示間隔（ms）
+              const LINE_GAP = 140;  // 行送りの待ち時間（ms）
 
-              const term  = document.getElementById('terminal');
-              const lines = [...term.querySelectorAll('[data-text]')]; // 配列として扱う
+              // -------- 参照取得 --------
+              const term = document.getElementById('terminal');
+              if (!term) return;
+              const lines = Array.from(term.querySelectorAll('[data-text]')); // data-text 行のみ
+              const uw = document.getElementById('universe-wrapper');
 
-              // 初期置換：RAND だけ。← ここ重要（{NAME}は触らない！）
-              lines.forEach(el => {
-                el.dataset.text = el.dataset.text.replaceAll('{RAND}', RAND);
-              });
-
-              const CHAR_MS  = 45;
-              const LINE_GAP = 150;
+              // -------- 状態 --------
               let i = 0;
+              let NAME = sessionStorage.getItem('sy_observer_name') || 'SOMEONE';
+              let YN   = '';
 
+              // 初期置換：{RAND} だけ（{NAME}/{YN} はあとで）
+              const RAND = String(Math.ceil(Math.random() * 9));
+              lines.forEach(el => el.dataset.text = (el.dataset.text || '').replaceAll('{RAND}', RAND));
+
+              // 共通カーソル
               const caret = document.createElement('span');
               caret.className = 'caret';
               caret.textContent = '▌';
 
+              // -------- ユーティリティ --------
               function typeLine(el, text, done) {
                 el.textContent = '';
                 el.appendChild(caret);
@@ -166,7 +166,13 @@
                 s.addRange(r);
               }
 
-              // 名前入力
+              function replaceInFollowing(placeholder, value) {
+                for (let k = i + 1; k < lines.length; k++) {
+                  lines[k].dataset.text = (lines[k].dataset.text || '').replaceAll(placeholder, value);
+                }
+              }
+
+              // -------- 入力：NAME --------
               function askName(el) {
                 el.textContent = 'SOMEONE: ';
                 const inp = document.createElement('span');
@@ -188,17 +194,14 @@
                     NAME = (inp.textContent || '').trim().toUpperCase() || 'SOMEONE';
                     sessionStorage.setItem('sy_observer_name', NAME);
                     inp.replaceWith(document.createTextNode(NAME));
-                    // 以降の {NAME} を置換
-                    for (let k = i + 1; k < lines.length; k++) {
-                      lines[k].dataset.text = (lines[k].dataset.text || '').replaceAll('{NAME}', NAME);
-                    }
-                    i++;
-                    next();
+                    // 残りの {NAME} を置換
+                    replaceInFollowing('{NAME}', NAME);
+                    i++; next();
                   }
                 });
               }
 
-              // Y/N 入力
+              // -------- 入力：Y/N --------
               function askYN(el) {
                 el.textContent = (NAME || 'SOMEONE') + ': ';
                 const inp = document.createElement('span');
@@ -219,31 +222,54 @@
                   if (e.key === 'Enter') {
                     e.preventDefault();
                     YN = (inp.textContent || '').trim().toUpperCase() || 'N';
-                    // 今の行の {YN} も置換して再描画
+
+                    // 今の行を「A: Y」形式で確定（{YN} 置換）
+                    inp.replaceWith(document.createTextNode(YN));
                     el.textContent = el.textContent.replace('{YN}', YN);
-                    // 以降の {YN} を置換
-                    for (let k = i + 1; k < lines.length; k++) {
-                      lines[k].dataset.text = (lines[k].dataset.text || '').replaceAll('{YN}', YN);
-                    }
+
+                    // 後続行の {YN} も反映
+                    replaceInFollowing('{YN}', YN);
 
                     if (YN === 'N') {
-                      // GOOD BYE を差し込み、以降の行は捨てて終了
+                      // --- 切断ルート：GOOD BYE → 空行 → ENDED SIGNAL で打ち止め ---
                       const bye = document.createElement('p');
                       bye.className = 'system bad';
                       bye.dataset.text = 'SYSTEM: GOOD BYE';
-                      lines.splice(i + 1, lines.length - (i + 1), bye); // ← 後続を全部この1行に置換
-                      el.parentNode.insertBefore(bye, el.nextSibling);
-                    }
 
-                    i++;
-                    next();
+                      const spacer = document.createElement('p');  // 空行
+                      spacer.className = 'spacer';
+                      spacer.textContent = '';
+
+                      const end = document.createElement('p');
+                      end.className = 'command';
+                      end.dataset.text = 'ENDED SIGNAL FROM SYSTEM';
+
+                      // lines 配列は bye と end の2行に置換（spacerはDOMにのみ挿入）
+                      lines.splice(i + 1, lines.length - (i + 1), bye, end);
+
+                      // DOMは bye → spacer → end の順
+                      el.parentNode.insertBefore(bye, el.nextSibling);
+                      el.parentNode.insertBefore(spacer, bye.nextSibling);
+                      el.parentNode.insertBefore(end, spacer.nextSibling);
+
+                      i++; next();  // GOOD BYE → ENDED SIGNAL をタイプして終了
+                    } else {
+                      // --- 観測ルート：宇宙を“即”表示（会話は右に残す） ---
+                      if (uw) { uw.classList.remove('hidden'); uw.classList.add('visible'); }
+                      i++; next();
+                    }
                   }
                 });
               }
 
+              // -------- 行送り --------
               function next() {
                 if (i >= lines.length) { caret.remove(); return; }
-                const el   = lines[i];
+                const el = lines[i];
+
+                // 保険：data-text が無ければ飛ばす
+                if (!el || !el.dataset || !el.dataset.text) { i++; next(); return; }
+
                 const text = el.dataset.text || '';
 
                 if (text.includes('SOMEONE: {NAME}')) { askName(el); return; }
@@ -252,10 +278,10 @@
                 typeLine(el, text, () => { i++; next(); });
               }
 
+              // スタート
               next();
             })();
           </script>
 
         </body>
-
 </html>

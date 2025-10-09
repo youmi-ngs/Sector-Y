@@ -139,6 +139,8 @@ html, body {
   font-family:'Share Tech Mono',monospace; 
   color:#7dcdff; opacity:.9; 
   letter-spacing:.05em; 
+  display: inline-block;       /* ← コンテンツ幅に縮む */
+  text-align: left; 
 }
 
 .terminal p { 
@@ -171,18 +173,43 @@ html, body {
   50% { opacity:0; } 
 }
 
+/* 画面レイアウト：左に宇宙、右に会話 */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 28vw;  /* 左：宇宙（可変） 右：terminal固定幅 */
+  align-items: center;
+  justify-content: center;
+  width: 100vw; height: 100svh;
+  background: #000; overflow: hidden;
+}
+
+/* 宇宙の初期状態は非表示 */
+#universe-wrapper.hidden { display: none; }
+#universe-wrapper.visible { display: block; }
+
+/* terminal は右カラムに固定 */
+#boot-sequence { 
+  grid-column: 2; 
+  text-align: center;
+}
+#universe-wrapper { grid-column: 1; }
+
+/* 端末の見た目は既存のままでOK */
+
 .editable{
   display:inline-block;
-  min-width:6ch;
+  min-width:6ch;            /* 下線の長さ */
   outline:none;
   border-bottom:1px solid rgba(255,255,255,.25);
   padding:0 .2ch;
 }
+
 .editable:empty::before{
-  content:attr(data-placeholder);
-  color:rgba(255,255,255,.35);
+  content: attr(data-placeholder);  /* 例: '_____' */
+  color: rgba(255,255,255,.35);
 }
-.bad{ color:#ff3b3b; text-shadow:0 0 6px #ff3b3b; }
+
+.bad{ color:#ff3b3b; } /* GOOD BYE 用 */
 
 
 @media (max-width: 700px) {
