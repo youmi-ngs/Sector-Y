@@ -55,24 +55,30 @@
         </header>
 
         <main id="universe-wrapper" class="hidden">
-          <div class="universe">
+          <div class="universe" id="universe">
 
             <div class="center">
               <img src="images/planets/planet-n.png">
             </div>
 
             <div class="orbit orbit-sparkle">
-              <div class="planet sparkle"></div>
+              <div class="planet sparkle" data-name="SPARKLE" data-image="images/planets/planet-p.png"></div>
             </div>
 
             <div class="orbit orbit-gallery">
-              <div class="planet gallery"></div>
+              <div class="planet gallery" data-name="GALLERY" data-image="images/planets/planet-g.png"></div>
             </div>
 
             <div class="orbit orbit-core">
-              <div class="planet core"></div>
+              <div class="planet core" data-name="CORE" data-image="images/planets/planet-b.png"></div>
             </div>
-            
+
+          </div>
+
+          <!-- フォーカス表示用 -->
+          <div id="focused-background" class="hidden"></div>
+          <div id="focused-planet-container" class="hidden">
+            <img id="focused-planet-img" src="" alt="Focused Planet">
           </div>
         </main>
 
@@ -103,9 +109,9 @@
               <p class="system"  data-text="SYSTEM: ENJOY"></p>
               <br>
               <p class="log"     data-text="LOG: OBSERVING SECTOR_Y"></p>
-              <!-- <p class="log"     data-text="LOG: CAUGHT PLANET: CORE"></p> -->
+              <!-- <p class="log"     data-text="LOG: CAUGHT PLANET: CORE"></p>
               <br>
-              <p class="command" data-text="ENDED SIGNAL FROM SYSTEM"></p>
+              <p class="command" data-text="ENDED SIGNAL FROM SYSTEM"></p> -->
             </div>
           </div>
 
@@ -123,8 +129,8 @@
 
             (() => {
               // -------- 設定値 --------
-              const CHAR_MS  = 40;   // 1文字の表示間隔（ms）
-              const LINE_GAP = 140;  // 行送りの待ち時間（ms）
+              const CHAR_MS  = 0;   // 1文字の表示間隔（ms）
+              const LINE_GAP = 0;  // 行送りの待ち時間（ms）
 
               // -------- 参照取得 --------
               const term = document.getElementById('terminal');
@@ -282,6 +288,75 @@
 
               // スタート
               next();
+
+              // === 惑星フォーカスシステム ===
+              (() => {
+                const universe = document.getElementById('universe');
+                const terminal = document.getElementById('terminal');
+                const focusedBackground = document.getElementById('focused-background');
+                const focusedContainer = document.getElementById('focused-planet-container');
+                const focusedImg = document.getElementById('focused-planet-img');
+                let currentPlanet = null;
+
+                // ターミナルにログ追加
+                function addLog(planetName) {
+                  if (!terminal) return;
+                  const p = document.createElement('p');
+                  p.className = 'log';
+                  p.textContent = `LOG: CAUGHT PLANET: ${planetName}`;
+                  terminal.appendChild(p);
+                  terminal.scrollTop = terminal.scrollHeight;
+                }
+
+                // フォーカス解除
+                function resetFocus() {
+                  if (!currentPlanet) return;
+                  universe.classList.remove('focus-mode');
+                  focusedBackground.classList.add('hidden');
+                  focusedContainer.classList.add('hidden');
+                  currentPlanet = null;
+                }
+
+                // 惑星クリックイベント
+                document.querySelectorAll('.planet').forEach(planet => {
+                  planet.addEventListener('click', (e) => {
+                    e.stopPropagation();
+
+                    // 同じ惑星を再クリック → 解除
+                    if (currentPlanet === planet) {
+                      resetFocus();
+                      return;
+                    }
+
+                    // 前のフォーカスを解除
+                    if (currentPlanet) resetFocus();
+
+                    // 新しくフォーカス
+                    currentPlanet = planet;
+                    const planetImage = planet.dataset.image;
+                    const planetName = (planet.dataset.name || 'UNKNOWN').toUpperCase();
+
+                    // 画像を設定して表示
+                    focusedImg.src = planetImage;
+                    universe.classList.add('focus-mode');
+                    focusedBackground.classList.remove('hidden');
+                    focusedContainer.classList.remove('hidden');
+
+                    // ログ追加
+                    addLog(planetName);
+                  });
+                });
+
+                // 背景クリックで解除
+                focusedBackground.addEventListener('click', () => {
+                  resetFocus();
+                });
+
+                // 画像クリックで解除
+                focusedImg.addEventListener('click', () => {
+                  resetFocus();
+                });
+              })();
             })();
           </script>
 

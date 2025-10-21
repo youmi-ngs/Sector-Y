@@ -51,7 +51,8 @@ html, body {
   transform: translate(-50%, -50%);
   border: 1px solid rgb(255, 255, 255);
   border-radius: 50%;
-  z-index: 1; 
+  z-index: 1;
+  pointer-events: none;
 }
 
 .orbit::after {
@@ -81,12 +82,14 @@ html, body {
   top: 50%;
   left: 50%;
   border-radius: 0;
-  background-size: contain; 
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  z-index: 2; 
+  z-index: 2;
   image-rendering: auto;
   transform-origin: center center;
+  cursor: pointer;
+  pointer-events: auto;
 }
 
 /* サイズはそのまま（切れ防止済）・向き補正 --fix */
@@ -185,13 +188,35 @@ html, body {
 
 /* 宇宙の初期状態は非表示 */
 #universe-wrapper.hidden { display: none; }
-#universe-wrapper.visible { display: block; }
-
-/* terminal は右カラムに固定 */
-#boot-sequence { 
-  grid-column: 2; 
-  text-align: center;
+#universe-wrapper.visible {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: calc(100vw - 20vh - 28vw);
+  height: 100vh;
 }
+
+/* terminal はデフォルトで中央 */
+#boot-sequence {
+  position: fixed;
+  top: 50vh;
+  left: 50vw;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 50;
+}
+
+/* 宇宙が表示されている時は右側に */
+#universe-wrapper.visible ~ #boot-sequence {
+  left: auto;
+  right: 20vh;
+  width: 28vw;
+  transform: translateY(-50%);
+}
+
 #universe-wrapper { grid-column: 1; }
 
 /* 端末の見た目は既存のままでOK */
@@ -211,6 +236,54 @@ html, body {
 
 .bad{ color:#ff3b3b; } /* GOOD BYE 用 */
 
+/* === フォーカスモード === */
+/* 宇宙全体を非表示 */
+.universe.focus-mode {
+  display: none !important;
+}
+
+/* 背景クリック用 */
+#focused-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: transparent;
+  cursor: pointer;
+  z-index: 99;
+}
+
+#focused-background.hidden {
+  display: none;
+}
+
+/* フォーカスされた惑星コンテナ */
+#focused-planet-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: calc(100vw - 20vh - 28vw);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  pointer-events: none;
+}
+
+#focused-planet-container.hidden {
+  display: none;
+}
+
+/* フォーカスされた惑星画像 */
+#focused-planet-img {
+  height: 30vmin;
+  width: auto;
+  object-fit: contain;
+  cursor: pointer;
+  pointer-events: auto;
+}
 
 @media (max-width: 700px) {
     /* .hero-name {
