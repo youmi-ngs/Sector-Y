@@ -138,12 +138,15 @@ html, body {
   to   { transform: translate(-50%, -50%) translateX(var(--R)) rotate(calc(-345deg + var(--fix,0deg))); }
 }
 
-.terminal { 
-  font-family:'Share Tech Mono',monospace; 
-  color:#7dcdff; opacity:.9; 
-  letter-spacing:.05em; 
-  display: inline-block;       /* ← コンテンツ幅に縮む */
-  text-align: left; 
+.terminal {
+  font-family:'Share Tech Mono',monospace;
+  color:#7dcdff; opacity:.9;
+  letter-spacing:.05em;
+  display: block;
+  text-align: left;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding-right: 8px;
 }
 
 .terminal p { 
