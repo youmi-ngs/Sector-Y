@@ -353,28 +353,73 @@ html, body {
     transition: all 0.3s ease-in-out;
 }
 
+/* デスクトップ：ヒーロー非表示、宇宙表示 */
+.hero {
+    display: none;
+}
+
+.hero-name {
+    display: none;
+}
+
+.hero-tagline {
+    display: none;
+}
+
 @media (max-width: 700px) {
-    /* .hero-name {
+    /* モバイル：宇宙非表示、ヒーロー表示 */
+    #universe-wrapper {
+        display: none !important;
+    }
+
+    #boot-sequence {
+        display: none !important;
+    }
+
+    .hero {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-image: url('../images/hero.JPG');
+        background-size: cover;
+        background-position: 10% center;
+        background-repeat: no-repeat;
+        z-index: 1;
+    }
+
+    .hero-name {
+        display: block;
+        position: fixed;
         right: 14px;
         bottom: 88px;
         font-size: 3.5rem;
         line-height: 1.0;
+        font-family: 'Orbitron', sans-serif;
+        font-weight: 900;
+        color: white;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+        z-index: 2;
+        margin: 0;
     }
 
     .hero-tagline {
+        display: block;
+        position: fixed;
         font-size: 1.0rem;
         right: 14px;
         bottom: 24px;
         max-width: 90vw;
         text-align: right;
-        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6); 
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+        color: white;
+        z-index: 2;
+        margin: 0;
     }
 
     .tagline-break {
         display: inline;
     }
-
-    .hero {
-        background-position: 10% center;
-    } */
 }
