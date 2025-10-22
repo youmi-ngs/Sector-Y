@@ -62,15 +62,24 @@
             </div>
 
             <div class="orbit orbit-sparkle">
-              <div class="planet sparkle" data-name="SPARKLE" data-image="images/planets/planet-p.png"></div>
+              <div class="planet sparkle"
+                   data-name="SPARKLE"
+                   data-image="images/planets/planet-p.png"
+                   data-links-id="sparkle-links"></div>
             </div>
 
             <div class="orbit orbit-gallery">
-              <div class="planet gallery" data-name="GALLERY" data-image="images/planets/planet-g.png"></div>
+              <div class="planet gallery"
+                   data-name="GALLERY"
+                   data-image="images/planets/planet-g.png"
+                   data-links-id="gallery-links"></div>
             </div>
 
             <div class="orbit orbit-core">
-              <div class="planet core" data-name="CORE" data-image="images/planets/planet-b.png"></div>
+              <div class="planet core"
+                   data-name="CORE"
+                   data-image="images/planets/planet-b.png"
+                   data-links-id="core-links"></div>
             </div>
 
           </div>
@@ -79,6 +88,48 @@
           <div id="focused-background" class="hidden"></div>
           <div id="focused-planet-container" class="hidden">
             <img id="focused-planet-img" src="" alt="Focused Planet">
+          </div>
+
+          <!-- 惑星リンク -->
+          <div id="sparkle-links" class="planet-links-container hidden">
+            <div class="planet-link-item">
+              <div class="planet-link-line"></div>
+              <a href="sparkle/trail.html" class="planet-link-text">TRAIL</a>
+            </div>
+            <div class="planet-link-item">
+              <div class="planet-link-line"></div>
+              <a href="sparkle/quotes.html" class="planet-link-text">QUOTES</a>
+            </div>
+          </div>
+
+          <div id="gallery-links" class="planet-links-container hidden">
+            <div class="planet-link-item">
+              <div class="planet-link-line"></div>
+              <a href="gallery/main.html" class="planet-link-text">MAIN</a>
+            </div>
+            <div class="planet-link-item">
+              <div class="planet-link-line"></div>
+              <a href="gallery/disney.html" class="planet-link-text">DISNEY</a>
+            </div>
+            <div class="planet-link-item">
+              <div class="planet-link-line"></div>
+              <a href="gallery/daisy.html" class="planet-link-text">DAISY</a>
+            </div>
+            <div class="planet-link-item">
+              <div class="planet-link-line"></div>
+              <a href="gallery/characters.html" class="planet-link-text">CHARACTERS</a>
+            </div>
+          </div>
+
+          <div id="core-links" class="planet-links-container hidden">
+            <div class="planet-link-item">
+              <div class="planet-link-line"></div>
+              <a href="core.html" class="planet-link-text">ABOUT Y</a>
+            </div>
+            <div class="planet-link-item">
+              <div class="planet-link-line"></div>
+              <a href="works.html" class="planet-link-text">WORKS</a>
+            </div>
           </div>
         </main>
 
@@ -109,9 +160,9 @@
               <p class="system"  data-text="SYSTEM: ENJOY"></p>
               <br>
               <p class="log"     data-text="LOG: OBSERVING SECTOR_Y"></p>
-              <!-- <p class="log"     data-text="LOG: CAUGHT PLANET: CORE"></p>
+              <!-- <p class="log"     data-text="LOG: CAUGHT PLANET: CORE"></p> -->
               <br>
-              <p class="command" data-text="ENDED SIGNAL FROM SYSTEM"></p> -->
+              <!-- <p class="command" data-text="ENDED SIGNAL FROM SYSTEM"></p> -->
             </div>
           </div>
 
@@ -297,6 +348,7 @@
                 const focusedContainer = document.getElementById('focused-planet-container');
                 const focusedImg = document.getElementById('focused-planet-img');
                 let currentPlanet = null;
+                let currentLinksContainer = null;
 
                 // ターミナルにログ追加
                 function addLog(planetName) {
@@ -314,6 +366,10 @@
                   universe.classList.remove('focus-mode');
                   focusedBackground.classList.add('hidden');
                   focusedContainer.classList.add('hidden');
+                  if (currentLinksContainer) {
+                    currentLinksContainer.classList.add('hidden');
+                    currentLinksContainer = null;
+                  }
                   currentPlanet = null;
                 }
 
@@ -335,12 +391,21 @@
                     currentPlanet = planet;
                     const planetImage = planet.dataset.image;
                     const planetName = (planet.dataset.name || 'UNKNOWN').toUpperCase();
+                    const linksId = planet.dataset.linksId;
 
                     // 画像を設定して表示
                     focusedImg.src = planetImage;
                     universe.classList.add('focus-mode');
                     focusedBackground.classList.remove('hidden');
                     focusedContainer.classList.remove('hidden');
+
+                    // リンク表示
+                    if (linksId) {
+                      currentLinksContainer = document.getElementById(linksId);
+                      if (currentLinksContainer) {
+                        currentLinksContainer.classList.remove('hidden');
+                      }
+                    }
 
                     // ログ追加
                     addLog(planetName);

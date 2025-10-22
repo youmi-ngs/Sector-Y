@@ -167,7 +167,7 @@ html, body {
 }
 
 .log    { 
-  color: #f6ff00; 
+  color: rgba(255, 255, 255, 0.7); 
 }
 
 .caret  { 
@@ -271,7 +271,7 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 100;
+  z-index: 102;
   pointer-events: none;
 }
 
@@ -286,6 +286,71 @@ html, body {
   object-fit: contain;
   cursor: pointer;
   pointer-events: auto;
+  margin-left: -10vw;
+  position: relative;
+  z-index: 102;
+}
+
+/* 惑星リンクコンテナ */
+.planet-links-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: calc(100vw - 20vh - 28vw);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  pointer-events: none;
+  gap: 4vh;
+}
+
+.planet-links-container.hidden {
+  display: none;
+}
+
+.planet-link-item {
+  position: relative;
+  pointer-events: none;
+  width: 100%;
+  height: 0;
+}
+
+.planet-link-line {
+  width: 15vw;
+  height: 0;
+  border-top: 2px dotted rgba(255, 255, 255, 0.7);
+  position: absolute;
+  left: 25vw;
+  top: 0;
+  z-index: 98;
+  pointer-events: none;
+}
+
+.planet-link-text {
+  font-family:'Share Tech Mono',monospace;
+  font-size: 1vw;
+  color: #ffffff;
+  text-decoration: none;
+  letter-spacing: 0.2em;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: absolute;
+  left: 42vw;
+  top: 0;
+  transform: translateY(-50%);
+  z-index: 101;
+  pointer-events: auto;
+  /* text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); */
+}
+
+.planet-link-text:hover {
+  transform: translateX(10px) translateY(-10px);
+  text-shadow:
+    0 0 5px var(--color-blue);
+    transition: all 0.3s ease-in-out;
 }
 
 @media (max-width: 700px) {
