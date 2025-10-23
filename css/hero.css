@@ -302,8 +302,8 @@ html, body {
 .planet-links-container {
   position: fixed;
   top: 0;
-  left: var(--side-margin);
-  width: var(--universe-width);
+  left: 0;
+  width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -326,11 +326,11 @@ html, body {
 }
 
 .planet-link-line {
-  width: 15vw;
+  width: 12vw;
   height: 0;
-  border-top: 2px dotted rgba(255, 255, 255, 0.7);
+  border-top: 1px dotted rgba(255, 255, 255, 0.5);
   position: absolute;
-  left: 25vw;
+  left: calc(var(--side-margin) + var(--universe-width) / 2 - 10vw + 15vmin);
   top: 0;
   z-index: 98;
   pointer-events: none;
@@ -345,7 +345,7 @@ html, body {
   transition: all 0.3s ease;
   cursor: pointer;
   position: absolute;
-  left: 42vw;
+  left: calc(var(--side-margin) + var(--universe-width) / 2 - 10vw + 15vmin + 13vw);
   top: 0;
   transform: translateY(-50%);
   z-index: 101;
