@@ -347,14 +347,11 @@ html, body {
   position: absolute;
   left: calc(var(--side-margin) + var(--universe-width) / 2 - 10vw + 15vmin + 13vw);
   top: 0;
-  transform: translateY(-50%);
   z-index: 101;
   pointer-events: auto;
-  /* text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); */
 }
 
 .planet-link-text:hover {
-  transform: translateX(10px) translateY(-10px);
   text-shadow:
     0 0 5px var(--color-blue);
     transition: all 0.3s ease-in-out;
