@@ -21,9 +21,16 @@ html, body {
   overflow: hidden;
 }
 
+:root {
+  --side-margin: 15vw;
+  --gap: 20vw;
+  --universe-width: 28vw;
+  --terminal-width: 22vw;
+}
+
 .universe {
-  width: min(92vmin, 100svh - 8svh);
-  height: min(92vmin, 100svh - 8svh);
+  width: 75vmin;
+  height: 75vmin;
   position: relative;
   isolation: isolate;
 }
@@ -197,8 +204,8 @@ html, body {
   justify-content: center;
   position: fixed;
   top: 0;
-  left: 0;
-  width: calc(100vw - 20vh - 28vw);
+  left: var(--side-margin);
+  width: var(--universe-width);
   height: 100vh;
 }
 
@@ -215,8 +222,8 @@ html, body {
 /* 宇宙が表示されている時は右側に */
 #universe-wrapper.visible ~ #boot-sequence {
   left: auto;
-  right: 20vh;
-  width: 28vw;
+  right: var(--side-margin);
+  width: var(--terminal-width);
   transform: translateY(-50%);
 }
 
@@ -265,8 +272,8 @@ html, body {
 #focused-planet-container {
   position: fixed;
   top: 0;
-  left: 0;
-  width: calc(100vw - 20vh - 28vw);
+  left: var(--side-margin);
+  width: var(--universe-width);
   height: 100vh;
   display: flex;
   align-items: center;
@@ -295,8 +302,8 @@ html, body {
 .planet-links-container {
   position: fixed;
   top: 0;
-  left: 0;
-  width: calc(100vw - 20vh - 28vw);
+  left: var(--side-margin);
+  width: var(--universe-width);
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -366,7 +373,60 @@ html, body {
     display: none !important;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 1600px) {
+  :root {
+    --side-margin: 13vw;
+    --gap: 18vw;
+    --universe-width: 30vw;
+    --terminal-width: 24vw;
+  }
+}
+
+@media (max-width: 1400px) {
+  :root {
+    --side-margin: 11vw;
+    --gap: 16vw;
+    --universe-width: 32vw;
+    --terminal-width: 26vw;
+  }
+}
+
+@media (max-width: 1200px) {
+  :root {
+    --side-margin: 8vw;
+    --gap: 14vw;
+    --universe-width: 35vw;
+    --terminal-width: 28vw;
+  }
+}
+
+@media (max-width: 1000px) {
+  :root {
+    --side-margin: 5vw;
+    --gap: 12vw;
+    --universe-width: 38vw;
+    --terminal-width: 30vw;
+  }
+
+  .terminal {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 800px) {
+  :root {
+    --side-margin: 3vw;
+    --gap: 10vw;
+    --universe-width: 42vw;
+    --terminal-width: 34vw;
+  }
+
+  .terminal {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 700px), (max-aspect-ratio: 3/2) {
     /* モバイル：宇宙非表示、ヒーロー表示 */
     #universe-wrapper,
     #universe-wrapper.visible,
