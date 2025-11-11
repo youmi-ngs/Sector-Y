@@ -138,6 +138,7 @@
           <div class="mobile-hero-name">Sector Y</div>
           <div class="mobile-hero-tagline">Welcome to <span class="tagline-break"><br></span>Youmi's little and quirky world.</div> 
 
+          <!-- PC用ヒーロー -->
           <div id="boot-sequence">
             <div class="terminal" id="terminal">
               <p class="command" data-text="SECTOR Y // TERMINAL O{RAND}"></p>
@@ -148,26 +149,36 @@
               <br>
               <p class="log" data-text="LOG: &quot;UNKNOWN&quot; IS VISITING SECTOR_Y"></p>
               <br>
-              <p class="system"  data-text="SYSTEM: CONNECTION STABLE"></p>
-              <p class="system"  data-text="SYSTEM: TERMINAL ACTIVE"></p>
-              <p class="system"  data-text="SYSTEM: ORBIT SYNC OK"></p>
-              <p class="system"  data-text="SYSTEM: READY..."></p>
+              <p class="system"  data-text="CONNECTION STABLE"></p>
+              <p class="system"  data-text="TERMINAL ACTIVE"></p>
+              <p class="system"  data-text="ORBIT SYNC OK"></p>
+              <p class="system"  data-text="READY..."></p>
               <br>
-              <p class="system"  data-text="SYSTEM: WHO ARE YOU?"></p>
-              <p class="unknown" data-text="UNKNOWN: {NAME}"></p>
-              <p class="system"  data-text="SYSTEM: HELLO, {NAME}"></p>
+              <p class="system"  data-text="I AM MASTER CONTROL PROGRAM"></p>
+              <p class="system"  data-text="WHO ARE YOU?"></p>
+              <p class="unknown" data-text="{NAME}"></p>
+              <p class="system"  data-text="HELLO, {NAME}"></p>
               <br>
-              <p class="system"  data-text="SYSTEM: OBSERVE SECTOR_Y? Y/N"></p>
-              <p class="unknown" data-text="{NAME}: {YN}"></p>
+              <p class="system"  data-text="OBSERVE SECTOR_Y? Y/N"></p>
+              <p class="unknown" data-text="{YN}"></p>
               <br>
-              <p class="system"  data-text="SYSTEM: WELCOME TO SECTOR_Y"></p>
-              <p class="system"  data-text="SYSTEM: CATCH ANY PLANET TO OBSERVE"></p>
-              <p class="system"  data-text="SYSTEM: ENJOY"></p>
+              <p class="system"  data-text="WELCOME TO SECTOR_Y"></p>
+              <p class="system"  data-text="CATCH ANY PLANET TO OBSERVE"></p>
               <br>
-              <p class="log"     data-text="LOG: OBSERVING SECTOR_Y"></p>
-              <!-- <p class="log"     data-text="LOG: CAUGHT PLANET: CORE"></p> -->
+              <p class="log"  data-text="LOG: OBSERVING SECTOR_Y"></p>
               <br>
-              <!-- <p class="command" data-text="ENDED SIGNAL FROM SYSTEM"></p> -->
+              <p class="system"  data-text="THE CREATOR NAMED THE BLUE PLANET: CORE"></p>
+              <p class="system"  data-text="THEY SAID IT IS THE CENTER OF THE UNIVERSE"></p>
+              <br>
+              <p class="system"  data-text="THE CREATOR NAMED THE GREEN PLANET: GALLERY"></p>
+              <p class="system"  data-text="THEY SAID IT IS A STORAGE OF MEMORIES"></p>
+              <br>
+              <p class="system"  data-text="THE CREATOR NAMED THE PURPLE PLANET SPARKLE"></p>
+              <p class="system"  data-text="THEY SAID IT IS THE TRAIL OF HER JOURNEY"></p>
+              <br>
+              <p class="system"  data-text="ENJOY TO OBSERVE"></p>
+              <p class="system"  data-text="END OF LINE"></p>
+              <br>
             </div>
           </div>
 
@@ -272,7 +283,7 @@
 
                 // -------- 入力：NAME --------
                 function askName(el) {
-                  el.textContent = 'UNKNOWN: ';
+                  el.textContent = '> ';
                   const inp = document.createElement('span');
                   inp.className = 'editable';
                   inp.contentEditable = 'true';
@@ -301,7 +312,7 @@
 
                 // -------- 入力：Y/N --------
                 function askYN(el) {
-                  el.textContent = (NAME || 'UNKNOWN') + ': ';
+                  el.textContent = '> ';
                   const inp = document.createElement('span');
                   inp.className = 'editable';
                   inp.contentEditable = 'true';
@@ -332,7 +343,7 @@
                         // --- 切断ルート：GOOD BYE → 空行 → ENDED SIGNAL → 再接続ボタン ---
                         const bye = document.createElement('p');
                         bye.className = 'system bad';
-                        bye.dataset.text = 'SYSTEM: GOOD BYE';
+                        bye.dataset.text = 'GOOD BYE';
 
                         const spacer = document.createElement('br');  // 空行
                         spacer.className = 'spacer';
@@ -397,7 +408,7 @@
 
                   const text = el.dataset.text || '';
 
-                  if (text.includes('UNKNOWN: {NAME}')) { askName(el); return; }
+                  if (text === '{NAME}') { askName(el); return; }
                   if (text.includes('{YN}'))            { askYN(el);   return; }
 
                   typeLine(el, text, () => { i++; next(); });
