@@ -167,17 +167,8 @@
               <br>
               <p class="log"  data-text="LOG: OBSERVING SECTOR_Y"></p>
               <br>
-              <p class="system"  data-text="THE CREATOR NAMED THE BLUE PLANET: CORE"></p>
-              <p class="system"  data-text="THEY SAID IT IS THE CENTER OF THE UNIVERSE"></p>
-              <br>
-              <p class="system"  data-text="THE CREATOR NAMED THE GREEN PLANET: GALLERY"></p>
-              <p class="system"  data-text="THEY SAID IT IS A STORAGE OF MEMORIES"></p>
-              <br>
-              <p class="system"  data-text="THE CREATOR NAMED THE PURPLE PLANET SPARKLE"></p>
-              <p class="system"  data-text="THEY SAID IT IS THE TRAIL OF HER JOURNEY"></p>
-              <br>
-              <p class="system"  data-text="ENJOY TO OBSERVE"></p>
-              <p class="system"  data-text="END OF LINE"></p>
+              <p class="system"  data-text="DO YOU NEED PLANET INFORMATION? Y/N"></p>
+              <p class="unknown" data-text="{PLANET_INFO}"></p>
               <br>
             </div>
           </div>
@@ -216,11 +207,93 @@
                 const RAND = String(Math.ceil(Math.random() * 9));
                 lines.forEach(el => {
                   let text = (el.dataset.text || '')
-                    .replaceAll('{RAND}', RAND)
-                    .replaceAll('{NAME}', NAME)
-                    .replaceAll('{YN}', 'Y');
+                    .replaceAll('{RAND}', RAND);
+
+                  // {NAME}の行は"> NAME"形式で表示
+                  if (text === '{NAME}') {
+                    el.textContent = '> ' + NAME;
+                    return;
+                  }
+
+                  // {YN}を含む行は"> Y"形式で表示
+                  if (text.includes('{YN}')) {
+                    el.textContent = '> Y';
+                    return;
+                  }
+
+                  // {PLANET_INFO}の行は、保存された回答で置き換え
+                  if (text === '{PLANET_INFO}') {
+                    const planetAnswer = sessionStorage.getItem('sy_planet_info') || '';
+                    if (planetAnswer) {
+                      el.textContent = '> ' + planetAnswer;
+                    } else {
+                      el.style.display = 'none';
+                    }
+                    return;
+                  }
+
+                  // {NAME}を置換
+                  text = text.replaceAll('{NAME}', NAME);
+
                   el.textContent = text;
                 });
+
+                // 惑星情報の復元
+                const planetAnswer = sessionStorage.getItem('sy_planet_info');
+                if (planetAnswer) {
+                  const planetInfoEl = term.querySelector('[data-text="{PLANET_INFO}"]');
+                  if (planetInfoEl && planetAnswer === 'Y') {
+                    // Yの場合：惑星情報を追加
+                    const br1 = document.createElement('br');
+                    planetInfoEl.parentNode.insertBefore(br1, planetInfoEl.nextSibling);
+
+                    const info = [
+                      'THE CREATOR NAMED THE BLUE PLANET: CORE',
+                      'THEY SAID IT IS THE CENTER OF THE UNIVERSE',
+                      '',
+                      'THE CREATOR NAMED THE GREEN PLANET: GALLERY',
+                      'THEY SAID IT IS A STORAGE OF MEMORIES',
+                      '',
+                      'THE CREATOR NAMED THE PURPLE PLANET SPARKLE',
+                      'THEY SAID IT IS THE TRAIL OF HER JOURNEY',
+                      '',
+                      'ENJOY TO OBSERVE',
+                      'END OF LINE'
+                    ];
+
+                    let lastEl = br1;
+                    info.forEach(text => {
+                      if (text === '') {
+                        const br = document.createElement('br');
+                        lastEl.parentNode.insertBefore(br, lastEl.nextSibling);
+                        lastEl = br;
+                      } else {
+                        const p = document.createElement('p');
+                        p.className = 'system';
+                        p.textContent = text;
+                        lastEl.parentNode.insertBefore(p, lastEl.nextSibling);
+                        lastEl = p;
+                      }
+                    });
+                  } else if (planetInfoEl && planetAnswer === 'N') {
+                    // Nの場合：OKAY メッセージを追加
+                    const br1 = document.createElement('br');
+                    planetInfoEl.parentNode.insertBefore(br1, planetInfoEl.nextSibling);
+
+                    const okay = document.createElement('p');
+                    okay.className = 'system';
+                    okay.textContent = 'OKAY. ENJOY TO OBSERVE';
+                    br1.parentNode.insertBefore(okay, br1.nextSibling);
+
+                    const end = document.createElement('p');
+                    end.className = 'system';
+                    end.textContent = 'END OF LINE';
+                    okay.parentNode.insertBefore(end, okay.nextSibling);
+
+                    const br3 = document.createElement('br');
+                    end.parentNode.insertBefore(br3, end.nextSibling);
+                  }
+                }
 
                 // 保存された惑星ログを復元
                 const savedLogs = JSON.parse(sessionStorage.getItem('sy_planet_logs') || '[]');
@@ -261,6 +334,7 @@
                   (function tick() {
                     caret.before(text[j] || '');
                     j++;
+                    term.scrollTop = term.scrollHeight; // 自動スクロール
                     if (j <= text.length) setTimeout(tick, CHAR_MS);
                     else setTimeout(done, LINE_GAP);
                   })();
@@ -398,6 +472,89 @@
                   });
                 }
 
+                // -------- 入力：惑星情報 Y/N --------
+                function askPlanetInfo(el) {
+                  el.textContent = '> ';
+                  const inp = document.createElement('span');
+                  inp.className = 'editable';
+                  inp.contentEditable = 'true';
+                  inp.dataset.placeholder = ' ';
+                  el.appendChild(inp);
+                  caret.remove();
+                  inp.focus();
+
+                  inp.addEventListener('input', () => {
+                    let v = (inp.textContent || '').toUpperCase().replace(/[^YN]/g, '');
+                    inp.textContent = v.slice(0, 1);
+                    placeCaretEnd(inp);
+                  });
+
+                  inp.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') {
+                      e.preventDefault();
+                      const answer = (inp.textContent || '').trim().toUpperCase() || 'N';
+                      inp.replaceWith(document.createTextNode(answer));
+
+                      // 回答をsessionStorageに保存
+                      sessionStorage.setItem('sy_planet_info', answer);
+
+                      if (answer === 'Y') {
+                        // 空行を追加
+                        const firstBr = document.createElement('br');
+                        el.parentNode.insertBefore(firstBr, el.nextSibling);
+
+                        // 惑星情報を表示
+                        const info = [
+                          { text: 'THE CREATOR NAMED THE BLUE PLANET: CORE', br: false },
+                          { text: 'THEY SAID IT IS THE CENTER OF THE UNIVERSE', br: true },
+                          { text: 'THE CREATOR NAMED THE GREEN PLANET: GALLERY', br: false },
+                          { text: 'THEY SAID IT IS A STORAGE OF MEMORIES', br: true },
+                          { text: 'THE CREATOR NAMED THE PURPLE PLANET SPARKLE', br: false },
+                          { text: 'THEY SAID IT IS THE TRAIL OF HER JOURNEY', br: true },
+                          { text: 'ENJOY TO OBSERVE', br: false },
+                          { text: 'END OF LINE', br: true }
+                        ];
+
+                        let lastElement = firstBr;
+                        info.forEach(item => {
+                          const p = document.createElement('p');
+                          p.className = 'system';
+                          p.dataset.text = item.text;
+                          lines.push(p);
+                          lastElement.parentNode.insertBefore(p, lastElement.nextSibling);
+                          lastElement = p;
+                          if (item.br) {
+                            const br = document.createElement('br');
+                            lastElement.parentNode.insertBefore(br, lastElement.nextSibling);
+                            lastElement = br;
+                          }
+                        });
+                      } else {
+                        // 惑星情報をスキップ
+                        const firstBr = document.createElement('br');
+                        el.parentNode.insertBefore(firstBr, el.nextSibling);
+
+                        const okay = document.createElement('p');
+                        okay.className = 'system';
+                        okay.dataset.text = 'OKAY. ENJOY TO OBSERVE';
+                        lines.push(okay);
+                        firstBr.parentNode.insertBefore(okay, firstBr.nextSibling);
+
+                        const end = document.createElement('p');
+                        end.className = 'system';
+                        end.dataset.text = 'END OF LINE';
+                        lines.push(end);
+                        okay.parentNode.insertBefore(end, okay.nextSibling);
+
+                        const br2 = document.createElement('br');
+                        end.parentNode.insertBefore(br2, end.nextSibling);
+                      }
+
+                      i++; next();
+                    }
+                  });
+                }
+
                 // -------- 行送り --------
                 function next() {
                   if (i >= lines.length) { caret.remove(); return; }
@@ -410,6 +567,7 @@
 
                   if (text === '{NAME}') { askName(el); return; }
                   if (text.includes('{YN}'))            { askYN(el);   return; }
+                  if (text === '{PLANET_INFO}')         { askPlanetInfo(el); return; }
 
                   typeLine(el, text, () => { i++; next(); });
                 }
