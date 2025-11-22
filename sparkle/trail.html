@@ -79,9 +79,18 @@
             <h2 class="report-title lang-en">2025/11/20 My Day at Tokyo Disneyland</h2>
 
               <div class="report-images">
-                <img src="trail/images/20251120/daisy_xmas.JPG" alt="Daisy of Toys Wonderous Christmas">
-                <img src="trail/images/20251120/space-mt.JPG" alt="Space Mountain">
-                <img src="trail/images/20251120/xmax-tree.JPG" alt="Christmas Tree in World Bazaar">
+                <div class="image-wrapper">
+                  <div class="spinner"></div>
+                  <img src="trail/images/20251120/daisy_xmas.JPG" alt="Daisy of Toys Wonderous Christmas">
+                </div>
+                <div class="image-wrapper">
+                  <div class="spinner"></div>
+                  <img src="trail/images/20251120/space-mt.JPG" alt="Space Mountain">
+                </div>
+                <div class="image-wrapper">
+                  <div class="spinner"></div>
+                  <img src="trail/images/20251120/xmax-tree.JPG" alt="Christmas Tree in World Bazaar">
+                </div>
               </div>
 
               <div class="report-text lang-ja">
@@ -162,9 +171,18 @@
             <h2 class="report-title lang-en">2025/10/22, 11/07 Tron: Ares</h2>
 
             <div class="report-images">
-              <img src="trail/images/20251107/donald.jpeg" alt="Maihama station">
-              <img src="trail/images/20251107/ticket.jpeg" alt="movie ticket">
-              <img src="trail/images/20251107/elevator.jpeg" alt="Disney Store in TDR">
+              <div class="image-wrapper">
+                <div class="spinner"></div>
+                <img src="trail/images/20251107/donald.jpeg" alt="Maihama station">
+              </div>
+              <div class="image-wrapper">
+                <div class="spinner"></div>
+                <img src="trail/images/20251107/ticket.jpeg" alt="movie ticket">
+              </div>
+              <div class="image-wrapper">
+                <div class="spinner"></div>
+                <img src="trail/images/20251107/elevator.jpeg" alt="Disney Store in TDR">
+              </div>
             </div>
 
             <div class="report-text lang-ja">
@@ -394,12 +412,30 @@
             <h2 class="report-title lang-en">2025/09/24 My Day at Tokyo DisneySea</h2>
 
             <div class="report-images">
-              <img src="trail/images/20250924/bbb.JPG" alt="Big Band Beat / Broadway Music Theatre" />
-              <img src="trail/images/20250924/theCutest Daisy_halloween.JPG" alt="Daisy" />
-              <img src="trail/images/20250924/elsa.JPG" alt="Elsa" />
-              <img src="trail/images/20250924/flower.JPG" alt="Sundrop Flower" />
-              <img src="trail/images/20250924/electricRailway.JPG" alt="Electric Railway" />
-              <img src="trail/images/20250924/mountPrometheus.JPG" alt="Mount Prometheus" />
+              <div class="image-wrapper">
+                <div class="spinner"></div>
+                <img src="trail/images/20250924/bbb.JPG" alt="Big Band Beat / Broadway Music Theatre" />
+              </div>
+              <div class="image-wrapper">
+                <div class="spinner"></div>
+                <img src="trail/images/20250924/theCutest Daisy_halloween.JPG" alt="Daisy" />
+              </div>
+              <div class="image-wrapper">
+                <div class="spinner"></div>
+                <img src="trail/images/20250924/elsa.JPG" alt="Elsa" />
+              </div>
+              <div class="image-wrapper">
+                <div class="spinner"></div>
+                <img src="trail/images/20250924/flower.JPG" alt="Sundrop Flower" />
+              </div>
+              <div class="image-wrapper">
+                <div class="spinner"></div>
+                <img src="trail/images/20250924/electricRailway.JPG" alt="Electric Railway" />
+              </div>
+              <div class="image-wrapper">
+                <div class="spinner"></div>
+                <img src="trail/images/20250924/mountPrometheus.JPG" alt="Mount Prometheus" />
+              </div>
             </div>
 
             <!-- 日本語 -->
@@ -467,9 +503,18 @@
             <h2 class="report-title lang-en">2025/06/13 Revue Starlight -The STAGE Siegfeld Institute of Music Junior High- Rerise</h2>
 
             <div class="report-images">
-              <img src="trail/images/20250613/tickets.JPG" alt="Reriseステージ" />
-              <img src="trail/images/20250613/blades.jpeg" alt="Reriseステージ" />
-              <img src="trail/images/20250613/Acrylstands.jpeg" alt="Reriseステージ" />
+              <div class="image-wrapper">
+                <div class="spinner"></div>
+                <img src="trail/images/20250613/tickets.JPG" alt="Reriseステージ" />
+              </div>
+              <div class="image-wrapper">
+                <div class="spinner"></div>
+                <img src="trail/images/20250613/blades.jpeg" alt="Reriseステージ" />
+              </div>
+              <div class="image-wrapper">
+                <div class="spinner"></div>
+                <img src="trail/images/20250613/Acrylstands.jpeg" alt="Reriseステージ" />
+              </div>
             </div>
 
             <!-- 日本語 -->
@@ -546,6 +591,18 @@
                   entry.style.display = (tag === "All" || tags.includes(tag)) ? "block" : "none";
                 });
               });
+            });
+
+            // 🖼️ 画像ロード時のスピナー制御
+            document.querySelectorAll('.image-wrapper img').forEach(img => {
+              const wrapper = img.parentElement;
+              if (img.complete) {
+                wrapper.classList.add('loaded');
+              } else {
+                img.addEventListener('load', () => {
+                  wrapper.classList.add('loaded');
+                });
+              }
             });
 
             // 🌐 言語切り替え（ja/en）
