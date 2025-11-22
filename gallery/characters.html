@@ -54,45 +54,28 @@
         </header>
 
         <main>
-            <div class="tag-list">
+            <div class="tag-filter-container">
                 <div class="tag-section">
                     <h3>Places</h3>
                     <div class="tag-list">
-                        <button data-tag="All" class="active">All</button>
-                        <button data-tag="Land">Tokyo Disneyland</button>
-                        <button data-tag="Sea">Tokyo DisneySea</button>
-                    </div>
-                </div>
-                <div class="tag-section">
-                    <h3>Characters</h3>
-                    <div class="tag-list">
-                        <button data-tag="All">All</button>
-                        <button data-tag="Minnie">Minnie Mouse</button>
-                        <button data-tag="Donald">Donald Duck</button>
-                        <button data-tag="Dale">Dale</button>
-                        <button data-tag="ShellieMay">ShellieMay</button>
-                        <button data-tag="Hiro">Hiro Hamada</button>
-                        <button data-tag="Stitch">Stitch</button>
-                        <button data-tag="Angel">Angel</button>
-                        <button data-tag="Meeko">Meeko</button>
-                        <button data-tag="Foulfellow">J・Worthington Foulfellow</button>
-                        <button data-tag="Wolf">Wolf</button>
-                        <button data-tag="Rapunzel">Rapunzel</button>
+                        <button data-tag="All" data-category="places" class="active">All</button>
+                        <button data-tag="Land" data-category="places">Tokyo Disneyland</button>
+                        <button data-tag="Sea" data-category="places">Tokyo DisneySea</button>
                     </div>
                 </div>
                 <div class="tag-section">
                     <h3>Titles</h3>
                     <div class="tag-list">
-                        <button data-tag="All">All</button>
-                        <button data-tag="MickeyAndFriends">Mickey&Friends</button>
-                        <button data-tag="DuffyAndFriends">Duffy&Friends</button>
-                        <button data-tag="BigHero6">Big Hero 6</button>
-                        <button data-tag="LiloAndStitch">Lilo&Stitch</button>
-                        <button data-tag="Pocahontas">Pocahontas</button>
-                        <button data-tag="Pinocchio">Pinocchio</button>
-                        <button data-tag="ChipAndDale">Chip 'n Dale</button>
-                        <button data-tag="ThreeLittlePigs">Three Little Pigs</button>
-                        <button data-tag="Tangled">Tangled</button>
+                        <button data-tag="All" data-category="titles" class="active">All</button>
+                        <button data-tag="MickeyAndFriends" data-category="titles">Mickey&Friends</button>
+                        <button data-tag="DuffyAndFriends" data-category="titles">Duffy&Friends</button>
+                        <button data-tag="BigHero6" data-category="titles">Big Hero 6</button>
+                        <button data-tag="LiloAndStitch" data-category="titles">Lilo&Stitch</button>
+                        <button data-tag="Pocahontas" data-category="titles">Pocahontas</button>
+                        <button data-tag="Pinocchio" data-category="titles">Pinocchio</button>
+                        <button data-tag="ChipAndDale" data-category="titles">Chip 'n Dale</button>
+                        <button data-tag="ThreeLittlePigs" data-category="titles">Three Little Pigs</button>
+                        <button data-tag="Tangled" data-category="titles">Tangled</button>
                     </div>
                 </div>
             </div>
@@ -235,21 +218,43 @@
             };
 
             document.addEventListener("DOMContentLoaded", function () {
-                document.querySelectorAll(".tag-list button").forEach(button => {
-                    button.addEventListener("click", () => {
-                    const tag = button.dataset.tag;
+                // フィルター関数
+                function filterImages() {
+                    // 各カテゴリで選択されているタグを取得
+                    const selectedPlace = document.querySelector('button[data-category="places"].active')?.dataset.tag;
+                    const selectedTitle = document.querySelector('button[data-category="titles"].active')?.dataset.tag;
 
-                    // すべてのボタンから active を外す
-                    document.querySelectorAll(".tag-list button").forEach(b => b.classList.remove("active"));
-
-                    // 今クリックされたボタンに active をつける
-                    button.classList.add("active");
-
-                    // 絞り込み処理
+                    // 各画像をチェック
                     document.querySelectorAll(".image-container").forEach(container => {
                         const tags = container.dataset.tags.split(" ");
-                        container.style.display = (tag === "All" || tags.includes(tag)) ? "flex" : "none";
+
+                        // 各カテゴリの条件をチェック
+                        const placeMatch = !selectedPlace || selectedPlace === "All" || tags.includes(selectedPlace);
+                        const titleMatch = !selectedTitle || selectedTitle === "All" || tags.includes(selectedTitle);
+
+                        // 全ての条件を満たす場合のみ表示
+                        container.style.display = (placeMatch && titleMatch) ? "flex" : "none";
                     });
+
+                    // 画像が変わったのでクリックイベントを再割り当て
+                    assignClickEvents();
+                }
+
+                // タグボタンのクリックイベント
+                document.querySelectorAll(".tag-list button").forEach(button => {
+                    button.addEventListener("click", () => {
+                        const category = button.dataset.category;
+
+                        // 同じカテゴリ内のボタンからactiveを外す
+                        document.querySelectorAll(`button[data-category="${category}"]`).forEach(b => {
+                            b.classList.remove("active");
+                        });
+
+                        // クリックされたボタンにactiveをつける
+                        button.classList.add("active");
+
+                        // フィルタリングを実行
+                        filterImages();
                     });
                 });
             });

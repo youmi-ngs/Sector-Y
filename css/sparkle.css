@@ -229,6 +229,11 @@ h1 {
   transition: background 0.2s;
 }
 
+.tag-list button.active {
+  background-color: var(--color-lightblue);
+  color: #000;
+}
+
 .tag-list button:hover {
   color: var(--color-lightblue);
 }

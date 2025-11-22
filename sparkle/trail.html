@@ -62,7 +62,7 @@
           <h1>Trail</h1>
 
           <div class="tag-list">
-            <button data-tag="All">All</button>
+            <button data-tag="All" class="active">All</button>
             <button data-tag="Disney">Disney</button>
             <button data-tag="インパレポ">インパレポ</button>
             <button data-tag="陸イン">陸イン</button>
@@ -74,7 +74,7 @@
           </div>
 
           <!-- 2025/11/20 陸インレポ -->
-          <section class="report" data-tags="All Disney 陸イン インパレポ">
+          <section class="report" data-tags="Disney 陸イン インパレポ">
 
             <h2 class="report-title lang-ja">2025/11/20 陸インレポ</h2>
             <h2 class="report-title lang-en">2025/11/20 My Day at Tokyo Disneyland</h2>
@@ -158,7 +158,7 @@
           </section>
 
           <!-- 2025/10/22, 11/07 Tron: Ares -->
-          <section class="report" data-tags="All Disney 映画">
+          <section class="report" data-tags="Disney 映画">
 
             <h2 class="report-title lang-ja">2025/10/22, 11/07 トロン：アレス</h2>
             <h2 class="report-title lang-en">2025/10/22, 11/07 Tron: Ares</h2>
@@ -391,7 +391,7 @@
           </section>
 
           <!-- 2025/09/24 海インレポ -->
-          <section class="report" data-tags="All Disney インパレポ 海イン">
+          <section class="report" data-tags="Disney インパレポ 海イン">
             <h2 class="report-title lang-ja">2025/09/24 海インレポ</h2>
             <h2 class="report-title lang-en">2025/09/24 My Day at Tokyo DisneySea</h2>
 
@@ -464,7 +464,7 @@
           </section>
 
           <!-- 2025/06/13 中等部 Rerise -->
-          <section class="report" data-tags="All 少女⭐︎歌劇レヴュースタァライト シークフェルト音楽学院中等部 舞台">
+          <section class="report" data-tags="少女⭐︎歌劇レヴュースタァライト シークフェルト音楽学院中等部 舞台">
             <h2 class="report-title lang-ja">2025/06/13 少女☆歌劇 レヴュースタァライト -The STAGE 中等部- Rerise</h2>
             <h2 class="report-title lang-en">2025/06/13 Revue Starlight -The STAGE Siegfeld Institute of Music Junior High- Rerise</h2>
 
@@ -535,9 +535,17 @@
             document.querySelectorAll(".tag-list button").forEach(button => {
               button.addEventListener("click", () => {
                 const tag = button.dataset.tag;
+
+                // すべてのボタンから active を外す
+                document.querySelectorAll(".tag-list button").forEach(b => b.classList.remove("active"));
+
+                // 今クリックされたボタンに active をつける
+                button.classList.add("active");
+
+                // 絞り込み処理
                 document.querySelectorAll(".report").forEach(entry => {
                   const tags = entry.dataset.tags.split(" ");
-                  entry.style.display = tags.includes(tag) ? "block" : "none";
+                  entry.style.display = (tag === "All" || tags.includes(tag)) ? "block" : "none";
                 });
               });
             });
