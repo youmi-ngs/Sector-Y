@@ -57,7 +57,7 @@
         <main id="universe-wrapper" class="hidden">
           <div class="universe" id="universe">
 
-            <div class="center">
+            <div class="center" id="center-planet">
               <img src="images/planets/planet-n.png">
             </div>
 
@@ -191,6 +191,22 @@
               if (!term) return;
               const uw = document.getElementById('universe-wrapper');
 
+              // -------- 宇宙表示のアニメーション --------
+              function showUniverse() {
+                if (!uw) return;
+                uw.classList.remove('hidden');
+                uw.style.opacity = '0';
+                uw.style.transform = 'scale(0.9)';
+                uw.classList.add('visible');
+
+                // アニメーション開始
+                setTimeout(() => {
+                  uw.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                  uw.style.opacity = '1';
+                  uw.style.transform = 'scale(1)';
+                }, 50);
+              }
+
               // -------- ブートシーケンス完了チェック --------
               const bootCompleted = sessionStorage.getItem('sy_boot_completed');
               const NAME = sessionStorage.getItem('sy_observer_name') || 'UNKNOWN';
@@ -198,10 +214,7 @@
 
               if (bootCompleted === 'true') {
                 // 既にブートシーケンス完了済み → 直接宇宙を表示
-                if (uw) {
-                  uw.classList.remove('hidden');
-                  uw.classList.add('visible');
-                }
+                showUniverse();
 
                 // ターミナルに完了済みの内容を表示
                 const lines = Array.from(term.querySelectorAll('[data-text]'));
@@ -300,8 +313,11 @@
                       'THE CREATOR NAMED THE GREEN PLANET: GALLERY',
                       'THEY SAID IT IS A STORAGE OF MEMORIES',
                       '',
-                      'THE CREATOR NAMED THE PURPLE PLANET SPARKLE',
+                      'THE CREATOR NAMED THE PURPLE PLANET: SPARKLE',
                       'THEY SAID IT IS THE TRAIL OF HER JOURNEY',
+                      '',
+                      'THE PLANET IN THE CENTER IS THE EXIT',
+                      'CATCH IT TO LEAVE',
                       '',
                       'ENJOY TO OBSERVE',
                       'END OF LINE'
@@ -527,7 +543,7 @@
                         i++; next();  // GOOD BYE → ENDED SIGNAL をタイプして終了
                       } else {
                         // --- 観測ルート：宇宙を"即"表示（会話は右に残す） ---
-                        if (uw) { uw.classList.remove('hidden'); uw.classList.add('visible'); }
+                        showUniverse();
                         // ブートシーケンス完了フラグをセット
                         sessionStorage.setItem('sy_boot_completed', 'true');
                         i++; next();
@@ -575,6 +591,8 @@
                           { text: 'THEY SAID IT IS A STORAGE OF MEMORIES', br: true },
                           { text: 'THE CREATOR NAMED THE PURPLE PLANET SPARKLE', br: false },
                           { text: 'THEY SAID IT IS THE TRAIL OF HER JOURNEY', br: true },
+                          { text: 'THE PLANET IN THE CENTER IS THE EXIT', br: false },
+                          { text: 'CATCH IT TO LEAVE', br: true },
                           { text: 'ENJOY TO OBSERVE', br: false },
                           { text: 'END OF LINE', br: true }
                         ];
@@ -661,7 +679,7 @@
                           caret.remove();
 
                           sessionStorage.setItem('sy_boot_completed', 'true');
-                          if (uw) { uw.classList.remove('hidden'); uw.classList.add('visible'); }
+                          showUniverse();
                         });
                       });
                     });
@@ -763,6 +781,122 @@
                 focusedImg.addEventListener('click', () => {
                   resetFocus();
                 });
+
+                // 中央の惑星クリックで宇宙から出る確認
+                const centerPlanet = document.getElementById('center-planet');
+                if (centerPlanet) {
+                  centerPlanet.style.cursor = 'pointer';
+                  centerPlanet.addEventListener('click', () => {
+                    if (!terminal) return;
+
+                    const observerName = sessionStorage.getItem('sy_observer_name') || 'UNKNOWN';
+
+                    // ターミナルにメッセージを追加
+                    const br1 = document.createElement('br');
+                    terminal.appendChild(br1);
+
+                    const question = document.createElement('p');
+                    question.className = 'system';
+                    question.textContent = 'DO YOU WANT TO EXIT THE UNIVERSE? Y/N';
+                    terminal.appendChild(question);
+
+                    const answer = document.createElement('p');
+                    answer.className = 'unknown';
+                    answer.textContent = '> ';
+
+                    const inp = document.createElement('span');
+                    inp.className = 'editable';
+                    inp.contentEditable = 'true';
+                    inp.dataset.placeholder = ' ';
+                    answer.appendChild(inp);
+                    terminal.appendChild(answer);
+
+                    inp.focus();
+                    terminal.scrollTop = terminal.scrollHeight;
+
+                    // カーソルを末尾に
+                    function placeCaretEnd(el) {
+                      const r = document.createRange();
+                      r.selectNodeContents(el);
+                      r.collapse(false);
+                      const s = getSelection();
+                      s.removeAllRanges();
+                      s.addRange(r);
+                    }
+
+                    inp.addEventListener('input', () => {
+                      let v = (inp.textContent || '').toUpperCase().replace(/[^YN]/g, '');
+                      inp.textContent = v.slice(0, 1);
+                      placeCaretEnd(inp);
+                    });
+
+                    inp.addEventListener('keydown', (e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        const choice = (inp.textContent || '').trim().toUpperCase() || 'N';
+                        inp.replaceWith(document.createTextNode(choice));
+
+                        const br2 = document.createElement('br');
+                        terminal.appendChild(br2);
+
+                        if (choice === 'Y') {
+                          // Yの場合：宇宙から出る
+                          const exit = document.createElement('p');
+                          exit.className = 'system';
+                          exit.textContent = 'EXITING SECTOR_Y...';
+                          terminal.appendChild(exit);
+
+                          const goodbye = document.createElement('p');
+                          goodbye.className = 'log';
+                          goodbye.textContent = `LOG: "${observerName}" LEFT SECTOR_Y`;
+                          terminal.appendChild(goodbye);
+
+                          const br3 = document.createElement('br');
+                          terminal.appendChild(br3);
+
+                          const farewell = document.createElement('p');
+                          farewell.className = 'system';
+                          farewell.textContent = 'GOOD BYE';
+                          terminal.appendChild(farewell);
+
+                          const end = document.createElement('p');
+                          end.className = 'system';
+                          end.textContent = 'END OF LINE';
+                          terminal.appendChild(end);
+
+                          terminal.scrollTop = terminal.scrollHeight;
+
+                          // 宇宙を非表示にする（アニメーション付き）
+                          const universeWrapper = document.getElementById('universe-wrapper');
+                          if (universeWrapper) {
+                            universeWrapper.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                            universeWrapper.style.opacity = '0';
+                            universeWrapper.style.transform = 'scale(0.8)';
+
+                            setTimeout(() => {
+                              universeWrapper.classList.remove('visible');
+                              universeWrapper.classList.add('hidden');
+                            }, 800);
+                          }
+
+                          // sessionStorageをクリア
+                          sessionStorage.clear();
+                        } else {
+                          // Nの場合：観察を続ける
+                          const stay = document.createElement('p');
+                          stay.className = 'system';
+                          stay.textContent = 'OKAY. CONTINUE OBSERVING';
+                          terminal.appendChild(stay);
+
+                          const br3 = document.createElement('br');
+                          terminal.appendChild(br3);
+
+                          terminal.scrollTop = terminal.scrollHeight;
+                        }
+                      }
+                    });
+                  });
+                }
               })();
             })();
           </script>
