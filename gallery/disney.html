@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="../css/neon.css">
         <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&display=swap" rel="stylesheet">
     </head>
-    
+
     <body>
         <button class="hamburger neon-white neon-blue" aria-label="メニュー">
             <span></span>
@@ -18,7 +18,7 @@
         </button>
         <header class="top-nav">
             <div class="site-title">
-                
+
                 <div class="site-logo">
                     <a href="../index.html">
                         <img src="../images/logo.png" alt="logo" height="32" />
@@ -30,11 +30,9 @@
                     <div class="nav-links">
                         <a href="main.html">Main</a>
                         <a href="disney.html" class="active">Disney</a>
-                        <a href="daisy.html">Daisy</a>
-                        <a href="characters.html">Characters</a>
                     </div>
                 </div>
-                
+
                 <div class="nav-group">
                     <span class="nav-label">Sparkle:</span>
                     <div class="nav-links">
@@ -54,70 +52,192 @@
             </div>
         </header>
 
-        <h1>Gallery / Disney</h1>
-        <div class="gallery">
-            <div class="image-container"  data-title="Happiness time" data-place="Tokyo DisneySea, Cafe Portofino" data-camera="Canon EOS R50, 45mm, f6.3, 1/60s, ISO 100">
-                <div class="spinner"></div>
-                <img src="disney/thumb/photo2.jpg">
+        <main>
+            <div class="tag-filter-container">
+                <div class="tag-section">
+                    <h3>Places</h3>
+                    <div class="tag-list">
+                        <button data-tag="All" data-category="places" class="active">All</button>
+                        <button data-tag="Land" data-category="places">Tokyo Disneyland</button>
+                        <button data-tag="Sea" data-category="places">Tokyo DisneySea</button>
+                    </div>
+                </div>
+                <div class="tag-section">
+                    <h3>Characters</h3>
+                    <div class="tag-list">
+                        <button data-tag="All" data-category="characters" class="active">All</button>
+                        <button data-tag="Daisy" data-category="characters">Daisy Duck</button>
+                        <button data-tag="Minnie" data-category="characters">Minnie Mouse</button>
+                        <button data-tag="Donald" data-category="characters">Donald Duck</button>
+                        <button data-tag="Dale" data-category="characters">Dale</button>
+                        <button data-tag="ShellieMay" data-category="characters">ShellieMay</button>
+                        <button data-tag="Hiro" data-category="characters">Hiro Hamada</button>
+                        <button data-tag="Stitch" data-category="characters">Stitch</button>
+                        <button data-tag="Angel" data-category="characters">Angel</button>
+                        <button data-tag="Meeko" data-category="characters">Meeko</button>
+                        <button data-tag="Foulfellow" data-category="characters">J・Worthington Foulfellow</button>
+                        <button data-tag="Wolf" data-category="characters">Wolf</button>
+                        <button data-tag="Rapunzel" data-category="characters">Rapunzel</button>
+                    </div>
+                </div>
             </div>
-            <div class="image-container"  data-title="Tiki Room" data-place="Tokyo Disneyland" data-camera="Canon EOS R50">
-                <div class="spinner"></div>
-                <img src="disney/thumb/tiki20240320.jpg">
-            </div>
-            <div class="image-container"  data-title="Gone: Payphones of Space Mountain" data-place="Tokyo Disneyland, Tomorrowland" data-camera="Canon EOS R50">
-                <div class="spinner"></div>
-                <img src="disney/thumb/spacemountain20240607.JPG">
-            </div>
-            <div class="image-container"  data-title="Boarding Gate 3" data-place="Tokyo Disneyland, Tomorrowland, StarTours" data-desc="Don’t be late for boarding!" data-camera="Canon EOS R50">
-                <div class="spinner"></div>
-                <img src="disney/thumb/startours20240607.JPG">
-            </div>
-            <div class="image-container"  data-title="Happiness begins here" data-place="Tokyo DisneySea Station" data-camera="Canon EOS R50">
-                <div class="spinner"></div>
-                <img src="disney/thumb/ticket20250114.JPG">
-            </div>
-            <div class="image-container"  data-title="When Will My Life Begin?" data-place="Tokyo DisneySea, Fantasy Springs" data-camera="Canon EOS R50">
-                <div class="spinner"></div>
-                <img src="disney/thumb/rapunzel20250203.jpg">
-            </div>
-            <div class="image-container"  data-title="Colors of the Wind" data-place="Tokyo DisneySea, Fantasy Springs" data-camera="Canon EOS R50">
-                <div class="spinner"></div>
-                <img src="disney/thumb/pocahontas20250203.jpg">
-            </div>
-            <div class="image-container"  data-title="Cute Chandu" data-place="Sindbad's Storybook Voyage" data-camera="Canon EOS R50">
-                <div class="spinner"></div>
-                <img src="disney/thumb/chandu20250203.jpg">
-            </div>
-            <div class="image-container"  data-title="Minnie's Trail" data-place="Tokyo DisneySea" data-camera="Canon EOS R50">
-                <div class="spinner"></div>
-                <img src="disney/thumb/minnieTrail20250203.jpg">
-            </div>
-            <div class="image-container"  data-title="Do you wanna build a snowman?" data-place="Tokyo DisneySea, Fantasy Springs" data-camera="Canon EOS R50">
-                <div class="spinner"></div>
-                <img src="disney/thumb/frozen20250203.jpg">
-            </div>
-            <div class="image-container"  data-title="Part of that world..." data-place="Tokyo DisneySea, Fantasy Springs" data-camera="Canon EOS R50">
-                <div class="spinner"></div>
-                <img src="disney/thumb/ariel20250203.jpg">
-            </div>
-            <div class="image-container" data-title="Future" data-place="Tokyo Disneyland, Tomorrowland" data-camera="Canon EOS R50, 50mm, f1.8, 1/4000s, ISO 100">
-                <div class="spinner"></div>
-                <img src="disney/thumb/photo3.jpg">
-            </div>
-            <div class="image-container" data-title="Happy pal-palooza!" data-place="Tokyo Disneyland" data-camera="Canon EOS R50, 50mm, f1.8, 1/4000s, ISO 100">
-                <div class="spinner"></div>
-                <img src="disney/thumb/photo4.jpg">
-            </div>
-            <div class="image-container" data-title="Future2" data-place="Tokyo Disneyland, Tomorrowland" data-camera="Canon EOS R50, 50mm, f1.8, 1/80s, ISO 1000">
-                <div class="spinner"></div>
-                <img src="disney/thumb/space-mt20251120.JPG">
-            </div>
-            <div class="image-container" data-title="Christmas is Coming Soon!!" data-place="Tokyo Disneyland, World Bazaar" data-camera="Canon EOS R50, 50mm, f1.8, 1/250s, ISO 320">
-                <div class="spinner"></div>
-                <img src="disney/thumb/xmax-tree20251120.JPG">
-            </div>
+            <h1>Gallery / Disney</h1>
+            <div class="gallery">
+                <!-- Daisy -->
+                <div class="image-container" data-tags="Daisy Land" data-title="Daisy" data-place="Tokyo Disneyland" data-camera="Canon EOS R50, 210mm, f7.1, 1/500s, ISO 3200">
+                    <div class="spinner"></div>
+                    <img src="daisy/daisy20240213.JPG">
+                </div>
+                <div class="image-container" data-tags="Daisy Land" data-title="Club Mouse Beat!!" data-place="Tokyo Disneyland" data-camera="Canon EOS R50">
+                    <div class="spinner"></div>
+                    <img src="daisy/CMB-20240213.JPG">
+                </div>
+                <div class="image-container" data-tags="Daisy Sea" data-title="Daisy" data-place="Tokyo DisneySea" data-camera="Canon EOS R50, 28mm, f7.2, 1/400s, ISO 200">
+                    <div class="spinner"></div>
+                    <img src="daisy/daisy20240415.JPG">
+                </div>
+                <div class="image-container" data-tags="Daisy Land" data-title="Daisy" data-place="Tokyo Disneyland" data-camera="Canon EOS R50">
+                    <div class="spinner"></div>
+                    <img src="daisy/daisy20240722.JPG">
+                </div>
+                <div class="image-container" data-tags="Daisy Land" data-title="Daisy" data-place="Tokyo Disneyland" data-camera="Canon EOS R50">
+                    <div class="spinner"></div>
+                    <img src="daisy/daisy20240811.JPG">
+                </div>
+                <div class="image-container" data-tags="Daisy Sea" data-title="Daisy" data-place="Tokyo DisneySea" data-camera="Canon EOS R50, 50mm, f1.8, 1/640s, ISO 100">
+                    <div class="spinner"></div>
+                    <img src="daisy/daisy20250203.JPG">
+                </div>
+                <div class="image-container" data-tags="Daisy Land" data-title="It's Sweetsful Time!" data-place="Tokyo Disneyland" data-camera="Canon EOS R50, 155mm, f7.1, 1/800s, ISO 800">
+                    <div class="spinner"></div>
+                    <img src="daisy/daisy20250314.JPG">
+                </div>
+                <div class="image-container" data-tags="Daisy Land" data-title="Daisy" data-place="Tokyo Disneyland" data-camera="Canon EOS R50, 50mm, f1.8, 1/125s, ISO 500">
+                    <div class="spinner"></div>
+                    <img src="daisy/daisy_woodchuck20251120.JPG">
+                </div>
+                <div class="image-container" data-tags="Daisy Land" data-title="Daisy" data-place="Tokyo Disneyland" data-camera="Canon EOS R50, 210mm, f7.1, 1/640s, ISO 320">
+                    <div class="spinner"></div>
+                    <img src="daisy/daisy_xmas20251120.JPG">
+                </div>
 
-        </div>
+                <!-- Characters -->
+                <div class="image-container" data-tags="Dale Sea" data-title="Dale" data-place="Tokyo DisneySea" data-camera="Canon EOS R50">
+                    <div class="spinner"></div>
+                    <img src="characters/dale20240212.JPG">
+                </div>
+                <div class="image-container" data-tags="Hiro Land" data-title="My Cutie Pie" data-place="Tokyo Disneyland" data-camera="Canon EOS R50">
+                    <div class="spinner"></div>
+                    <img src="characters/hiro20240213.jpg">
+                </div>
+                <div class="image-container" data-tags="Stitch Land" data-title="Stitch" data-place="Tokyo Disneyland" data-camera="Canon EOS R50">
+                    <div class="spinner"></div>
+                    <img src="characters/stitch20240320.jpg">
+                </div>
+                <div class="image-container" data-tags="Wolf Land" data-title="Bad wolf" data-place="Tokyo Disneyland" data-camera="Canon EOS R50">
+                    <div class="spinner"></div>
+                    <img src="characters/wolf20240320.jpg">
+                </div>
+                <div class="image-container" data-tags="ShellieMay Sea" data-title="ShellieMay" data-place="Tokyo DisneySea" data-camera="Canon EOS R50">
+                    <div class="spinner"></div>
+                    <img src="characters/shellieMay20240415.jpg">
+                </div>
+                <div class="image-container" data-tags="Meeko Land" data-title="Meeko" data-place="Tokyo Disneyland" data-camera="Canon EOS R50">
+                    <div class="spinner"></div>
+                    <img src="characters/meeko20240607.JPG">
+                </div>
+                <div class="image-container" data-tags="Foulfellow Land" data-title="J・Worthington Foulfellow" data-place="Tokyo Disneyland" data-camera="Canon EOS R50">
+                    <div class="spinner"></div>
+                    <img src="characters/honestJohn20250203.jpg">
+                </div>
+                <div class="image-container" data-tags="Stitch Land" data-title="Stitch" data-place="Tokyo Disneyland" data-camera="Canon EOS R50">
+                    <div class="spinner"></div>
+                    <img src="characters/stitch20250211.JPG">
+                </div>
+                <div class="image-container" data-tags="Angel Land" data-title="Angel" data-place="Tokyo Disneyland" data-camera="Canon EOS R50">
+                    <div class="spinner"></div>
+                    <img src="characters/angel20250211.JPG">
+                </div>
+                <div class="image-container" data-tags="Donald Sea" data-title="Donald Duck" data-place="Tokyo DisneySea" data-camera="Canon EOS R50">
+                    <div class="spinner"></div>
+                    <img src="characters/donald20250203.JPG">
+                </div>
+                <div class="image-container" data-tags="Minnie Land" data-title="Minnie Mouse" data-place="Tokyo Disneyland" data-camera="Canon EOS R50">
+                    <div class="spinner"></div>
+                    <img src="characters/minnie20250203.JPG">
+                </div>
+                <div class="image-container" data-tags="Foulfellow Land" data-title="J・Worthington Foulfellow" data-place="Tokyo Disneyland" data-camera="Canon EOS R50">
+                    <div class="spinner"></div>
+                    <img src="characters/honestJohn202502023.JPG">
+                </div>
+                <div class="image-container" data-tags="Rapunzel Land" data-title="Rapunzel" data-place="Tokyo Disneyland" data-camera="Canon EOS R50, 50mm, f1.8, 1/800s, ISO 100">
+                    <div class="spinner"></div>
+                    <img src="characters/rapunzel20251120.JPG">
+                </div>
+
+                <!-- Disney General -->
+                <div class="image-container" data-tags="Sea" data-title="Happiness time" data-place="Tokyo DisneySea, Cafe Portofino" data-camera="Canon EOS R50, 45mm, f6.3, 1/60s, ISO 100">
+                    <div class="spinner"></div>
+                    <img src="disney/photo2.jpg">
+                </div>
+                <div class="image-container" data-tags="Land" data-title="Tiki Room" data-place="Tokyo Disneyland" data-camera="Canon EOS R50">
+                    <div class="spinner"></div>
+                    <img src="disney/tiki20240320.jpg">
+                </div>
+                <div class="image-container" data-tags="Land" data-title="Gone: Payphones of Space Mountain" data-place="Tokyo Disneyland, Tomorrowland" data-camera="Canon EOS R50">
+                    <div class="spinner"></div>
+                    <img src="disney/spacemountain20240607.JPG">
+                </div>
+                <div class="image-container" data-tags="Land" data-title="Boarding Gate 3" data-place="Tokyo Disneyland, Tomorrowland, StarTours" data-desc="Don't be late for boarding!" data-camera="Canon EOS R50">
+                    <div class="spinner"></div>
+                    <img src="disney/startours20240607.JPG">
+                </div>
+                <div class="image-container" data-tags="Sea" data-title="Happiness begins here" data-place="Tokyo DisneySea Station" data-camera="Canon EOS R50">
+                    <div class="spinner"></div>
+                    <img src="disney/ticket20250114.JPG">
+                </div>
+                <div class="image-container" data-tags="Rapunzel Sea" data-title="When Will My Life Begin?" data-place="Tokyo DisneySea, Fantasy Springs" data-camera="Canon EOS R50">
+                    <div class="spinner"></div>
+                    <img src="disney/rapunzel20250203.jpg">
+                </div>
+                <div class="image-container" data-tags="Sea" data-title="Colors of the Wind" data-place="Tokyo DisneySea, Fantasy Springs" data-camera="Canon EOS R50">
+                    <div class="spinner"></div>
+                    <img src="disney/pocahontas20250203.jpg">
+                </div>
+                <div class="image-container" data-tags="Sea" data-title="Cute Chandu" data-place="Sindbad's Storybook Voyage" data-camera="Canon EOS R50">
+                    <div class="spinner"></div>
+                    <img src="disney/chandu20250203.jpg">
+                </div>
+                <div class="image-container" data-tags="Minnie Sea" data-title="Minnie's Trail" data-place="Tokyo DisneySea" data-camera="Canon EOS R50">
+                    <div class="spinner"></div>
+                    <img src="disney/minnieTrail20250203.jpg">
+                </div>
+                <div class="image-container" data-tags="Sea" data-title="Do you wanna build a snowman?" data-place="Tokyo DisneySea, Fantasy Springs" data-camera="Canon EOS R50">
+                    <div class="spinner"></div>
+                    <img src="disney/frozen20250203.jpg">
+                </div>
+                <div class="image-container" data-tags="Sea" data-title="Part of that world..." data-place="Tokyo DisneySea, Fantasy Springs" data-camera="Canon EOS R50">
+                    <div class="spinner"></div>
+                    <img src="disney/ariel20250203.jpg">
+                </div>
+                <div class="image-container" data-tags="Land" data-title="Future" data-place="Tokyo Disneyland, Tomorrowland" data-camera="Canon EOS R50, 50mm, f1.8, 1/4000s, ISO 100">
+                    <div class="spinner"></div>
+                    <img src="disney/photo3.jpg">
+                </div>
+                <div class="image-container" data-tags="Land" data-title="Happy pal-palooza!" data-place="Tokyo Disneyland" data-camera="Canon EOS R50, 50mm, f1.8, 1/4000s, ISO 100">
+                    <div class="spinner"></div>
+                    <img src="disney/photo4.jpg">
+                </div>
+                <div class="image-container" data-tags="Land" data-title="Future2" data-place="Tokyo Disneyland, Tomorrowland" data-camera="Canon EOS R50, 50mm, f1.8, 1/80s, ISO 1000">
+                    <div class="spinner"></div>
+                    <img src="disney/space-mt20251120.JPG">
+                </div>
+                <div class="image-container" data-tags="Land" data-title="Christmas is Coming Soon!!" data-place="Tokyo Disneyland, World Bazaar" data-camera="Canon EOS R50, 50mm, f1.8, 1/250s, ISO 320">
+                    <div class="spinner"></div>
+                    <img src="disney/xmax-tree20251120.JPG">
+                </div>
+            </div>
+        </main>
 
         <div id="modal" class="modal" onclick="this.style.display='none'">
             <div class = "modal-content">
@@ -135,8 +255,14 @@
 
         <script>
             let currentImageIndex = 0;
+
+            function getVisibleContainers() {
+                return Array.from(document.querySelectorAll('.image-container'))
+                    .filter(container => container.style.display !== 'none');
+            }
+
             const containers = Array.from(document.querySelectorAll('.image-container'));
-            
+
             const modal = document.getElementById('modal');
             const modalImage = document.getElementById('modal-image');
             const modalTitle = document.getElementById('modal-title');
@@ -144,87 +270,137 @@
             const modalDesc = document.getElementById('modal-desc');
             const modalCamera = document.getElementById('modal-camera');
             const modalContent = document.querySelector('.modal-info');
-            
+
             function showModal(container) {
                 document.body.classList.add('modal-open');
                 const thumbSrc = container.querySelector('img').src;
-                const fullSrc = thumbSrc.replace('thumb/', 'images/')
+                const fullSrc = thumbSrc;
                 modalImage.src = fullSrc;
                 modalImage.parentElement.classList.remove('loaded');
-            
+
                 const hasTitle = container.dataset.title && container.dataset.title.trim() !== '';
                 const hasPlace= container.dataset.place&& container.dataset.place.trim() !== '';
                 const hasCamera = container.dataset.camera && container.dataset.camera.trim() !== '';
                 const hasDesc = container.dataset.desc && container.dataset.desc.trim() !== '';
-            
+
                 if (hasTitle || hasPlace || hasCamera || hasDesc) {
                     modalTitle.textContent = hasTitle ? container.dataset.title : '';
                     modalPlace.textContent = hasPlace ? container.dataset.place : '';
                     modalCamera.textContent = hasCamera ? container.dataset.camera : '';
                     modalDesc.textContent = hasDesc ? container.dataset.desc : '';
-            
+
                     modalContent.style.display = 'block';
                     modalImage.style.maxHeight = '90vh';
                 } else {
                     modalContent.style.display = 'none';
                     modalImage.style.maxHeight = '100vh';
                 }
-            
+
                 modal.style.display = 'flex';
             }
 
+            function assignClickEvents() {
+                const visibleContainers = getVisibleContainers();
+                visibleContainers.forEach((container, index) => {
+                    container.onclick = () => {
+                        currentImageIndex = index;
+                        showModal(container);
+                    };
+                });
+            }
+
             modalImage.addEventListener('load', () => {
-                modalImage.parentElement.classList.add('loaded'); 
+                modalImage.parentElement.classList.add('loaded');
             });
-            
-            containers.forEach((container, index) => {
-                container.onclick = () => {
-                    currentImageIndex = index;
-                    showModal(container);
-                };
-            });
+
+            assignClickEvents();
 
             modal.onclick = function () {
                 modal.style.display = 'none';
                 document.body.classList.remove('modal-open');
             };
-            
+
+            document.addEventListener("DOMContentLoaded", function () {
+                // フィルター関数
+                function filterImages() {
+                    // 各カテゴリで選択されているタグを取得
+                    const selectedPlace = document.querySelector('button[data-category="places"].active')?.dataset.tag;
+                    const selectedCharacter = document.querySelector('button[data-category="characters"].active')?.dataset.tag;
+
+                    // 各画像をチェック
+                    document.querySelectorAll(".image-container").forEach(container => {
+                        const tags = container.dataset.tags.split(" ");
+
+                        // 各カテゴリの条件をチェック
+                        const placeMatch = !selectedPlace || selectedPlace === "All" || tags.includes(selectedPlace);
+                        const characterMatch = !selectedCharacter || selectedCharacter === "All" || tags.includes(selectedCharacter);
+
+                        // 全ての条件を満たす場合のみ表示
+                        container.style.display = (placeMatch && characterMatch) ? "flex" : "none";
+                    });
+
+                    // 画像が変わったのでクリックイベントを再割り当て
+                    assignClickEvents();
+                }
+
+                // タグボタンのクリックイベント
+                document.querySelectorAll(".tag-list button").forEach(button => {
+                    button.addEventListener("click", () => {
+                        const category = button.dataset.category;
+
+                        // 同じカテゴリ内のボタンからactiveを外す
+                        document.querySelectorAll(`button[data-category="${category}"]`).forEach(b => {
+                            b.classList.remove("active");
+                        });
+
+                        // クリックされたボタンにactiveをつける
+                        button.classList.add("active");
+
+                        // フィルタリングを実行
+                        filterImages();
+                    });
+                });
+            });
+
+
             // PC: キーボード矢印キー対応
             document.addEventListener('keydown', (e) => {
+                const visible = getVisibleContainers();
                 if (modal.style.display === 'flex') {
                     if (e.key === 'ArrowRight') {
-                        currentImageIndex = (currentImageIndex + 1) % containers.length;
-                        showModal(containers[currentImageIndex]);
+                        currentImageIndex = (currentImageIndex + 1) % visible.length;
+                        showModal(visible[currentImageIndex]);
                     } else if (e.key === 'ArrowLeft') {
-                        currentImageIndex = (currentImageIndex - 1 + containers.length) % containers.length;
-                        showModal(containers[currentImageIndex]);
+                        currentImageIndex = (currentImageIndex - 1 + visible.length) % visible.length;
+                        showModal(visible[currentImageIndex]);
                     } else if (e.key === 'Escape') {
                         modal.style.display = 'none';
                     }
                 }
             });
-            
+
             // スマホ：左右スワイプ対応
             let touchStartX = 0;
             let touchEndX = 0;
-            
+
             modal.addEventListener('touchstart', (e) => {
                 touchStartX = e.changedTouches[0].screenX;
             });
-            
+
             modal.addEventListener('touchend', (e) => {
                 touchEndX = e.changedTouches[0].screenX;
                 handleSwipe();
             });
-            
+
             function handleSwipe() {
+                const visible = getVisibleContainers();
                 if (touchEndX < touchStartX - 50) {
-                    currentImageIndex = (currentImageIndex + 1) % containers.length;
-                    showModal(containers[currentImageIndex]);
+                    currentImageIndex = (currentImageIndex + 1) % visible.length;
+                    showModal(visible[currentImageIndex]);
                 }
                 if (touchEndX > touchStartX + 50) {
-                    currentImageIndex = (currentImageIndex - 1 + containers.length) % containers.length;
-                    showModal(containers[currentImageIndex]);
+                    currentImageIndex = (currentImageIndex - 1 + visible.length) % visible.length;
+                    showModal(visible[currentImageIndex]);
                 }
             }
 
@@ -239,7 +415,6 @@
                 });
             });
 
-
             document.querySelectorAll('.image-container img').forEach(img => {
             const container = img.parentElement;
             if (img.complete) {
@@ -250,7 +425,6 @@
                 });
             }
             });
-
         </script>
     </body>
 </html>
