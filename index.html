@@ -494,10 +494,14 @@
                       replaceInFollowing('{YN}', YN);
 
                       if (YN === 'N') {
-                        // --- 切断ルート：GOOD BYE → 空行 → ENDED SIGNAL → 再接続ボタン ---
+                        // --- 切断ルート：GOOD BYE → END OF LINE → 空行 → ENDED SIGNAL → 再接続ボタン ---
                         const bye = document.createElement('p');
                         bye.className = 'system bad';
                         bye.dataset.text = 'GOOD BYE';
+
+                        const endOfLine = document.createElement('p');
+                        endOfLine.className = 'system';
+                        endOfLine.dataset.text = 'END OF LINE';
 
                         const spacer = document.createElement('br');  // 空行
                         spacer.className = 'spacer';
@@ -505,7 +509,7 @@
 
                         const end = document.createElement('p');
                         end.className = 'command';
-                        end.dataset.text = 'ENDED SIGNAL FROM SYSTEM';
+                        end.dataset.text = 'ENDED SIGNAL FROM MCP';
 
                         const spacer2 = document.createElement('br');
                         spacer2.className = 'spacer';
@@ -530,17 +534,18 @@
 
                         retryContainer.appendChild(retryBtn);
 
-                        // lines 配列は bye と end の2行に置換（spacerはDOMにのみ挿入）
-                        lines.splice(i + 1, lines.length - (i + 1), bye, end);
+                        // lines 配列は bye, endOfLine, end の3行に置換（spacerはDOMにのみ挿入）
+                        lines.splice(i + 1, lines.length - (i + 1), bye, endOfLine, end);
 
-                        // DOMは bye → spacer → end → spacer2 → retryContainer の順
+                        // DOMは bye → endOfLine → spacer → end → spacer2 → retryContainer の順
                         el.parentNode.insertBefore(bye, el.nextSibling);
-                        el.parentNode.insertBefore(spacer, bye.nextSibling);
+                        el.parentNode.insertBefore(endOfLine, bye.nextSibling);
+                        el.parentNode.insertBefore(spacer, endOfLine.nextSibling);
                         el.parentNode.insertBefore(end, spacer.nextSibling);
                         el.parentNode.insertBefore(spacer2, end.nextSibling);
                         el.parentNode.insertBefore(retryContainer, spacer2.nextSibling);
 
-                        i++; next();  // GOOD BYE → ENDED SIGNAL をタイプして終了
+                        i++; next();  // GOOD BYE → END OF LINE → ENDED SIGNAL をタイプして終了
                       } else {
                         // --- 観測ルート：宇宙を"即"表示（会話は右に残す） ---
                         showUniverse();
@@ -876,6 +881,40 @@
                             setTimeout(() => {
                               universeWrapper.classList.remove('visible');
                               universeWrapper.classList.add('hidden');
+
+                              // 宇宙が消えた後に「ENDED SIGNAL FROM MCP」と再接続ボタンを表示
+                              const br4 = document.createElement('br');
+                              terminal.appendChild(br4);
+
+                              const endedSignal = document.createElement('p');
+                              endedSignal.className = 'command';
+                              endedSignal.textContent = 'ENDED SIGNAL FROM MCP';
+                              terminal.appendChild(endedSignal);
+
+                              const br5 = document.createElement('br');
+                              terminal.appendChild(br5);
+
+                              const retryContainer = document.createElement('p');
+                              retryContainer.className = 'system';
+                              retryContainer.style.marginTop = '1em';
+
+                              const retryBtn = document.createElement('button');
+                              retryBtn.textContent = '[ RETRY CONNECTION ]';
+                              retryBtn.style.cssText = 'background:none;border:1px solid #7dcdff;color:#7dcdff;padding:0.5em 1em;cursor:pointer;font-family:inherit;font-size:inherit;letter-spacing:0.05em;';
+                              retryBtn.addEventListener('click', () => {
+                                sessionStorage.clear();
+                                location.reload();
+                              });
+                              retryBtn.addEventListener('mouseenter', () => {
+                                retryBtn.style.background = 'rgba(125, 205, 255, 0.2)';
+                              });
+                              retryBtn.addEventListener('mouseleave', () => {
+                                retryBtn.style.background = 'none';
+                              });
+
+                              retryContainer.appendChild(retryBtn);
+                              terminal.appendChild(retryContainer);
+                              terminal.scrollTop = terminal.scrollHeight;
                             }, 800);
                           }
 
