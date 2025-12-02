@@ -293,7 +293,7 @@ html, body {
   object-fit: contain;
   cursor: pointer;
   pointer-events: auto;
-  margin-left: -10vw;
+  margin-left: -40vw;
   position: relative;
   z-index: 102;
 }
@@ -330,7 +330,7 @@ html, body {
   height: 0;
   border-top: 1px dotted rgba(255, 255, 255, 0.5);
   position: absolute;
-  left: calc(var(--side-margin) + var(--universe-width) / 2 - 10vw + 15vmin);
+  left: calc(var(--side-margin) + var(--universe-width) / 2 - 23vw + 15vmin);
   top: 0;
   z-index: 98;
   pointer-events: none;
@@ -345,8 +345,8 @@ html, body {
   transition: all 0.3s ease;
   cursor: pointer;
   position: absolute;
-  left: calc(var(--side-margin) + var(--universe-width) / 2 - 10vw + 15vmin + 13vw);
-  top: 0;
+  left: calc(var(--side-margin) + var(--universe-width) / 2 - 23vw + 15vmin + 13vw);
+  top: -0.5em;
   z-index: 101;
   pointer-events: auto;
 }
