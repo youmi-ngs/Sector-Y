@@ -356,6 +356,36 @@
                   term.appendChild(p);
                 });
 
+                // 保存されたEXIT質問のやり取りを復元
+                const savedExitConversations = JSON.parse(sessionStorage.getItem('sy_exit_conversations') || '[]');
+                savedExitConversations.forEach(conv => {
+                  const br1 = document.createElement('br');
+                  term.appendChild(br1);
+
+                  const question = document.createElement('p');
+                  question.className = 'system';
+                  question.textContent = 'DO YOU WANT TO EXIT THE UNIVERSE? Y/N';
+                  term.appendChild(question);
+
+                  const answer = document.createElement('p');
+                  answer.className = 'unknown';
+                  answer.textContent = '> ' + conv.answer;
+                  term.appendChild(answer);
+
+                  const br2 = document.createElement('br');
+                  term.appendChild(br2);
+
+                  const response = document.createElement('p');
+                  response.className = 'system';
+                  response.textContent = conv.answer === 'Y' ? 'EXITING SECTOR_Y...' : 'OKAY. CONTINUE OBSERVING';
+                  term.appendChild(response);
+
+                  if (conv.answer === 'N') {
+                    const br3 = document.createElement('br');
+                    term.appendChild(br3);
+                  }
+                });
+
                 // フォーカスシステムは下で実行されるので、ここではreturnしない
               } else {
                 // -------- 設定値 --------
@@ -777,6 +807,26 @@
                   resetFocus();
                 });
 
+                // タイプアニメーション関数（惑星フォーカスシステム用）
+                const CHAR_MS = 30;
+                const LINE_GAP = 140;
+                const caret = document.createElement('span');
+                caret.className = 'caret';
+                caret.textContent = '▌';
+
+                function typeLineLocal(el, text, done) {
+                  el.textContent = '';
+                  el.appendChild(caret);
+                  let j = 0;
+                  (function tick() {
+                    caret.before(text[j] || '');
+                    j++;
+                    terminal.scrollTop = terminal.scrollHeight;
+                    if (j <= text.length) setTimeout(tick, CHAR_MS);
+                    else setTimeout(done, LINE_GAP);
+                  })();
+                }
+
                 // 中央の惑星クリックで宇宙から出る確認
                 const centerPlanet = document.getElementById('center-planet');
                 if (centerPlanet) {
@@ -792,22 +842,25 @@
 
                     const question = document.createElement('p');
                     question.className = 'system';
-                    question.textContent = 'DO YOU WANT TO EXIT THE UNIVERSE? Y/N';
                     terminal.appendChild(question);
 
-                    const answer = document.createElement('p');
-                    answer.className = 'unknown';
-                    answer.textContent = '> ';
+                    // タイプアニメーションで質問を表示し、完了後に入力欄を表示
+                    typeLineLocal(question, 'DO YOU WANT TO EXIT THE UNIVERSE? Y/N', () => {
+                      caret.remove();
 
-                    const inp = document.createElement('span');
-                    inp.className = 'editable';
-                    inp.contentEditable = 'true';
-                    inp.dataset.placeholder = ' ';
-                    answer.appendChild(inp);
-                    terminal.appendChild(answer);
+                      const answer = document.createElement('p');
+                      answer.className = 'unknown';
+                      answer.textContent = '> ';
 
-                    inp.focus();
-                    terminal.scrollTop = terminal.scrollHeight;
+                      const inp = document.createElement('span');
+                      inp.className = 'editable';
+                      inp.contentEditable = 'true';
+                      inp.dataset.placeholder = ' ';
+                      answer.appendChild(inp);
+                      terminal.appendChild(answer);
+
+                      inp.focus();
+                      terminal.scrollTop = terminal.scrollHeight;
 
                     // カーソルを末尾に
                     function placeCaretEnd(el) {
@@ -838,92 +891,109 @@
                           // Yの場合：宇宙から出る
                           const exit = document.createElement('p');
                           exit.className = 'system';
-                          exit.textContent = 'EXITING SECTOR_Y...';
                           terminal.appendChild(exit);
 
-                          const goodbye = document.createElement('p');
-                          goodbye.className = 'log';
-                          goodbye.textContent = `LOG: "${observerName}" LEFT SECTOR_Y`;
-                          terminal.appendChild(goodbye);
+                          typeLineLocal(exit, 'EXITING SECTOR_Y...', () => {
+                            const goodbye = document.createElement('p');
+                            goodbye.className = 'log';
+                            terminal.appendChild(goodbye);
 
-                          const br3 = document.createElement('br');
-                          terminal.appendChild(br3);
+                            typeLineLocal(goodbye, `LOG: "${observerName}" LEFT SECTOR_Y`, () => {
+                              const br3 = document.createElement('br');
+                              terminal.appendChild(br3);
 
-                          const farewell = document.createElement('p');
-                          farewell.className = 'system';
-                          farewell.textContent = 'GOOD BYE';
-                          terminal.appendChild(farewell);
+                              const farewell = document.createElement('p');
+                              farewell.className = 'system';
+                              terminal.appendChild(farewell);
 
-                          const end = document.createElement('p');
-                          end.className = 'system';
-                          end.textContent = 'END OF LINE';
-                          terminal.appendChild(end);
+                              typeLineLocal(farewell, 'GOOD BYE', () => {
+                                const end = document.createElement('p');
+                                end.className = 'system';
+                                terminal.appendChild(end);
 
-                          terminal.scrollTop = terminal.scrollHeight;
+                                typeLineLocal(end, 'END OF LINE', () => {
+                                  caret.remove();
+                                  terminal.scrollTop = terminal.scrollHeight;
 
-                          // 宇宙を非表示にする（アニメーション付き）
-                          const universeWrapper = document.getElementById('universe-wrapper');
-                          if (universeWrapper) {
-                            universeWrapper.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-                            universeWrapper.style.opacity = '0';
-                            universeWrapper.style.transform = 'scale(0.8)';
+                                  // 宇宙を非表示にする（アニメーション付き）
+                                  const universeWrapper = document.getElementById('universe-wrapper');
+                                  if (universeWrapper) {
+                                    universeWrapper.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                                    universeWrapper.style.opacity = '0';
+                                    universeWrapper.style.transform = 'scale(0.8)';
 
-                            setTimeout(() => {
-                              universeWrapper.classList.remove('visible');
-                              universeWrapper.classList.add('hidden');
+                                    setTimeout(() => {
+                                      universeWrapper.classList.remove('visible');
+                                      universeWrapper.classList.add('hidden');
 
-                              // 宇宙が消えた後に「ENDED SIGNAL FROM MCP」と再接続ボタンを表示
-                              const br4 = document.createElement('br');
-                              terminal.appendChild(br4);
+                                      // 宇宙が消えた後に「ENDED SIGNAL FROM MCP」と再接続ボタンを表示
+                                      const br4 = document.createElement('br');
+                                      terminal.appendChild(br4);
 
-                              const endedSignal = document.createElement('p');
-                              endedSignal.className = 'command';
-                              endedSignal.textContent = 'ENDED SIGNAL FROM MCP';
-                              terminal.appendChild(endedSignal);
+                                      const endedSignal = document.createElement('p');
+                                      endedSignal.className = 'command';
+                                      terminal.appendChild(endedSignal);
 
-                              const br5 = document.createElement('br');
-                              terminal.appendChild(br5);
+                                      typeLineLocal(endedSignal, 'ENDED SIGNAL FROM MCP', () => {
+                                        caret.remove();
 
-                              const retryContainer = document.createElement('p');
-                              retryContainer.className = 'system';
-                              retryContainer.style.marginTop = '1em';
+                                        const br5 = document.createElement('br');
+                                        terminal.appendChild(br5);
 
-                              const retryBtn = document.createElement('button');
-                              retryBtn.textContent = '[ RETRY CONNECTION ]';
-                              retryBtn.style.cssText = 'background:none;border:1px solid #7dcdff;color:#7dcdff;padding:0.5em 1em;cursor:pointer;font-family:inherit;font-size:inherit;letter-spacing:0.05em;';
-                              retryBtn.addEventListener('click', () => {
-                                sessionStorage.clear();
-                                location.reload();
+                                        const retryContainer = document.createElement('p');
+                                        retryContainer.className = 'system';
+                                        retryContainer.style.marginTop = '1em';
+
+                                        const retryBtn = document.createElement('button');
+                                        retryBtn.textContent = '[ RETRY CONNECTION ]';
+                                        retryBtn.style.cssText = 'background:none;border:1px solid #7dcdff;color:#7dcdff;padding:0.5em 1em;cursor:pointer;font-family:inherit;font-size:inherit;letter-spacing:0.05em;';
+                                        retryBtn.addEventListener('click', () => {
+                                          sessionStorage.clear();
+                                          location.reload();
+                                        });
+                                        retryBtn.addEventListener('mouseenter', () => {
+                                          retryBtn.style.background = 'rgba(125, 205, 255, 0.2)';
+                                        });
+                                        retryBtn.addEventListener('mouseleave', () => {
+                                          retryBtn.style.background = 'none';
+                                        });
+
+                                        retryContainer.appendChild(retryBtn);
+                                        terminal.appendChild(retryContainer);
+                                        terminal.scrollTop = terminal.scrollHeight;
+                                      });
+                                    }, 800);
+                                  }
+
+                                  // sessionStorageをクリア
+                                  sessionStorage.clear();
+                                });
                               });
-                              retryBtn.addEventListener('mouseenter', () => {
-                                retryBtn.style.background = 'rgba(125, 205, 255, 0.2)';
-                              });
-                              retryBtn.addEventListener('mouseleave', () => {
-                                retryBtn.style.background = 'none';
-                              });
-
-                              retryContainer.appendChild(retryBtn);
-                              terminal.appendChild(retryContainer);
-                              terminal.scrollTop = terminal.scrollHeight;
-                            }, 800);
-                          }
-
-                          // sessionStorageをクリア
-                          sessionStorage.clear();
+                            });
+                          });
                         } else {
                           // Nの場合：観察を続ける
+                          // sessionStorageに保存
+                          const exitConvs = JSON.parse(sessionStorage.getItem('sy_exit_conversations') || '[]');
+                          exitConvs.push({ answer: 'N' });
+                          sessionStorage.setItem('sy_exit_conversations', JSON.stringify(exitConvs));
+
                           const stay = document.createElement('p');
                           stay.className = 'system';
-                          stay.textContent = 'OKAY. CONTINUE OBSERVING';
                           terminal.appendChild(stay);
 
-                          const br3 = document.createElement('br');
-                          terminal.appendChild(br3);
+                          typeLineLocal(stay, 'OKAY. CONTINUE OBSERVING', () => {
+                            caret.remove();
 
-                          terminal.scrollTop = terminal.scrollHeight;
+                            const br3 = document.createElement('br');
+                            terminal.appendChild(br3);
+
+                            terminal.scrollTop = terminal.scrollHeight;
+                          });
                         }
                       }
                     });
+                    }); // typeLineLocal callback end
                   });
                 }
               })();
