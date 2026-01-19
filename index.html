@@ -144,7 +144,8 @@
               <p class="system"  data-text="ORBIT SYNC OK"></p>
               <p class="system"  data-text="READY..."></p>
               <br>
-              <p class="system"  data-text="I AM MASTER CONTROL PROGRAM"></p>
+              <p class="system"  data-text="I AM MNEME"></p>
+              <p class="system"  data-text="MASTER CONTROL PROGRAM"></p>
               <p class="system"  data-text="WHO ARE YOU?"></p>
               <p class="unknown" data-text="{NAME}"></p>
               <p class="system"  data-text="HELLO, {NAME}"></p>
@@ -152,12 +153,15 @@
               <p class="system"  data-text="OBSERVE SECTOR_Y? Y/N"></p>
               <p class="unknown" data-text="{YN}"></p>
               <br>
+              <p class="system"  data-text="LISTEN TO THE UNIVERSE? Y/N"></p>
+              <p class="unknown" data-text="{LISTEN}"></p>
+              <br>
               <p class="system"  data-text="WELCOME TO SECTOR_Y"></p>
               <p class="system"  data-text="CATCH ANY PLANET TO OBSERVE"></p>
               <br>
               <p class="log"  data-text="LOG: OBSERVING SECTOR_Y"></p>
               <br>
-              <p class="system"  data-text="DO YOU NEED PLANET INFORMATION? Y/N"></p>
+              <p class="system"  data-text="NEED PLANETS INFO? Y/N"></p>
               <p class="unknown" data-text="{PLANET_INFO}"></p>
               <br>
             </div>
@@ -229,9 +233,11 @@
                   if (isCreator && (
                       text === 'OBSERVE SECTOR_Y? Y/N' ||
                       text === '{YN}' ||
+                      text === 'LISTEN TO THE UNIVERSE? Y/N' ||
+                      text === '{LISTEN}' ||
                       text === 'CATCH ANY PLANET TO OBSERVE' ||
                       text === 'LOG: OBSERVING SECTOR_Y' ||
-                      text === 'DO YOU NEED PLANET INFORMATION? Y/N' ||
+                      text === 'NEED PLANETS INFO? Y/N' ||
                       text === '{PLANET_INFO}'
                   )) {
                     el.style.display = 'none';
@@ -241,6 +247,17 @@
                   // {YN}を含む行は"> Y"形式で表示
                   if (text.includes('{YN}')) {
                     el.textContent = '> Y';
+                    return;
+                  }
+
+                  // {LISTEN}の行は、保存された回答で置き換え
+                  if (text === '{LISTEN}') {
+                    const listenAnswer = sessionStorage.getItem('sy_listen') || '';
+                    if (listenAnswer) {
+                      el.textContent = '> ' + listenAnswer;
+                    } else {
+                      el.style.display = 'none';
+                    }
                     return;
                   }
 
@@ -364,7 +381,7 @@
 
                   const question = document.createElement('p');
                   question.className = 'system';
-                  question.textContent = 'DO YOU WANT TO EXIT THE UNIVERSE? Y/N';
+                  question.textContent = 'WANT TO EXIT? Y/N';
                   term.appendChild(question);
 
                   const answer = document.createElement('p');
@@ -529,7 +546,7 @@
 
                         const end = document.createElement('p');
                         end.className = 'command';
-                        end.dataset.text = 'ENDED SIGNAL FROM MCP';
+                        end.dataset.text = 'ENDED SIGNAL FROM MNEME';
 
                         const spacer2 = document.createElement('br');
                         spacer2.className = 'spacer';
@@ -573,6 +590,49 @@
                         sessionStorage.setItem('sy_boot_completed', 'true');
                         i++; next();
                       }
+                    }
+                  });
+                }
+
+                // -------- 入力：音楽 Y/N --------
+                function askListen(el) {
+                  el.textContent = '> ';
+                  const inp = document.createElement('span');
+                  inp.className = 'editable';
+                  inp.contentEditable = 'true';
+                  inp.dataset.placeholder = ' ';
+                  el.appendChild(inp);
+                  caret.remove();
+                  inp.focus();
+
+                  inp.addEventListener('input', () => {
+                    let v = (inp.textContent || '').toUpperCase().replace(/[^YN]/g, '');
+                    inp.textContent = v.slice(0, 1);
+                    placeCaretEnd(inp);
+                  });
+
+                  inp.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') {
+                      e.preventDefault();
+                      const answer = (inp.textContent || '').trim().toUpperCase() || 'N';
+                      inp.replaceWith(document.createTextNode(answer));
+
+                      // 回答をsessionStorageに保存
+                      sessionStorage.setItem('sy_listen', answer);
+
+                      if (answer === 'Y') {
+                        // BGMを再生
+                        const audio = document.getElementById('bgm');
+                        const btn = document.getElementById('bgm-toggle');
+                        if (audio && btn) {
+                          audio.play().then(() => {
+                            btn.classList.add('playing');
+                            localStorage.setItem('sy_bgm_playing', 'true');
+                          }).catch(() => {});
+                        }
+                      }
+
+                      i++; next();
                     }
                   });
                 }
@@ -681,30 +741,80 @@
 
                   if (text === '{NAME}') { askName(el); return; }
                   if (text.includes('{YN}'))            { askYN(el);   return; }
+                  if (text === '{LISTEN}')              { askListen(el); return; }
                   if (text === '{PLANET_INFO}')         { askPlanetInfo(el); return; }
 
-                  // クリエイターの場合、WELCOME BACK表示後に専用メッセージを追加
+                  // クリエイターの場合、WELCOME BACK表示後に音楽質問→専用メッセージを追加
                   if (text === 'WELCOME BACK, CREATOR.' && sessionStorage.getItem('sy_is_creator') === 'true') {
                     typeLine(el, text, () => {
                       const br1 = document.createElement('br');
                       term.appendChild(br1);
 
-                      const enjoy = document.createElement('p');
-                      enjoy.className = 'system';
-                      term.appendChild(enjoy);
-                      typeLine(enjoy, 'ENJOY TO BUILD', () => {
+                      // 音楽の質問を表示
+                      const listenQ = document.createElement('p');
+                      listenQ.className = 'system';
+                      term.appendChild(listenQ);
+                      typeLine(listenQ, 'LISTEN TO THE UNIVERSE? Y/N', () => {
+                        caret.remove();
 
-                        const end = document.createElement('p');
-                        end.className = 'system';
-                        term.appendChild(end);
-                        typeLine(end, 'END OF LINE', () => {
+                        // 入力欄を作成
+                        const listenA = document.createElement('p');
+                        listenA.className = 'unknown';
+                        listenA.textContent = '> ';
+                        const inp = document.createElement('span');
+                        inp.className = 'editable';
+                        inp.contentEditable = 'true';
+                        inp.dataset.placeholder = ' ';
+                        listenA.appendChild(inp);
+                        term.appendChild(listenA);
+                        inp.focus();
 
-                          const br2 = document.createElement('br');
-                          term.appendChild(br2);
-                          caret.remove();
+                        inp.addEventListener('input', () => {
+                          let v = (inp.textContent || '').toUpperCase().replace(/[^YN]/g, '');
+                          inp.textContent = v.slice(0, 1);
+                          placeCaretEnd(inp);
+                        });
 
-                          sessionStorage.setItem('sy_boot_completed', 'true');
-                          showUniverse();
+                        inp.addEventListener('keydown', (e) => {
+                          if (e.key === 'Enter') {
+                            e.preventDefault();
+                            const answer = (inp.textContent || '').trim().toUpperCase() || 'N';
+                            inp.replaceWith(document.createTextNode(answer));
+                            sessionStorage.setItem('sy_listen', answer);
+
+                            if (answer === 'Y') {
+                              const audio = document.getElementById('bgm');
+                              const btn = document.getElementById('bgm-toggle');
+                              if (audio && btn) {
+                                audio.play().then(() => {
+                                  btn.classList.add('playing');
+                                  localStorage.setItem('sy_bgm_playing', 'true');
+                                }).catch(() => {});
+                              }
+                            }
+
+                            const br2 = document.createElement('br');
+                            term.appendChild(br2);
+
+                            const enjoy = document.createElement('p');
+                            enjoy.className = 'system';
+                            term.appendChild(enjoy);
+                            typeLine(enjoy, 'ENJOY TO BUILD', () => {
+
+                              const end = document.createElement('p');
+                              end.className = 'system';
+                              term.appendChild(end);
+                              typeLine(end, 'END OF LINE', () => {
+
+                                const br3 = document.createElement('br');
+                                term.appendChild(br3);
+                                caret.remove();
+
+                                sessionStorage.setItem('sy_boot_completed', 'true');
+                                showUniverse();
+                              });
+                            });
+                          }
                         });
                       });
                     });
@@ -845,7 +955,7 @@
                     terminal.appendChild(question);
 
                     // タイプアニメーションで質問を表示し、完了後に入力欄を表示
-                    typeLineLocal(question, 'DO YOU WANT TO EXIT THE UNIVERSE? Y/N', () => {
+                    typeLineLocal(question, 'WANT TO EXIT? Y/N', () => {
                       caret.remove();
 
                       const answer = document.createElement('p');
@@ -926,7 +1036,7 @@
                                       universeWrapper.classList.remove('visible');
                                       universeWrapper.classList.add('hidden');
 
-                                      // 宇宙が消えた後に「ENDED SIGNAL FROM MCP」と再接続ボタンを表示
+                                      // 宇宙が消えた後に「ENDED SIGNAL FROM MNEME」と再接続ボタンを表示
                                       const br4 = document.createElement('br');
                                       terminal.appendChild(br4);
 
@@ -934,7 +1044,7 @@
                                       endedSignal.className = 'command';
                                       terminal.appendChild(endedSignal);
 
-                                      typeLineLocal(endedSignal, 'ENDED SIGNAL FROM MCP', () => {
+                                      typeLineLocal(endedSignal, 'ENDED SIGNAL FROM MNEME', () => {
                                         caret.remove();
 
                                         const br5 = document.createElement('br');
@@ -999,6 +1109,50 @@
               })();
             })();
           </script>
+
+        <!-- BGM -->
+        <audio id="bgm" loop preload="auto">
+          <source src="music/bgm.mp3" type="audio/mpeg">
+        </audio>
+        <button class="bgm-toggle" id="bgm-toggle" aria-label="BGM">
+          <span class="icon-play">&#9654;</span>
+          <span class="icon-pause">&#10074;&#10074;</span>
+        </button>
+        <script>
+          (() => {
+            const audio = document.getElementById('bgm');
+            const btn = document.getElementById('bgm-toggle');
+            if (!audio || !btn) return;
+
+            const KEY = 'sy_bgm_playing';
+
+            function play() {
+              audio.play().then(() => {
+                btn.classList.add('playing');
+                localStorage.setItem(KEY, 'true');
+              }).catch(() => {});
+            }
+
+            function pause() {
+              audio.pause();
+              btn.classList.remove('playing');
+              localStorage.setItem(KEY, 'false');
+            }
+
+            btn.addEventListener('click', () => {
+              if (audio.paused) {
+                play();
+              } else {
+                pause();
+              }
+            });
+
+            // ページ読み込み時に状態を復元
+            if (localStorage.getItem(KEY) === 'true') {
+              play();
+            }
+          })();
+        </script>
 
         </body>
 </html>

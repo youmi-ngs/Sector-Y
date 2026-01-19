@@ -806,7 +806,7 @@ body.modal-open {
   /* .coming-soon h2 {
     display: flex;
     justify-content: center;
-    align-items: center;    
+    align-items: center;
     font-size: 24px;
     color: #555;
     margin-bottom: 300px;
@@ -820,3 +820,69 @@ body.modal-open {
     font-size: 20px;
     color: #555;
   } */
+
+/* BGM トグルボタン */
+.bgm-toggle {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px solid var(--color-blue);
+  color: var(--color-blue);
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
+}
+
+.bgm-toggle:hover {
+  background: rgba(0, 255, 255, 0.1);
+  box-shadow: 0 0 16px rgba(0, 255, 255, 0.5);
+}
+
+.bgm-toggle.playing {
+  animation: bgmPulse 2s ease-in-out infinite;
+}
+
+.bgm-toggle .icon-play,
+.bgm-toggle .icon-pause {
+  display: none;
+}
+
+.bgm-toggle .icon-play {
+  display: block;
+}
+
+.bgm-toggle.playing .icon-play {
+  display: none;
+}
+
+.bgm-toggle.playing .icon-pause {
+  display: block;
+}
+
+@keyframes bgmPulse {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+  }
+}
+
+@media (max-width: 700px) {
+  .bgm-toggle {
+    width: 38px;
+    height: 38px;
+    font-size: 16px;
+    bottom: 18px;
+    left: 18px;
+  }
+}

@@ -426,5 +426,49 @@
             }
             });
         </script>
+
+        <!-- BGM -->
+        <audio id="bgm" loop preload="auto">
+          <source src="../music/bgm.mp3" type="audio/mpeg">
+        </audio>
+        <button class="bgm-toggle" id="bgm-toggle" aria-label="BGM">
+          <span class="icon-play">&#9654;</span>
+          <span class="icon-pause">&#10074;&#10074;</span>
+        </button>
+        <script>
+          (() => {
+            const audio = document.getElementById('bgm');
+            const btn = document.getElementById('bgm-toggle');
+            if (!audio || !btn) return;
+
+            const KEY = 'sy_bgm_playing';
+
+            function play() {
+              audio.play().then(() => {
+                btn.classList.add('playing');
+                localStorage.setItem(KEY, 'true');
+              }).catch(() => {});
+            }
+
+            function pause() {
+              audio.pause();
+              btn.classList.remove('playing');
+              localStorage.setItem(KEY, 'false');
+            }
+
+            btn.addEventListener('click', () => {
+              if (audio.paused) {
+                play();
+              } else {
+                pause();
+              }
+            });
+
+            if (localStorage.getItem(KEY) === 'true') {
+              play();
+            }
+          })();
+        </script>
+
     </body>
 </html>
