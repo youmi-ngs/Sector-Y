@@ -131,9 +131,9 @@
           <!-- PC用ヒーロー -->
           <div id="boot-sequence">
             <div class="terminal" id="terminal">
-              <p class="command" data-text="SECTOR Y // TERMINAL O{RAND}"></p>
-              <p class="command" data-text="&quot;UNKNOWN&quot; ATTEMPTS CONNECTION"></p>
-              <p class="command" data-text="NO CREATOR DETECTED GUIDANCE WILL PROCEED AUTOMATICALLY"></p>
+              <p class="command" data-text="SECTOR Y // TERMINAL 0{RAND}"></p>
+              <p class="command" data-text="&quot;UNKNOWN&quot; CONNECTION ATTEMPT"></p>
+              <p class="command" data-text="NO CREATOR DETECTED — GUIDANCE WILL PROCEED AUTOMATICALLY"></p>
               <br>
               <p class="command"  data-text="THIS UNIVERSE IS FOR OBSERVING THE WORLD OF YOUMI"></p>
               <br>
@@ -288,7 +288,7 @@
                     welcome.textContent = 'WELCOME TO SECTOR_Y';
                     const enjoy = document.createElement('p');
                     enjoy.className = 'system';
-                    enjoy.textContent = 'ENJOY TO BUILD';
+                    enjoy.textContent = 'ENJOY BUILDING';
                     const br2 = document.createElement('br');
                     const endLine = document.createElement('p');
                     endLine.className = 'system';
@@ -799,7 +799,7 @@
                             const enjoy = document.createElement('p');
                             enjoy.className = 'system';
                             term.appendChild(enjoy);
-                            typeLine(enjoy, 'ENJOY TO BUILD', () => {
+                            typeLine(enjoy, 'ENJOY BUILDING', () => {
 
                               const end = document.createElement('p');
                               end.className = 'system';
